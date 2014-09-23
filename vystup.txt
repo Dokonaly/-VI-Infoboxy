@@ -1,0 +1,4 @@
+Employee:: ID=1 Name=Pankaj Age=29 Gender=Male Role=Java Developer
+Employee:: ID=2 Name=Lisa Age=35 Gender=Female Role=CEO
+Employee:: ID=3 Name=Tom Age=40 Gender=Male Role=Manager
+Employee:: ID=4 Name=Meghna Age=25 Gender=Female Role=Manager
