@@ -18,57 +18,41 @@ public class MyHandler  extends DefaultHandler {
         return infoboxList;
     }
 
+	boolean bTitle = false;
+	
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes)
             throws SAXException {
  
-        if (qName.equalsIgnoreCase("Employee")) {
-            //create a new Employee and put it in Map
-            String id = attributes.getValue("id");
-            //initialize Employee object and set id attribute
-            emp = new Employee();
-            emp.setId(Integer.parseInt(id));
-            //initialize list
-            if (empList == null)
-                empList = new ArrayList<>();
-        } else if (qName.equalsIgnoreCase("name")) {
-            //set boolean values for fields, will be used in setting Employee variables
-            bName = true;
-        } else if (qName.equalsIgnoreCase("age")) {
-            bAge = true;
-        } else if (qName.equalsIgnoreCase("gender")) {
-            bGender = true;
-        } else if (qName.equalsIgnoreCase("role")) {
-            bRole = true;
-        }
+        if (qName.equalsIgnoreCase("Page")) {
+                       
+            infobox = new Infobox();
+            if (infoboxList == null)
+            	infoboxList = new ArrayList<>();
+        } else if (qName.equalsIgnoreCase("title")) {
+           
+        	
+        	bTitle = true;
+        } 
     }
- 
  
     @Override
     public void endElement(String uri, String localName, String qName) throws SAXException {
-        if (qName.equalsIgnoreCase("Employee")) {
-            //add Employee object to list
-            empList.add(emp);
+        if (qName.equalsIgnoreCase("Page")) {
+          
+        	infoboxList.add(infobox);
         }
     }
  
     @Override
     public void characters(char ch[], int start, int length) throws SAXException {
- 
-        if (bAge) {
-            //age element, set Employee age
-            emp.setAge(Integer.parseInt(new String(ch, start, length)));
-            bAge = false;
-        } else if (bName) {
-            emp.setName(new String(ch, start, length));
-            bName = false;
-        } else if (bRole) {
-            emp.setRole(new String(ch, start, length));
-            bRole = false;
-        } else if (bGender) {
-            emp.setGender(new String(ch, start, length));
-            bGender = false;
-        }
+    	ignorableWhitespace(ch, start,length);
+         if (bTitle) {
+            infobox.setTitle(new String(ch, start, length));
+            bTitle = false;
+        } 
     }
+    
+
 
 }

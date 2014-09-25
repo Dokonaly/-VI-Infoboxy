@@ -1,15 +1,16 @@
 package Vzorka;
 
+import java.util.List;
+
 public class Infobox {
 	
-	private String text;
+	private String title;
 	
-	public String getText() {
-	       return text;
+	public String getTitle() {
+	       return title;
 	 }
 	
-	public void setText(String id) {
-	        this.text = text;
+	public void setTitle(String a) {
+	        this.title = a;
 	 }
-
 }
