@@ -13,4 +13,6 @@ public class Infobox {
 	public void setTitle(String a) {
 	        this.title = a;
 	 }
+
+	
 }
