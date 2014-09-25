@@ -49,10 +49,11 @@ public class MyHandler  extends DefaultHandler {
         	{
         	    System.out.println(matcher.group(1));
         	    infobox.setTitle(matcher.group(1));
+        	    infoboxList.add(infobox);
         	}
         	
             bTitle = false;
-        	infoboxList.add(infobox);
+        	
         	 
         }
        
