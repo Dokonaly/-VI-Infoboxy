@@ -2,6 +2,8 @@ package Vzorka;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
  
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
@@ -40,7 +42,15 @@ public class MyHandler  extends DefaultHandler {
     public void endElement(String uri, String localName, String qName) throws SAXException {
         if (bTitle) {
           
-        	infobox.setTitle(sb.toString());
+        	String vysledok = sb.toString();
+        	Pattern pattern = Pattern.compile("Infobox(.*)");
+        	Matcher matcher = pattern.matcher(vysledok);
+        	if (matcher.find())
+        	{
+        	    System.out.println(matcher.group(1));
+        	    infobox.setTitle(matcher.group(1));
+        	}
+        	
             bTitle = false;
         	infoboxList.add(infobox);
         	 
