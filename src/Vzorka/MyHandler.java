@@ -43,13 +43,21 @@ public class MyHandler  extends DefaultHandler {
         if (bTitle) {
           
         	String vysledok = sb.toString();
-        	Pattern pattern = Pattern.compile("Infobox(.*)");
+        	vysledok = vysledok.replaceAll("(\r\n|\n)", " "); //zarovnanie do jedneho riadku
+        	vysledok = vysledok.trim().replaceAll(" +", " "); //odstranenie nepotrebnych medzier
+        	Pattern pattern = Pattern.compile(
+        			"\\{\\{Infobox disease [A-Za-z0-9 |_ =*.:?!()+-<>\\]\\[#@\\{'`$%^&;<>,ֹציז]+ " +
+        			"| \\{\\{Infobox person [A-Za-z0-9 |_ =*.:?!()+-<>\\]\\[#@\\{'`$%^&;<>,ֹציז]+ " +
+        			"| \\{\\{Infobox book [A-Za-z0-9 |_ =*.:?!()+-<>\\]\\[#@\\{'`$%^&;<>,ֹציז]+" +
+        			"| \\{\\{Infobox award [A-Za-z0-9 |_ =*.:?!()+-<>\\]\\[#@\\{'`$%^&;<>,ֹציז]+ "			
+        			); //}
         	Matcher matcher = pattern.matcher(vysledok);
         	if (matcher.find())
         	{
-        	    System.out.println(matcher.group(1));
-        	    infobox.setTitle(matcher.group(1));
-        	    infoboxList.add(infobox);
+        	    System.out.println(matcher.group(0));
+        	    //infobox.setTitle(vysledok);
+        	    infobox.setTitle(matcher.group(0));
+         	    infoboxList.add(infobox);
         	}
         	
             bTitle = false;

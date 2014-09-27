@@ -27,7 +27,7 @@ public class Parser {
 	        
 	        for(Infobox inf : InfoboxList){
 	        	out.println(inf.getTitle());
-	        	System.out.println(inf.getTitle());
+	        	//System.out.println(inf.getTitle());
 	        }
 	        
 	        out.close();
