@@ -11,13 +11,13 @@ import org.xml.sax.helpers.DefaultHandler;
 
 import Employee.Employee;
 
-public class MyHandler  extends DefaultHandler {
+public class HandlerCountry  extends DefaultHandler {
 	
-	private List<Infobox> infoboxList = null;
-	private Infobox infobox = null;
+	private List<Infobox_country> infoboxList = null;
+	private Infobox_country infobox = null;
 	private StringBuffer sb;
 	
-	public List<Infobox> getInfoboxList() {
+	public List<Infobox_country> getInfoboxList() {
         return infoboxList;
     }
 
@@ -29,7 +29,7 @@ public class MyHandler  extends DefaultHandler {
  
     	sb = new StringBuffer();
         if (qName.equalsIgnoreCase("Page")) {                
-            infobox = new Infobox();
+            infobox = new Infobox_country();
             if (infoboxList == null) {
             	infoboxList = new ArrayList<>();
             }

@@ -15,18 +15,45 @@ import org.xml.sax.SAXException;
 public class Parser {
 	public static void main(String[] args) throws FileNotFoundException {
 	    SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
-	    PrintWriter out = new PrintWriter("vystup.txt");
+	    PrintWriter out_country = new PrintWriter("Out_Country.txt");
+	    PrintWriter out_settlement = new PrintWriter("Out_Settlement.txt");
+	    
 	    try {
 	        SAXParser saxParser = saxParserFactory.newSAXParser();
+	       
+	        HandlerCountry handler_country = new HandlerCountry();
+	        HandlerSettlement handler_settlement = new HandlerSettlement();
 	        
-	        MyHandler handler = new MyHandler();
+	        saxParser.parse(new File("C:\\Users\\Dokonaly\\Google Drive\\FIIT rok 5\\VI\\Infobox projekt\\-VI-Infoboxy\\data\\ukazka.xml"), handler_country);
+	        saxParser.parse(new File("C:\\Users\\Dokonaly\\Google Drive\\FIIT rok 5\\VI\\Infobox projekt\\-VI-Infoboxy\\data\\ukazka.xml"), handler_settlement);
 	        
-	        saxParser.parse(new File("C:\\Users\\Dokonaly\\Google Drive\\FIIT rok 5\\VI\\Infobox projekt\\-VI-Infoboxy\\data\\ukazka.xml"), handler);
+	        List<Infobox_country> InfoboxList = handler_country.getInfoboxList();
+	        List<Infobox_settlement> InfoboxSettlementList = handler_settlement.getInfoboxList();
 	        
-	        List<Infobox> InfoboxList = handler.getInfoboxList();
 	        
-	        for(Infobox inf : InfoboxList){
-	        	out.println(inf.getTitle()+" "
+	        
+	        for(Infobox_settlement settlement : InfoboxSettlementList){
+	       
+	        	
+	        	out_settlement.println(settlement.getOfficial_name()+" "
+    					+settlement.getNickname() +" "
+    					+settlement.getMap_caption()+" "
+    					+settlement.getCoordinates_region()+" "
+    					+settlement.getLeader_title()+" "
+    					+settlement.getLeader_title()+" "
+    					+settlement.getUnit_pref()+" "
+    					+settlement.getArea_total_km2()+" "
+    					+settlement.getArea_land_km2()+" "
+    					+settlement.getPopulation_total()+" "
+    					+settlement.getPopulation_density_km2()+" "
+    					+settlement.getTimezone()+" "
+    					+settlement.getWebsite()+" "
+    					+settlement.getPostal_code()
+	        			);
+	        }
+	        
+	        for(Infobox_country inf : InfoboxList){
+	        	out_country.println(inf.getTitle()+" "
         		
         					+inf.getCommon_name() +" "
         					+inf.getImage_flag()+" "
@@ -44,8 +71,8 @@ public class Parser {
         					);
 	        	//System.out.println(inf.getTitle());
 	        }
-	        
-	        out.close();
+	        out_settlement.close(); 
+	        out_country.close();
 	    } catch (ParserConfigurationException | SAXException | IOException e) {
 	        e.printStackTrace();
 	    }

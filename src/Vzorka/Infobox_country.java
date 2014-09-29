@@ -2,7 +2,7 @@ package Vzorka;
 
 import java.util.List;
 
-public class Infobox {
+public class Infobox_country {
 	
 	private String title;
 	private String common_name;
