@@ -93,7 +93,7 @@ public class HandlerPerson  extends DefaultHandler {
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?occupation = [A-Za-z0-9 _ =*.:?!()+-<>|\\[#@\\{}'`$%^&;<>,ֹציז]+ ", vysledok);  	
+    	vystup = PouziRegex("\\| ?occupation = [A-Za-z0-9 _ =*.:?!()+-<>\\[#@\\{}'`$%^&;<>,ֹציז]+ ", vysledok);  	
     	if (vystup != null){
     		infoboxPerson.setOccupation(vystup);
     	    flag = true;
