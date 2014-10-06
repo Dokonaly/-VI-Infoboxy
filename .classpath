@@ -3,7 +3,60 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="lib"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="lib/lucene-core-4.10.1.jar"/>
-	<classpathentry kind="lib" path="lib/lucene-demo-4.10.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Dokonaly/Google Drive/FIIT rok 5/VI/Infobox projekt/-VI-Infoboxy/lib/ant-1.8.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Dokonaly/Google Drive/FIIT rok 5/VI/Infobox projekt/-VI-Infoboxy/lib/antlr-runtime-3.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Dokonaly/Google Drive/FIIT rok 5/VI/Infobox projekt/-VI-Infoboxy/lib/asm-4.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Dokonaly/Google Drive/FIIT rok 5/VI/Infobox projekt/-VI-Infoboxy/lib/asm-commons-4.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Dokonaly/Google Drive/FIIT rok 5/VI/Infobox projekt/-VI-Infoboxy/lib/commons-codec-1.9.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Dokonaly/Google Drive/FIIT rok 5/VI/Infobox projekt/-VI-Infoboxy/lib/commons-compress-1.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Dokonaly/Google Drive/FIIT rok 5/VI/Infobox projekt/-VI-Infoboxy/lib/commons-logging-1.1.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Dokonaly/Google Drive/FIIT rok 5/VI/Infobox projekt/-VI-Infoboxy/lib/httpclient-4.3.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Dokonaly/Google Drive/FIIT rok 5/VI/Infobox projekt/-VI-Infoboxy/lib/httpcore-4.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Dokonaly/Google Drive/FIIT rok 5/VI/Infobox projekt/-VI-Infoboxy/lib/icu4j-53.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Dokonaly/Google Drive/FIIT rok 5/VI/Infobox projekt/-VI-Infoboxy/lib/jakarta-regexp-1.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Dokonaly/Google Drive/FIIT rok 5/VI/Infobox projekt/-VI-Infoboxy/lib/javax.servlet-3.0.0.v201112011016.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Dokonaly/Google Drive/FIIT rok 5/VI/Infobox projekt/-VI-Infoboxy/lib/jetty-continuation-8.1.10.v20130312.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Dokonaly/Google Drive/FIIT rok 5/VI/Infobox projekt/-VI-Infoboxy/lib/jetty-http-8.1.10.v20130312.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Dokonaly/Google Drive/FIIT rok 5/VI/Infobox projekt/-VI-Infoboxy/lib/jetty-io-8.1.10.v20130312.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Dokonaly/Google Drive/FIIT rok 5/VI/Infobox projekt/-VI-Infoboxy/lib/jetty-server-8.1.10.v20130312.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Dokonaly/Google Drive/FIIT rok 5/VI/Infobox projekt/-VI-Infoboxy/lib/jetty-servlet-8.1.10.v20130312.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Dokonaly/Google Drive/FIIT rok 5/VI/Infobox projekt/-VI-Infoboxy/lib/jetty-util-8.1.10.v20130312.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Dokonaly/Google Drive/FIIT rok 5/VI/Infobox projekt/-VI-Infoboxy/lib/junit-4.10.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Dokonaly/Google Drive/FIIT rok 5/VI/Infobox projekt/-VI-Infoboxy/lib/junit4-ant-2.1.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Dokonaly/Google Drive/FIIT rok 5/VI/Infobox projekt/-VI-Infoboxy/lib/lucene-analyzers-common-4.10.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Dokonaly/Google Drive/FIIT rok 5/VI/Infobox projekt/-VI-Infoboxy/lib/lucene-analyzers-icu-4.10.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Dokonaly/Google Drive/FIIT rok 5/VI/Infobox projekt/-VI-Infoboxy/lib/lucene-analyzers-kuromoji-4.10.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Dokonaly/Google Drive/FIIT rok 5/VI/Infobox projekt/-VI-Infoboxy/lib/lucene-analyzers-morfologik-4.10.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Dokonaly/Google Drive/FIIT rok 5/VI/Infobox projekt/-VI-Infoboxy/lib/lucene-analyzers-phonetic-4.10.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Dokonaly/Google Drive/FIIT rok 5/VI/Infobox projekt/-VI-Infoboxy/lib/lucene-analyzers-smartcn-4.10.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Dokonaly/Google Drive/FIIT rok 5/VI/Infobox projekt/-VI-Infoboxy/lib/lucene-analyzers-stempel-4.10.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Dokonaly/Google Drive/FIIT rok 5/VI/Infobox projekt/-VI-Infoboxy/lib/lucene-analyzers-uima-4.10.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Dokonaly/Google Drive/FIIT rok 5/VI/Infobox projekt/-VI-Infoboxy/lib/lucene-benchmark-4.10.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Dokonaly/Google Drive/FIIT rok 5/VI/Infobox projekt/-VI-Infoboxy/lib/lucene-classification-4.10.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Dokonaly/Google Drive/FIIT rok 5/VI/Infobox projekt/-VI-Infoboxy/lib/lucene-core-4.10.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Dokonaly/Google Drive/FIIT rok 5/VI/Infobox projekt/-VI-Infoboxy/lib/lucene-demo-4.10.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Dokonaly/Google Drive/FIIT rok 5/VI/Infobox projekt/-VI-Infoboxy/lib/lucene-expressions-4.10.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Dokonaly/Google Drive/FIIT rok 5/VI/Infobox projekt/-VI-Infoboxy/lib/lucene-facet-4.10.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Dokonaly/Google Drive/FIIT rok 5/VI/Infobox projekt/-VI-Infoboxy/lib/lucene-grouping-4.10.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Dokonaly/Google Drive/FIIT rok 5/VI/Infobox projekt/-VI-Infoboxy/lib/lucene-highlighter-4.10.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Dokonaly/Google Drive/FIIT rok 5/VI/Infobox projekt/-VI-Infoboxy/lib/lucene-join-4.10.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Dokonaly/Google Drive/FIIT rok 5/VI/Infobox projekt/-VI-Infoboxy/lib/lucene-memory-4.10.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Dokonaly/Google Drive/FIIT rok 5/VI/Infobox projekt/-VI-Infoboxy/lib/lucene-misc-4.10.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Dokonaly/Google Drive/FIIT rok 5/VI/Infobox projekt/-VI-Infoboxy/lib/lucene-queries-4.10.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Dokonaly/Google Drive/FIIT rok 5/VI/Infobox projekt/-VI-Infoboxy/lib/lucene-queryparser-4.10.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Dokonaly/Google Drive/FIIT rok 5/VI/Infobox projekt/-VI-Infoboxy/lib/lucene-replicator-4.10.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Dokonaly/Google Drive/FIIT rok 5/VI/Infobox projekt/-VI-Infoboxy/lib/lucene-sandbox-4.10.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Dokonaly/Google Drive/FIIT rok 5/VI/Infobox projekt/-VI-Infoboxy/lib/lucene-spatial-4.10.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Dokonaly/Google Drive/FIIT rok 5/VI/Infobox projekt/-VI-Infoboxy/lib/lucene-suggest-4.10.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Dokonaly/Google Drive/FIIT rok 5/VI/Infobox projekt/-VI-Infoboxy/lib/lucene-test-framework-4.10.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Dokonaly/Google Drive/FIIT rok 5/VI/Infobox projekt/-VI-Infoboxy/lib/nekohtml-1.9.17.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Dokonaly/Google Drive/FIIT rok 5/VI/Infobox projekt/-VI-Infoboxy/lib/randomizedtesting-runner-2.1.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Dokonaly/Google Drive/FIIT rok 5/VI/Infobox projekt/-VI-Infoboxy/lib/spatial4j-0.4.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Dokonaly/Google Drive/FIIT rok 5/VI/Infobox projekt/-VI-Infoboxy/lib/Tagger-2.3.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Dokonaly/Google Drive/FIIT rok 5/VI/Infobox projekt/-VI-Infoboxy/lib/uimaj-core-2.3.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Dokonaly/Google Drive/FIIT rok 5/VI/Infobox projekt/-VI-Infoboxy/lib/WhitespaceTokenizer-2.3.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Dokonaly/Google Drive/FIIT rok 5/VI/Infobox projekt/-VI-Infoboxy/lib/xercesImpl-2.9.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Dokonaly/Google Drive/FIIT rok 5/VI/Infobox projekt/-VI-Infoboxy/lib/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Dokonaly/Google Drive/FIIT rok 5/VI/Infobox projekt/-VI-Infoboxy/lib/commons-logging-1.2-javadoc.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

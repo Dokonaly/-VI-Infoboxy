@@ -1,5 +1,24 @@
 package Vzorka;
 
+import org.apache.lucene.analysis.standard.StandardAnalyzer;
+import org.apache.lucene.document.Document;
+import org.apache.lucene.document.Field;
+import org.apache.lucene.document.StringField;
+import org.apache.lucene.document.TextField;
+import org.apache.lucene.index.DirectoryReader;
+import org.apache.lucene.index.IndexReader;
+import org.apache.lucene.index.IndexWriter;
+import org.apache.lucene.index.IndexWriterConfig;
+import org.apache.lucene.queryparser.classic.ParseException;
+import org.apache.lucene.queryparser.classic.QueryParser;
+import org.apache.lucene.search.IndexSearcher;
+import org.apache.lucene.search.Query;
+import org.apache.lucene.search.ScoreDoc;
+import org.apache.lucene.search.TopScoreDocCollector;
+import org.apache.lucene.store.Directory;
+import org.apache.lucene.store.RAMDirectory;
+import org.apache.lucene.util.Version;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -13,7 +32,7 @@ import javax.xml.parsers.SAXParserFactory;
 import org.xml.sax.SAXException;
 
 public class Parser {
-	public static void main(String[] args) throws FileNotFoundException {
+	public static void main(String[] args) throws FileNotFoundException, ParseException {
 	    SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
 	    PrintWriter out_country = new PrintWriter("Out_Country.txt");
 	    PrintWriter out_settlement = new PrintWriter("Out_Settlement.txt");
@@ -109,6 +128,37 @@ public class Parser {
 	        Stats statisky = new Stats();
 	        statisky.vypocitaj_statistiky(InfoboxbookList, InfoboxList, InfoboxSettlementList, InfoboxPersonList);
 	        
+			StandardAnalyzer analyzer = new StandardAnalyzer(Version.LUCENE_40);
+	        Directory index = new RAMDirectory();  
+	        IndexWriterConfig config = new IndexWriterConfig(Version.LUCENE_40, analyzer);
+	        IndexWriter w = new IndexWriter(index, config);
+	        
+	        for(Infobox_book book : InfoboxbookList){
+	        addBook(w, book.getName(), book.getTranslator(), book.getImage(), book.getCaption(), book.getAuthor(), 
+	        		book.getCountry(),book.getLanguage(), book.getSubject(), book.getGenre(), book.getPublished(),
+	        		book.getMedia_type(), book.getPages(), book.getIsbn(), book.getFollowed_by() , book.getPreceded_by());
+	        }
+	        
+	        /*
+	        String querystr = args.length > 0 ? args[0] : "Blade";
+	        Query q = new QueryParser(Version.LUCENE_40, "title", analyzer).parse(querystr);
+	        
+	        int hitsPerPage = 10;
+	        IndexReader reader = DirectoryReader.open(index);
+	        IndexSearcher searcher = new IndexSearcher(reader);
+	        TopScoreDocCollector collector = TopScoreDocCollector.create(hitsPerPage, true);
+	        searcher.search(q, collector);
+	        ScoreDoc[] hits = collector.topDocs().scoreDocs;
+	        
+	        System.out.println("Found " + hits.length + " hits.");
+	        for(int i=0;i<hits.length;++i) {
+	          int docId = hits[i].doc;
+	          Document d = searcher.doc(docId);
+	          System.out.println((i + 1) + ". " + d.get("isbn") + "\t" + d.get("title"));
+	        }
+
+	        reader.close();*/
+	        
 	        out_person.close();
 	        out_book.close();
 	        out_settlement.close(); 
@@ -117,4 +167,27 @@ public class Parser {
 	        e.printStackTrace();
 	    }
 	    }
+	
+	private static void addBook(IndexWriter w, String title, String translator, String image,
+			String captation, String author, String country, String language,
+			String subject, String genre, String published, String media_type,
+		    String pages,String isbn, String get_followed_by, String get_preceded_by) throws IOException {
+		  Document doc = new Document();
+		  doc.add(new TextField("title", title, Field.Store.YES));
+		  doc.add(new StringField("translator", translator, Field.Store.YES));
+		  doc.add(new StringField("image", image, Field.Store.YES));
+		  doc.add(new StringField("captation", captation, Field.Store.YES));
+		  doc.add(new StringField("author", author, Field.Store.YES));
+		  doc.add(new StringField("country", country, Field.Store.YES));
+		  doc.add(new StringField("language", language, Field.Store.YES));
+		  doc.add(new StringField("subject", subject, Field.Store.YES));
+		  doc.add(new StringField("genre", genre, Field.Store.YES));
+		  doc.add(new StringField("published", published, Field.Store.YES));
+		  doc.add(new StringField("media_type", media_type, Field.Store.YES));
+		  doc.add(new StringField("pages", pages, Field.Store.YES));
+		  doc.add(new StringField("isbn", isbn, Field.Store.YES));
+		  doc.add(new StringField("get_followed_by", get_followed_by, Field.Store.YES));
+		  doc.add(new StringField("get_preceded_by", get_preceded_by, Field.Store.YES));
+		  w.addDocument(doc);
+		}
 }

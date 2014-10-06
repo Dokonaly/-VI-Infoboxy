@@ -1,5 +1,5 @@
 Statistiky book: 
-Percento nevyparsovanych mien: 0.0
+Percento nevyparsovanych mien knih: 0.0
 Percento nevyparsovanych translatorov: 95.45454545454547
 Percento nevyparsovanych image: 13.636363636363637
 Percento nevyparsovanych captation: 36.36363636363637
