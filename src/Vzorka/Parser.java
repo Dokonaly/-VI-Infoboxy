@@ -51,7 +51,7 @@ public class Parser {
 	        }
 	        
 	        for(Infobox_book book : InfoboxbookList){
-	        	out_book.println(book.getName()+" "
+	        			out_book.println(book.getName()+" "
     					+book.getTranslator()+" "
     					+book.getImage()+" "
     					+book.getCaption()+" "
@@ -105,6 +105,10 @@ public class Parser {
         					+inf.getPopulation_estimate_rank()
         					);
 	        }
+	        
+	        Stats statisky = new Stats();
+	        statisky.vypocitaj_statistiky(InfoboxbookList, InfoboxList, InfoboxSettlementList, InfoboxPersonList);
+	        
 	        out_person.close();
 	        out_book.close();
 	        out_settlement.close(); 
