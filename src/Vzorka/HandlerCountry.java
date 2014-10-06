@@ -9,8 +9,6 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-import Employee.Employee;
-
 public class HandlerCountry  extends DefaultHandler {
 	
 	private List<Infobox_country> infoboxList = null;

@@ -30,7 +30,7 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
  
 import org.xml.sax.SAXException;
-
+import java.util.Scanner;
 public class Parser {
 	public static void main(String[] args) throws FileNotFoundException, ParseException {
 	    SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
@@ -128,37 +128,145 @@ public class Parser {
 	        Stats statisky = new Stats();
 	        statisky.vypocitaj_statistiky(InfoboxbookList, InfoboxList, InfoboxSettlementList, InfoboxPersonList);
 	        
-			StandardAnalyzer analyzer = new StandardAnalyzer(Version.LUCENE_40);
-	        Directory index = new RAMDirectory();  
-	        IndexWriterConfig config = new IndexWriterConfig(Version.LUCENE_40, analyzer);
-	        IndexWriter w = new IndexWriter(index, config);
+			StandardAnalyzer analyzerB = new StandardAnalyzer(Version.LUCENE_40);
+			StandardAnalyzer analyzerS = new StandardAnalyzer(Version.LUCENE_40);
+			StandardAnalyzer analyzerP = new StandardAnalyzer(Version.LUCENE_40);
+			StandardAnalyzer analyzerC = new StandardAnalyzer(Version.LUCENE_40);
+	        Directory indexB = new RAMDirectory();
+	        Directory indexS = new RAMDirectory();  
+	        Directory indexP = new RAMDirectory();  
+	        Directory indexC = new RAMDirectory();  
+	        IndexWriterConfig configB = new IndexWriterConfig(Version.LUCENE_40, analyzerB);
+	        IndexWriterConfig configS = new IndexWriterConfig(Version.LUCENE_40, analyzerS);
+	        IndexWriterConfig configP = new IndexWriterConfig(Version.LUCENE_40, analyzerP);
+	        IndexWriterConfig configC = new IndexWriterConfig(Version.LUCENE_40, analyzerC);
+	        IndexWriter b = new IndexWriter(indexB, configB);
+	        IndexWriter s = new IndexWriter(indexS, configS);
+	        IndexWriter p = new IndexWriter(indexP, configP);
+	        IndexWriter c = new IndexWriter(indexC, configC);
 	        
 	        for(Infobox_book book : InfoboxbookList){
-	        addBook(w, book.getName(), book.getTranslator(), book.getImage(), book.getCaption(), book.getAuthor(), 
+	        addBook(b, book.getName(), book.getTranslator(), book.getImage(), book.getCaption(), book.getAuthor(), 
 	        		book.getCountry(),book.getLanguage(), book.getSubject(), book.getGenre(), book.getPublished(),
 	        		book.getMedia_type(), book.getPages(), book.getIsbn(), book.getFollowed_by() , book.getPreceded_by());
 	        }
 	        
-	        /*
-	        String querystr = args.length > 0 ? args[0] : "Blade";
-	        Query q = new QueryParser(Version.LUCENE_40, "title", analyzer).parse(querystr);
+	        for(Infobox_country country : InfoboxList){
+		        addCountry(c, country.getTitle(), country.getCommon_name(), country.getImage_flag(), country.getImage_coat(), country.getCapital(), 
+		        		country.getOfficial_religion(),country.getOfficial_languages(), country.getGovernment_type(), country.getArea_km2(), country.getArea_sq_mi(),
+		        		country.getPopulation_estimate(), country.getPopulation_estimate_rank(), country.getCurrency(), country.getCurrency_code());
+		    }
 	        
-	        int hitsPerPage = 10;
-	        IndexReader reader = DirectoryReader.open(index);
-	        IndexSearcher searcher = new IndexSearcher(reader);
-	        TopScoreDocCollector collector = TopScoreDocCollector.create(hitsPerPage, true);
-	        searcher.search(q, collector);
-	        ScoreDoc[] hits = collector.topDocs().scoreDocs;
+	        for(Infobox_settlement settlement : InfoboxSettlementList){
+		        addSettlement(s, settlement.getOfficial_name(), settlement.getNickname(), settlement.getMap_caption(), settlement.getCoordinates_region(), settlement.getLeader_title(), 
+		        		settlement.getUnit_pref(),settlement.getArea_total_km2(), settlement.getArea_land_km2(), settlement.getPopulation_total(), settlement.getPopulation_density_km2(),
+		        		settlement.getTimezone(), settlement.getWebsite(), settlement.getPostal_code());
+		    }
 	        
-	        System.out.println("Found " + hits.length + " hits.");
-	        for(int i=0;i<hits.length;++i) {
-	          int docId = hits[i].doc;
-	          Document d = searcher.doc(docId);
-	          System.out.println((i + 1) + ". " + d.get("isbn") + "\t" + d.get("title"));
+	        for(Infobox_person person : InfoboxPersonList){
+		        addPerson(p, person.getName(), person.getImage(), person.getImage_size(), person.getBirth_date(), person.getBirth_place(), 
+		        		person.getDeath_date(),person.getDeath_place(), person.getOccupation());
+		    }
+	        
+	        b.commit();
+	        s.commit();
+	        p.commit();
+	        c.commit();
+	        
+	        int myint=0;
+	        int hitsPerPage = 500;
+	        Scanner keyboard = new Scanner(System.in);
+	        System.out.println("Vyber druh objektu na vyhladavanie:");
+	        System.out.println("1:	Books \n2:	Settlement\n3:	Person\n4:	Country\n5:	Ukonci vyhladavanie\n");
+	        
+	        while(myint != 5){
+	        myint = keyboard.nextInt();
+	          
+	        System.out.println("Zadaj vyhladavaciu frazu:");
+	        String fraza = keyboard.next();
+	        
+	        if ( myint == 1){
+	        	String querystrB = args.length > 0 ? args[0] : fraza;
+		        Query qB = new QueryParser(Version.LUCENE_40, "title", analyzerB).parse(querystrB);
+		        IndexReader readerB = DirectoryReader.open(indexB);
+		        IndexSearcher searcherB = new IndexSearcher(readerB);
+		        TopScoreDocCollector collectorB = TopScoreDocCollector.create(hitsPerPage, true);
+		        searcherB.search(qB, collectorB);
+		        ScoreDoc[] hitsB = collectorB.topDocs().scoreDocs;
+		        
+		        System.out.println("Found books:" + hitsB.length + " hits.");
+		        for(int i=0;i<hitsB.length;++i) {
+		          int docId = hitsB[i].doc;
+		          Document d = searcherB.doc(docId);
+		          System.out.println((i + 1) + ". " + d.get("isbn") + "\t" + d.get("title") + "\t" + d.get("translator") + "\t" + d.get("image")
+		        		  + "\t" + d.get("captation")  + "\t" + d.get("author")  + "\t" + d.get("country")  + "\t" + d.get("language")
+		        		  + "\t" + d.get("subject") + "\t" + d.get("genre") + "\t" + d.get("published") + "\t" + d.get("media_type")
+		        		  + d.get("get_followed_by") + d.get("get_preceded_by")
+		        		  );
+		        }
+		        readerB.close();
 	        }
-
-	        reader.close();*/
 	        
+	        else if (myint == 2){
+	        	String querystrS = args.length > 0 ? args[0] : fraza;
+		        Query qS = new QueryParser(Version.LUCENE_40, "official_name", analyzerS).parse(querystrS);
+		        IndexReader readerS = DirectoryReader.open(indexS);
+		        IndexSearcher searcherS = new IndexSearcher(readerS);
+		        TopScoreDocCollector collectorS = TopScoreDocCollector.create(hitsPerPage, true);
+		        searcherS.search(qS, collectorS);
+		        ScoreDoc[] hitsS = collectorS.topDocs().scoreDocs;
+		        System.out.println("Found Settlements:" + hitsS.length + " hits.");
+		        for(int i=0;i<hitsS.length;++i) {
+		          int docId = hitsS[i].doc;
+		          Document d = searcherS.doc(docId);
+		          System.out.println((i + 1) + ". " + d.get("official_name") + "\t" + d.get("nickname") + "\t" + d.get("map_caption") + "\t" + d.get("coordinates_region")
+		        		  + "\t" + d.get("leader_title")  + "\t" + d.get("unit_pref")  + "\t" + d.get("area_total_km2")  + "\t" + d.get("area_land_km2")
+		        		  + "\t" + d.get("population_total") + "\t" + d.get("population_density_km2") + "\t" + d.get("timezone") + "\t" + d.get("postal_code")
+		        		  + d.get("website")
+		        		  );
+		        }
+		        readerS.close();
+	        }   
+	        else if (myint == 3){
+	        	String querystrP = args.length > 0 ? args[0] : fraza;
+	 	        Query qP = new QueryParser(Version.LUCENE_40, "name", analyzerP).parse(querystrP);
+	 	        IndexReader readerP = DirectoryReader.open(indexP);
+	 	        IndexSearcher searcherP = new IndexSearcher(readerP);
+	 	        TopScoreDocCollector collectorP = TopScoreDocCollector.create(hitsPerPage, true);
+	 	       searcherP.search(qP, collectorP);
+	 	      ScoreDoc[] hitsP = collectorP.topDocs().scoreDocs;
+	 	     System.out.println("Found Persons:" + hitsP.length + " hits.");
+		        for(int i=0;i<hitsP.length;++i) {
+		          int docId = hitsP[i].doc;
+		          Document d = searcherP.doc(docId);
+		          System.out.println((i + 1) + ". " + d.get("name") + "\t" + d.get("image") + "\t" + d.get("image_size") + "\t" + d.get("birth_date")
+		        		  + "\t" + d.get("birth_place")  + "\t" + d.get("death_date")  + "\t" + d.get("death_place")  + "\t" + d.get("occupation")
+		        		  );
+		        }
+		        readerP.close();
+	        }  
+	        
+	        else if (myint == 4){
+	        	String querystrC = args.length > 0 ? args[0] : fraza;
+	 	        Query qC = new QueryParser(Version.LUCENE_40, "title", analyzerC).parse(querystrC);
+	 	        IndexReader readerC = DirectoryReader.open(indexC);
+	 	        IndexSearcher searcherC = new IndexSearcher(readerC);
+	 	        TopScoreDocCollector collectorC = TopScoreDocCollector.create(hitsPerPage, true);
+	 	        searcherC.search(qC, collectorC);
+	 	        ScoreDoc[] hitsC = collectorC.topDocs().scoreDocs;
+	 	        System.out.println("Found Countries:" + hitsC.length + " hits.");
+	 	        for(int i=0;i<hitsC.length;++i) {
+	 	          int docId = hitsC[i].doc;
+	 	          Document d = searcherC.doc(docId);
+	 	          System.out.println((i + 1) + ". " + d.get("title") + "\t" + d.get("common_name") + "\t" + d.get("image_flag") + "\t" + d.get("image_coat")
+	 	        		  + "\t" + d.get("capital")  + "\t" + d.get("official_religion")  + "\t" + d.get("official_languages")  + "\t" + d.get("government_type")
+	 	        		  + "\t" + d.get("area_km2") + "\t" + d.get("area_sq_mi") + "\t" + d.get("population_estimate") + "\t" + d.get("population_estimate_rank")
+	 	        		  + d.get("currency") + d.get("currency_code")
+	 	        		  );
+	 	        }
+	 	       readerC.close();
+	        }
+	     } 
 	        out_person.close();
 	        out_book.close();
 	        out_settlement.close(); 
@@ -173,21 +281,189 @@ public class Parser {
 			String subject, String genre, String published, String media_type,
 		    String pages,String isbn, String get_followed_by, String get_preceded_by) throws IOException {
 		  Document doc = new Document();
-		  doc.add(new TextField("title", title, Field.Store.YES));
-		  doc.add(new StringField("translator", translator, Field.Store.YES));
-		  doc.add(new StringField("image", image, Field.Store.YES));
-		  doc.add(new StringField("captation", captation, Field.Store.YES));
-		  doc.add(new StringField("author", author, Field.Store.YES));
-		  doc.add(new StringField("country", country, Field.Store.YES));
-		  doc.add(new StringField("language", language, Field.Store.YES));
-		  doc.add(new StringField("subject", subject, Field.Store.YES));
-		  doc.add(new StringField("genre", genre, Field.Store.YES));
-		  doc.add(new StringField("published", published, Field.Store.YES));
-		  doc.add(new StringField("media_type", media_type, Field.Store.YES));
-		  doc.add(new StringField("pages", pages, Field.Store.YES));
-		  doc.add(new StringField("isbn", isbn, Field.Store.YES));
-		  doc.add(new StringField("get_followed_by", get_followed_by, Field.Store.YES));
-		  doc.add(new StringField("get_preceded_by", get_preceded_by, Field.Store.YES));
+		  if (title != null) {
+			  doc.add(new TextField("title", title, Field.Store.YES));
+		  }
+		  if (translator != null) {
+			  doc.add(new StringField("translator", translator, Field.Store.YES));
+		  }
+		  if (image != null) {
+			  doc.add(new StringField("image", image, Field.Store.YES));
+		  }
+		  if (captation != null) {
+			  doc.add(new StringField("captation", captation, Field.Store.YES));
+		  }
+		  if (author != null) {
+			  doc.add(new StringField("author", author, Field.Store.YES));
+		  }
+		  if (country != null) {
+			  doc.add(new StringField("country", country, Field.Store.YES));
+		  }
+		  
+		  if (language != null) {
+			  doc.add(new StringField("language", language, Field.Store.YES));
+		  }
+		  if (subject != null) {
+			  doc.add(new StringField("subject", subject, Field.Store.YES));
+		  }
+		  if (genre != null) {
+			  doc.add(new StringField("genre", genre, Field.Store.YES));
+		  }
+		  if (published != null) {
+			  doc.add(new StringField("published", published, Field.Store.YES));
+		  }
+		  if (media_type != null) {
+			  doc.add(new StringField("media_type", media_type, Field.Store.YES));
+		  }
+		  if (isbn != null) {
+			  doc.add(new StringField("isbn", isbn, Field.Store.YES));
+		  }
+		  if (get_followed_by != null) {
+			  doc.add(new StringField("get_followed_by", get_followed_by, Field.Store.YES));
+		  }
+		  if (get_preceded_by != null) {
+			  doc.add(new StringField("get_preceded_by", get_preceded_by, Field.Store.YES));
+		  }
 		  w.addDocument(doc);
 		}
+	
+	private static void addPerson(IndexWriter w, String name, String image, String image_size,
+			String birth_date, String birth_place, String death_date, String death_place,
+			String occupation) throws IOException {
+		  Document doc = new Document();
+		  
+		  if (name != null) {
+			  doc.add(new TextField("name", name, Field.Store.YES));
+		  }
+		  if (image != null) {
+			  doc.add(new StringField("image", image, Field.Store.YES));
+		  }
+		  if (image_size != null) {
+			  doc.add(new StringField("image_size", image_size, Field.Store.YES));
+		  }
+		  if (birth_date != null) {
+			  doc.add(new StringField("birth_date", birth_date, Field.Store.YES));
+		  }
+		  if (birth_place != null) {
+			  doc.add(new StringField("birth_place", birth_place, Field.Store.YES));
+		  }
+		  
+		  if (death_date != null) {
+			  doc.add(new StringField("death_date", death_date, Field.Store.YES));
+		  }
+		  if (death_place != null) {
+			  doc.add(new StringField("death_place", death_place, Field.Store.YES));
+		  }
+		  if (occupation != null) {
+			  doc.add(new StringField("occupation", occupation, Field.Store.YES));
+		  }
+		  w.addDocument(doc);
+		}
+
+	private static void addCountry(IndexWriter w, String title, String common_name, String image_flag,
+			String image_coat, String capital, String official_religion, String official_languages,
+			String government_type, String area_km2, String area_sq_mi, String population_estimate,
+		    String population_estimate_rank,String currency, String currency_code) throws IOException {
+		  Document doc = new Document();
+		  
+		  	  
+		  
+		  if (title != null) {
+			  doc.add(new TextField("title", title, Field.Store.YES));
+		  }
+		  if (common_name != null) {
+			  doc.add(new StringField("common_name", common_name, Field.Store.YES));
+		  }
+		  if (image_flag != null) {
+			  doc.add(new StringField("image_flag", image_flag, Field.Store.YES));
+		  }
+		  if (image_coat != null) {
+			  doc.add(new StringField("image_coat", image_coat, Field.Store.YES));
+		  }
+		  if (capital != null) {
+			  doc.add(new StringField("capital", capital, Field.Store.YES));
+		  }
+		  if (official_religion != null) {
+			  doc.add(new StringField("official_religion", official_religion, Field.Store.YES));
+		  }
+		  
+		  if (official_languages != null) {
+			  doc.add(new StringField("official_languages", official_languages, Field.Store.YES));
+		  }
+		  if (government_type != null) {
+			  doc.add(new StringField("government_type", government_type, Field.Store.YES));
+		  }
+		  if (area_km2 != null) {
+			  doc.add(new StringField("area_km2", area_km2, Field.Store.YES));
+		  }
+		  if (area_sq_mi != null) {
+			  doc.add(new StringField("area_sq_mi", area_sq_mi, Field.Store.YES));
+		  }
+		  if (population_estimate != null) {
+			  doc.add(new StringField("population_estimate", population_estimate, Field.Store.YES));
+		  }
+		  if (population_estimate_rank != null) {
+			  doc.add(new StringField("population_estimate_rank", population_estimate_rank, Field.Store.YES));
+		  }
+		  if (currency != null) {
+			  doc.add(new StringField("currency", currency, Field.Store.YES));
+		  }
+		  if (currency_code != null) {
+			  doc.add(new StringField("currency_code", currency_code, Field.Store.YES));
+		  }
+		  w.addDocument(doc);
+		}
+	
+	private static void addSettlement(IndexWriter w, String official_name, String nickname, String map_caption,
+			String coordinates_region, String leader_title, String unit_pref, String area_total_km2,
+			String area_land_km2, String population_total, String population_density_km2, String timezone,
+		    String website,String postal_code) throws IOException {
+		  Document doc = new Document();
+		  
+		 
+		  
+		  if (official_name != null) {
+			  doc.add(new TextField("official_name", official_name, Field.Store.YES));
+		  }
+		  if (nickname != null) {
+			  doc.add(new StringField("nickname", nickname, Field.Store.YES));
+		  }
+		  if (map_caption != null) {
+			  doc.add(new StringField("map_caption", map_caption, Field.Store.YES));
+		  }
+		  if (coordinates_region != null) {
+			  doc.add(new StringField("coordinates_region", coordinates_region, Field.Store.YES));
+		  }
+		  if (leader_title != null) {
+			  doc.add(new StringField("leader_title", leader_title, Field.Store.YES));
+		  }
+		  if (unit_pref != null) {
+			  doc.add(new StringField("unit_pref", unit_pref, Field.Store.YES));
+		  }
+		  
+		  if (area_total_km2 != null) {
+			  doc.add(new StringField("area_total_km2", area_total_km2, Field.Store.YES));
+		  }
+		  if (area_land_km2 != null) {
+			  doc.add(new StringField("area_land_km2", area_land_km2, Field.Store.YES));
+		  }
+		  if (population_total != null) {
+			  doc.add(new StringField("population_total", population_total, Field.Store.YES));
+		  }
+		  if (population_density_km2 != null) {
+			  doc.add(new StringField("population_density_km2", population_density_km2, Field.Store.YES));
+		  }
+		  if (timezone != null) {
+			  doc.add(new StringField("timezone", timezone, Field.Store.YES));
+		  }
+		  if (postal_code != null) {
+			  doc.add(new StringField("postal_code", postal_code, Field.Store.YES));
+		  }
+		  if (website != null) {
+			  doc.add(new StringField("website", website, Field.Store.YES));
+		  }
+		 
+		  w.addDocument(doc);
+		}
+	
 }
