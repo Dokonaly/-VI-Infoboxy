@@ -48,91 +48,91 @@ public class HandlerSettlement  extends DefaultHandler {
     
     public boolean oparsujSettlement(boolean flag, String vysledok){
     	flag = false;
-    	String vystup = PouziRegex("\\| ?official_name = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+ ", vysledok);  	
+    	String vystup = PouziRegex("\\| ?official_name = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
     		
     	    infobox_settlement.setOfficial_name(vystup);
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?nickname = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+ ", vysledok);  	
+    	vystup = PouziRegex("\\| ?nickname = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
     		
     	    infobox_settlement.setNickname(vystup);
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?map_caption = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+ ", vysledok);  	
+    	vystup = PouziRegex("\\| ?map_caption = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
     		
     	    infobox_settlement.setMap_caption(vystup);
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?coordinates_region = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+ ", vysledok);  	
+    	vystup = PouziRegex("\\| ?coordinates_region = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
     		
     	    infobox_settlement.setCoordinates_region(vystup);
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?leader_title = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+ ", vysledok);  	
+    	vystup = PouziRegex("\\| ?leader_title = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
     		
     	    infobox_settlement.setLeader_title(vystup);
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?unit_pref = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+ ", vysledok);  	
+    	vystup = PouziRegex("\\| ?unit_pref = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
     		
     	    infobox_settlement.setUnit_pref(vystup);
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?area_total_km2 = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+ ", vysledok);  	
+    	vystup = PouziRegex("\\| ?area_total_km2 = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
     		
     	    infobox_settlement.setArea_total_km2(vystup);
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?area_land_km2 = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+ ", vysledok);  	
+    	vystup = PouziRegex("\\| ?area_land_km2 = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
     		
     	    infobox_settlement.setArea_land_km2(vystup);
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?population_total = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{|'`$%^&;<>,ֹציז]+ ", vysledok);  	
+    	vystup = PouziRegex("\\| ?population_total = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{|'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
     		
     	    infobox_settlement.setPopulation_total(vystup);
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?population_density_km2 = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{|'`$%^&;<>,ֹציז]+ ", vysledok);  	
+    	vystup = PouziRegex("\\| ?population_density_km2 = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{|'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
     		
     	    infobox_settlement.setPopulation_density_km2(vystup);
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?timezone = [A-Za-z0-9 _ =*.:?!()+-<>\\[#@\\{}|'` $%^&;<>,ֹציז]+ ", vysledok);  	
+    	vystup = PouziRegex("\\| ?timezone = [A-Za-z0-9 _ =*.:?!()+-<>\\[#@\\{}|'` $%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
     		
     	    infobox_settlement.setTimezone(vystup);
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?website = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+ ", vysledok);  	
+    	vystup = PouziRegex("\\| ?website = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
     		
     	    infobox_settlement.setWebsite(vystup);
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?postal_code = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+ ", vysledok);  	
+    	vystup = PouziRegex("\\| ?postal_code = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
     		
     	    infobox_settlement.setPostal_code(vystup);

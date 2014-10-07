@@ -49,49 +49,49 @@ public class HandlerPerson  extends DefaultHandler {
     public boolean oparsujPerson(String vysledok){
     	boolean flag = false;
     	
-    	String vystup = PouziRegex("\\| ?name = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+ ", vysledok);  	
+    	String vystup = PouziRegex("\\| ?name = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
     	    infoboxPerson.setName(vystup);
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?image_size = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+ ", vysledok);  	
+    	vystup = PouziRegex("\\| ?image_size = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
     		infoboxPerson.setImage_size(vystup);
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?image = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+ ", vysledok);  	
+    	vystup = PouziRegex("\\| ?image = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
     		infoboxPerson.setImage(vystup);
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?birth_date = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{\\|'`$%^&;<>,ֹציז]+ ", vysledok);  	
+    	vystup = PouziRegex("\\| ?birth_date = [^}]+", vysledok);  	
     	if (vystup != null){
     		infoboxPerson.setBirth_date(vystup);
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?birth_place = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+ ", vysledok);  	
+    	vystup = PouziRegex("\\| ?birth_place = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
     		infoboxPerson.setBirth_place(vystup);
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?death_date = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{\\|  '`$%^&;<>,ֹציז]+ ", vysledok);  	
+    	vystup = PouziRegex("\\| ?death_date = [^}]+", vysledok);  	
     	if (vystup != null){
     		infoboxPerson.setDeath_date(vystup);
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?death_place = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+ ", vysledok);  	
+    	vystup = PouziRegex("\\| ?death_place = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
     		infoboxPerson.setDeath_place(vystup);
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?occupation = [A-Za-z0-9 _ =*.:?!()+-<>\\[#@\\{}'`$%^&;<>,ֹציז]+ ", vysledok);  	
+    	vystup = PouziRegex("\\| ?occupation = [A-Za-z0-9 _ =*.:?!()+-<>\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
     		infoboxPerson.setOccupation(vystup);
     	    flag = true;

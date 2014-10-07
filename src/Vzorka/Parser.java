@@ -1,4 +1,5 @@
 package Vzorka;
+import Enums.*;
 
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
@@ -125,6 +126,11 @@ public class Parser {
         					);
 	        }
 	        
+	        out_person.close();
+	        out_book.close();
+	        out_settlement.close(); 
+	        out_country.close();
+	        
 	        Stats statisky = new Stats();
 	        statisky.vypocitaj_statistiky(InfoboxbookList, InfoboxList, InfoboxSettlementList, InfoboxPersonList);
 	        
@@ -148,7 +154,7 @@ public class Parser {
 	        for(Infobox_book book : InfoboxbookList){
 	        addBook(b, book.getName(), book.getTranslator(), book.getImage(), book.getCaption(), book.getAuthor(), 
 	        		book.getCountry(),book.getLanguage(), book.getSubject(), book.getGenre(), book.getPublished(),
-	        		book.getMedia_type(), book.getPages(), book.getIsbn(), book.getFollowed_by() , book.getPreceded_by());
+	        		book.getMedia_type(), book.getPages(),  book.getIsbn(), book.getFollowed_by() , book.getPreceded_by());
 	        }
 	        
 	        for(Infobox_country country : InfoboxList){
@@ -180,14 +186,40 @@ public class Parser {
 	        System.out.println("1:	Books \n2:	Settlement\n3:	Person\n4:	Country\n5:	Ukonci vyhladavanie\n");
 	        
 	        while(myint != 5){
+	        	
+	        	
 	        myint = keyboard.nextInt();
-	          
+	        if (myint == 5){
+	        	break;
+	        }
+	       
 	        System.out.println("Zadaj vyhladavaciu frazu:");
 	        String fraza = keyboard.next();
 	        
 	        if ( myint == 1){
+	        	
+	        	System.out.println("Zadaj vyhladavaci atribut:");
+		        System.out.println("" +
+		        		"*:	" +Book_enum.name +"\n" +
+		        		"*:	" +Book_enum.translator +"\n" +
+		        		"*:	" +Book_enum.image +"\n" +
+		        		"*:	" +Book_enum.caption +"\n" +
+		        		"*:	" +Book_enum.author +"\n" +
+		        		"*:	" +Book_enum.country +"\n" +
+		        		"*:	" +Book_enum.language +"\n" +
+		        		"*:	" +Book_enum.subject +"\n" +
+		        		"*:	" +Book_enum.genre +"\n" +
+		        		"*:	" +Book_enum.published +"\n" +
+		        		"*:	" +Book_enum.media_type +"\n" +
+		        		"*:	" +Book_enum.pages +"\n" +
+		        		"*:	" +Book_enum.isbn +"\n" +
+		        		"*:	" +Book_enum.preceded_by +"\n"+ 
+		        		"*:	" +Book_enum.followed_by +"\n" 
+		        		);
+		        String atribut = keyboard.next();
+        
 	        	String querystrB = args.length > 0 ? args[0] : fraza;
-		        Query qB = new QueryParser(Version.LUCENE_40, "title", analyzerB).parse(querystrB);
+		        Query qB = new QueryParser(Version.LUCENE_40, atribut, analyzerB).parse(querystrB);
 		        IndexReader readerB = DirectoryReader.open(indexB);
 		        IndexSearcher searcherB = new IndexSearcher(readerB);
 		        TopScoreDocCollector collectorB = TopScoreDocCollector.create(hitsPerPage, true);
@@ -198,18 +230,36 @@ public class Parser {
 		        for(int i=0;i<hitsB.length;++i) {
 		          int docId = hitsB[i].doc;
 		          Document d = searcherB.doc(docId);
-		          System.out.println((i + 1) + ". " + d.get("isbn") + "\t" + d.get("title") + "\t" + d.get("translator") + "\t" + d.get("image")
+		          System.out.println((i + 1) + ". " + d.get("isbn") + "\t" + d.get("name") + "\t" + d.get("translator") + "\t" + d.get("image")
 		        		  + "\t" + d.get("captation")  + "\t" + d.get("author")  + "\t" + d.get("country")  + "\t" + d.get("language")
 		        		  + "\t" + d.get("subject") + "\t" + d.get("genre") + "\t" + d.get("published") + "\t" + d.get("media_type")
-		        		  + d.get("get_followed_by") + d.get("get_preceded_by")
+		        		  + d.get("get_followed_by") + d.get("pages") + d.get("get_preceded_by")
 		        		  );
 		        }
 		        readerB.close();
 	        }
 	        
 	        else if (myint == 2){
+	        	System.out.println("Zadaj vyhladavaci atribut:");
+		        System.out.println("" +
+		        		"*:	" +Settlement_enum.official_name +"\n" +
+		        		"*:	" +Settlement_enum.nickname +"\n" +
+		        		"*:	" +Settlement_enum.map_caption +"\n" +
+		        		"*:	" +Settlement_enum.coordinates_region +"\n" +
+		        		"*:	" +Settlement_enum.leader_title +"\n" +
+		        		"*:	" +Settlement_enum.unit_pref +"\n" +
+		        		"*:	" +Settlement_enum.area_total_km2 +"\n" +
+		        		"*:	" +Settlement_enum.area_land_km2 +"\n" +
+		        		"*:	" +Settlement_enum.population_total +"\n" +
+		        		"*:	" +Settlement_enum.population_density_km2 +"\n" +
+		        		"*:	" +Settlement_enum.timezone +"\n" +
+		        		"*:	" +Settlement_enum.website +"\n" +
+		        		"*:	" +Settlement_enum.postal_code +"\n"
+		        		);
+		        String atribut = keyboard.next();
+	        	
 	        	String querystrS = args.length > 0 ? args[0] : fraza;
-		        Query qS = new QueryParser(Version.LUCENE_40, "official_name", analyzerS).parse(querystrS);
+		        Query qS = new QueryParser(Version.LUCENE_40, atribut, analyzerS).parse(querystrS);
 		        IndexReader readerS = DirectoryReader.open(indexS);
 		        IndexSearcher searcherS = new IndexSearcher(readerS);
 		        TopScoreDocCollector collectorS = TopScoreDocCollector.create(hitsPerPage, true);
@@ -228,8 +278,21 @@ public class Parser {
 		        readerS.close();
 	        }   
 	        else if (myint == 3){
+	        	System.out.println("Zadaj vyhladavaci atribut:");
+		        System.out.println("" +
+		        		"*:	" +Person_enum.name +"\n" +
+		        		"*:	" +Person_enum.image+"\n" +
+		        		"*:	" +Person_enum.image_size +"\n" +
+		        		"*:	" +Person_enum.birth_date+"\n" +
+		        		"*:	" +Person_enum.birth_place+"\n" +
+		        		"*:	" +Person_enum.death_date+"\n" +
+		        		"*:	" +Person_enum.death_place+"\n" +
+		        		"*:	" +Person_enum.occupation+"\n"
+		        		);
+		        String atribut = keyboard.next();
+	        	
 	        	String querystrP = args.length > 0 ? args[0] : fraza;
-	 	        Query qP = new QueryParser(Version.LUCENE_40, "name", analyzerP).parse(querystrP);
+	 	        Query qP = new QueryParser(Version.LUCENE_40, atribut, analyzerP).parse(querystrP);
 	 	        IndexReader readerP = DirectoryReader.open(indexP);
 	 	        IndexSearcher searcherP = new IndexSearcher(readerP);
 	 	        TopScoreDocCollector collectorP = TopScoreDocCollector.create(hitsPerPage, true);
@@ -247,8 +310,26 @@ public class Parser {
 	        }  
 	        
 	        else if (myint == 4){
+	        	System.out.println("Zadaj vyhladavaci atribut:");
+		        System.out.println("" +
+		        		"*:	" +Country_enum.title +"\n" +
+		        		"*:	" +Country_enum.common_name +"\n" +
+		        		"*:	" +Country_enum.image_flag +"\n" +
+		        		"*:	" +Country_enum.image_coat +"\n" +
+		        		"*:	" +Country_enum.capital +"\n" +
+		        		"*:	" +Country_enum.official_religion +"\n" +
+		        		"*:	" +Country_enum.official_languages +"\n" +
+		        		"*:	" +Country_enum.government_type +"\n" +
+		        		"*:	" +Country_enum.area_km2 +"\n" +
+		        		"*:	" +Country_enum.area_sq_mi +"\n" +
+		        		"*:	" +Country_enum.population_estimate +"\n" +
+		        		"*:	" +Country_enum.population_estimate_rank +"\n" +
+		        		"*:	" +Country_enum.currency +"\n"+
+		        		"*:	" +Country_enum.currency_code +"\n"
+		        		);
+		        String atribut = keyboard.next();
 	        	String querystrC = args.length > 0 ? args[0] : fraza;
-	 	        Query qC = new QueryParser(Version.LUCENE_40, "title", analyzerC).parse(querystrC);
+	 	        Query qC = new QueryParser(Version.LUCENE_40, atribut, analyzerC).parse(querystrC);
 	 	        IndexReader readerC = DirectoryReader.open(indexC);
 	 	        IndexSearcher searcherC = new IndexSearcher(readerC);
 	 	        TopScoreDocCollector collectorC = TopScoreDocCollector.create(hitsPerPage, true);
@@ -267,62 +348,63 @@ public class Parser {
 	 	       readerC.close();
 	        }
 	     } 
-	        out_person.close();
-	        out_book.close();
-	        out_settlement.close(); 
-	        out_country.close();
+	        
 	    } catch (ParserConfigurationException | SAXException | IOException e) {
 	        e.printStackTrace();
 	    }
 	    }
 	
-	private static void addBook(IndexWriter w, String title, String translator, String image,
+	private static void addBook(IndexWriter w, String name, String translator, String image,
 			String captation, String author, String country, String language,
 			String subject, String genre, String published, String media_type,
-		    String pages,String isbn, String get_followed_by, String get_preceded_by) throws IOException {
+		    String pages,String isbn,  String get_followed_by, String get_preceded_by) throws IOException {
 		  Document doc = new Document();
-		  if (title != null) {
-			  doc.add(new TextField("title", title, Field.Store.YES));
+		  if (name != null) {
+			  doc.add(new TextField("name", name, Field.Store.YES));
 		  }
 		  if (translator != null) {
-			  doc.add(new StringField("translator", translator, Field.Store.YES));
+			  doc.add(new TextField("translator", translator, Field.Store.YES));
 		  }
 		  if (image != null) {
-			  doc.add(new StringField("image", image, Field.Store.YES));
+			  doc.add(new TextField("image", image, Field.Store.YES));
 		  }
 		  if (captation != null) {
-			  doc.add(new StringField("captation", captation, Field.Store.YES));
+			  doc.add(new TextField("captation", captation, Field.Store.YES));
 		  }
 		  if (author != null) {
-			  doc.add(new StringField("author", author, Field.Store.YES));
+			  doc.add(new TextField("author", author, Field.Store.YES));
 		  }
 		  if (country != null) {
-			  doc.add(new StringField("country", country, Field.Store.YES));
+			  doc.add(new TextField("country", country, Field.Store.YES));
 		  }
 		  
 		  if (language != null) {
-			  doc.add(new StringField("language", language, Field.Store.YES));
+			  doc.add(new TextField("language", language, Field.Store.YES));
 		  }
 		  if (subject != null) {
-			  doc.add(new StringField("subject", subject, Field.Store.YES));
+			  doc.add(new TextField("subject", subject, Field.Store.YES));
 		  }
 		  if (genre != null) {
-			  doc.add(new StringField("genre", genre, Field.Store.YES));
+			  doc.add(new TextField("genre", genre, Field.Store.YES));
 		  }
 		  if (published != null) {
-			  doc.add(new StringField("published", published, Field.Store.YES));
+			  doc.add(new TextField("published", published, Field.Store.YES));
 		  }
 		  if (media_type != null) {
-			  doc.add(new StringField("media_type", media_type, Field.Store.YES));
+			  doc.add(new TextField("media_type", media_type, Field.Store.YES));
 		  }
 		  if (isbn != null) {
-			  doc.add(new StringField("isbn", isbn, Field.Store.YES));
+			  doc.add(new TextField("isbn", isbn, Field.Store.YES));
+		  }
+		  
+		  if (pages != null) {
+			  doc.add(new TextField("pages", pages, Field.Store.YES));
 		  }
 		  if (get_followed_by != null) {
-			  doc.add(new StringField("get_followed_by", get_followed_by, Field.Store.YES));
+			  doc.add(new TextField("get_followed_by", get_followed_by, Field.Store.YES));
 		  }
 		  if (get_preceded_by != null) {
-			  doc.add(new StringField("get_preceded_by", get_preceded_by, Field.Store.YES));
+			  doc.add(new TextField("get_preceded_by", get_preceded_by, Field.Store.YES));
 		  }
 		  w.addDocument(doc);
 		}
@@ -336,26 +418,26 @@ public class Parser {
 			  doc.add(new TextField("name", name, Field.Store.YES));
 		  }
 		  if (image != null) {
-			  doc.add(new StringField("image", image, Field.Store.YES));
+			  doc.add(new TextField("image", image, Field.Store.YES));
 		  }
 		  if (image_size != null) {
-			  doc.add(new StringField("image_size", image_size, Field.Store.YES));
+			  doc.add(new TextField("image_size", image_size, Field.Store.YES));
 		  }
 		  if (birth_date != null) {
-			  doc.add(new StringField("birth_date", birth_date, Field.Store.YES));
+			  doc.add(new TextField("birth_date", birth_date, Field.Store.YES));
 		  }
 		  if (birth_place != null) {
-			  doc.add(new StringField("birth_place", birth_place, Field.Store.YES));
+			  doc.add(new TextField("birth_place", birth_place, Field.Store.YES));
 		  }
 		  
 		  if (death_date != null) {
-			  doc.add(new StringField("death_date", death_date, Field.Store.YES));
+			  doc.add(new TextField("death_date", death_date, Field.Store.YES));
 		  }
 		  if (death_place != null) {
-			  doc.add(new StringField("death_place", death_place, Field.Store.YES));
+			  doc.add(new TextField("death_place", death_place, Field.Store.YES));
 		  }
 		  if (occupation != null) {
-			  doc.add(new StringField("occupation", occupation, Field.Store.YES));
+			  doc.add(new TextField("occupation", occupation, Field.Store.YES));
 		  }
 		  w.addDocument(doc);
 		}
@@ -372,44 +454,44 @@ public class Parser {
 			  doc.add(new TextField("title", title, Field.Store.YES));
 		  }
 		  if (common_name != null) {
-			  doc.add(new StringField("common_name", common_name, Field.Store.YES));
+			  doc.add(new TextField("common_name", common_name, Field.Store.YES));
 		  }
 		  if (image_flag != null) {
-			  doc.add(new StringField("image_flag", image_flag, Field.Store.YES));
+			  doc.add(new TextField("image_flag", image_flag, Field.Store.YES));
 		  }
 		  if (image_coat != null) {
-			  doc.add(new StringField("image_coat", image_coat, Field.Store.YES));
+			  doc.add(new TextField("image_coat", image_coat, Field.Store.YES));
 		  }
 		  if (capital != null) {
-			  doc.add(new StringField("capital", capital, Field.Store.YES));
+			  doc.add(new TextField("capital", capital, Field.Store.YES));
 		  }
 		  if (official_religion != null) {
-			  doc.add(new StringField("official_religion", official_religion, Field.Store.YES));
+			  doc.add(new TextField("official_religion", official_religion, Field.Store.YES));
 		  }
 		  
 		  if (official_languages != null) {
-			  doc.add(new StringField("official_languages", official_languages, Field.Store.YES));
+			  doc.add(new TextField("official_languages", official_languages, Field.Store.YES));
 		  }
 		  if (government_type != null) {
-			  doc.add(new StringField("government_type", government_type, Field.Store.YES));
+			  doc.add(new TextField("government_type", government_type, Field.Store.YES));
 		  }
 		  if (area_km2 != null) {
-			  doc.add(new StringField("area_km2", area_km2, Field.Store.YES));
+			  doc.add(new TextField("area_km2", area_km2, Field.Store.YES));
 		  }
 		  if (area_sq_mi != null) {
-			  doc.add(new StringField("area_sq_mi", area_sq_mi, Field.Store.YES));
+			  doc.add(new TextField("area_sq_mi", area_sq_mi, Field.Store.YES));
 		  }
 		  if (population_estimate != null) {
-			  doc.add(new StringField("population_estimate", population_estimate, Field.Store.YES));
+			  doc.add(new TextField("population_estimate", population_estimate, Field.Store.YES));
 		  }
 		  if (population_estimate_rank != null) {
-			  doc.add(new StringField("population_estimate_rank", population_estimate_rank, Field.Store.YES));
+			  doc.add(new TextField("population_estimate_rank", population_estimate_rank, Field.Store.YES));
 		  }
 		  if (currency != null) {
-			  doc.add(new StringField("currency", currency, Field.Store.YES));
+			  doc.add(new TextField("currency", currency, Field.Store.YES));
 		  }
 		  if (currency_code != null) {
-			  doc.add(new StringField("currency_code", currency_code, Field.Store.YES));
+			  doc.add(new TextField("currency_code", currency_code, Field.Store.YES));
 		  }
 		  w.addDocument(doc);
 		}
@@ -426,41 +508,41 @@ public class Parser {
 			  doc.add(new TextField("official_name", official_name, Field.Store.YES));
 		  }
 		  if (nickname != null) {
-			  doc.add(new StringField("nickname", nickname, Field.Store.YES));
+			  doc.add(new TextField("nickname", nickname, Field.Store.YES));
 		  }
 		  if (map_caption != null) {
-			  doc.add(new StringField("map_caption", map_caption, Field.Store.YES));
+			  doc.add(new TextField("map_caption", map_caption, Field.Store.YES));
 		  }
 		  if (coordinates_region != null) {
-			  doc.add(new StringField("coordinates_region", coordinates_region, Field.Store.YES));
+			  doc.add(new TextField("coordinates_region", coordinates_region, Field.Store.YES));
 		  }
 		  if (leader_title != null) {
-			  doc.add(new StringField("leader_title", leader_title, Field.Store.YES));
+			  doc.add(new TextField("leader_title", leader_title, Field.Store.YES));
 		  }
 		  if (unit_pref != null) {
-			  doc.add(new StringField("unit_pref", unit_pref, Field.Store.YES));
+			  doc.add(new TextField("unit_pref", unit_pref, Field.Store.YES));
 		  }
 		  
 		  if (area_total_km2 != null) {
-			  doc.add(new StringField("area_total_km2", area_total_km2, Field.Store.YES));
+			  doc.add(new TextField("area_total_km2", area_total_km2, Field.Store.YES));
 		  }
 		  if (area_land_km2 != null) {
-			  doc.add(new StringField("area_land_km2", area_land_km2, Field.Store.YES));
+			  doc.add(new TextField("area_land_km2", area_land_km2, Field.Store.YES));
 		  }
 		  if (population_total != null) {
-			  doc.add(new StringField("population_total", population_total, Field.Store.YES));
+			  doc.add(new TextField("population_total", population_total, Field.Store.YES));
 		  }
 		  if (population_density_km2 != null) {
-			  doc.add(new StringField("population_density_km2", population_density_km2, Field.Store.YES));
+			  doc.add(new TextField("population_density_km2", population_density_km2, Field.Store.YES));
 		  }
 		  if (timezone != null) {
-			  doc.add(new StringField("timezone", timezone, Field.Store.YES));
+			  doc.add(new TextField("timezone", timezone, Field.Store.YES));
 		  }
 		  if (postal_code != null) {
-			  doc.add(new StringField("postal_code", postal_code, Field.Store.YES));
+			  doc.add(new TextField("postal_code", postal_code, Field.Store.YES));
 		  }
 		  if (website != null) {
-			  doc.add(new StringField("website", website, Field.Store.YES));
+			  doc.add(new TextField("website", website, Field.Store.YES));
 		  }
 		 
 		  w.addDocument(doc);

@@ -15,7 +15,7 @@ public class Infobox_book {
 	private String pages;
 	private String isbn;
 	private String preceded_by;
-
+	private String followed_by;
 	
 	/**
 	 * @return the name
@@ -197,6 +197,6 @@ public class Infobox_book {
 	public void setFollowed_by(String followed_by) {
 		this.followed_by = followed_by;
 	}
-	private String followed_by;
+	
 	
 }

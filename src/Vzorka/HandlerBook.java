@@ -49,91 +49,91 @@ public class HandlerBook  extends DefaultHandler {
     public boolean oparsujBook(String vysledok){
     	boolean flag = false;
     	
-    	String vystup = PouziRegex("\\| ?name = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+ ", vysledok);  	
+    	String vystup = PouziRegex("\\| ?name = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
     	    infoboxBook.setName(vystup);
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?translator = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+ ", vysledok);  	
+    	vystup = PouziRegex("\\| ?translator = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
     		infoboxBook.setTranslator(vystup);
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?image = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+ ", vysledok);  	
+    	vystup = PouziRegex("\\| ?image = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
     		infoboxBook.setImage(vystup);
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?caption = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+ ", vysledok);  	
+    	vystup = PouziRegex("\\| ?caption = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
     		infoboxBook.setCaption(vystup);
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?author = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+ ", vysledok);  	
+    	vystup = PouziRegex("\\| ?author = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
     		infoboxBook.setAuthor(vystup);
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?country = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+ ", vysledok);  	
+    	vystup = PouziRegex("\\| ?country = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
     		infoboxBook.setCountry(vystup);
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?language = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+ ", vysledok);  	
+    	vystup = PouziRegex("\\| ?language = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
     		infoboxBook.setLanguage(vystup);
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?subject = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+ ", vysledok);  	
+    	vystup = PouziRegex("\\| ?subject = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
     		infoboxBook.setSubject(vystup);
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?genre = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+ ", vysledok);  	
+    	vystup = PouziRegex("\\| ?genre = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
     		infoboxBook.setGenre(vystup);
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?published = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+ ", vysledok);  	
+    	vystup = PouziRegex("\\| ?published = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
     		infoboxBook.setPublished(vystup);
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?media_type = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+ ", vysledok);  	
+    	vystup = PouziRegex("\\| ?media_type = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
     		infoboxBook.setMedia_type(vystup);
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?pages = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+ ", vysledok);  	
+    	vystup = PouziRegex("\\| ?pages = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
     		infoboxBook.setPages(vystup);
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?isbn = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+ ", vysledok);  	
+    	vystup = PouziRegex("\\| ?isbn = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
     		infoboxBook.setIsbn(vystup);
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?preceded_by = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+ ", vysledok);  	
+    	vystup = PouziRegex("\\| ?preceded_by = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
     		infoboxBook.setPreceded_by(vystup);
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?followed_by = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+ ", vysledok);  	
+    	vystup = PouziRegex("\\| ?followed_by = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
     		infoboxBook.setFollowed_by(vystup);
     	    flag = true;
