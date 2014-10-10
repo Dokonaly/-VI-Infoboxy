@@ -2,7 +2,7 @@
 <suite name="Suite" parallel="false">
   <test name="Test">
     <classes>
-      <class name="Tests.NewTest"/>
+      <class name="Tests.testOparsuj_country"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

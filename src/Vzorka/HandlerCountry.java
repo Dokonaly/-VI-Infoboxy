@@ -51,98 +51,112 @@ public class HandlerCountry  extends DefaultHandler {
     	//country
     	String vystup = PouziRegex("\\| ?conventional_long_name = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
-    		//System.out.print(vystup);
-    	    infobox.setTitle(vystup);
+    		vystup = vystup.replace("|conventional_long_name = ", "");
+    		vystup = vystup.replace("| conventional_long_name = ", "");
+    		infobox.setTitle(vystup);
      	    flag = true;
     	}
     
     	vystup = PouziRegex("\\| ?common_name = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
-    		//System.out.print(vystup);
+    		vystup = vystup.replace("|common_name = ", "");
+    		vystup = vystup.replace("| common_name = ", "");
     	    infobox.setCommon_name(vystup);
      	    flag = true;
     	}
     	
     	vystup = PouziRegex("\\| ?image_flag = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
-    		//System.out.print(vystup);
+    		vystup = vystup.replace("|image_flag = ", "");
+    		vystup = vystup.replace("| image_flag = ", "");
     	    infobox.setImage_flag(vystup);
      	    flag = true;
     	}
     	
     	vystup = PouziRegex("\\| ?image_coat = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
-    		//System.out.print(vystup);
+    		vystup = vystup.replace("|image_coat = ", "");
+    		vystup = vystup.replace("| image_coat = ", "");
     	    infobox.setImage_coat(vystup);
      	    flag = true;
     	}
     	
     	vystup = PouziRegex("\\| ?capital = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
-    		//System.out.print(vystup);
+    		vystup = vystup.replace("|capital = ", "");
+    		vystup = vystup.replace("| capital = ", "");
     	    infobox.setCapital(vystup);
      	    flag = true;
     	}
     	
     	vystup = PouziRegex("\\| ?official_religion = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
-    		//System.out.print(vystup);
+    		vystup = vystup.replace("|official_religion = ", "");
+    		vystup = vystup.replace("| official_religion = ", "");
     	    infobox.setOfficial_religion(vystup);
      	    flag = true;
     	}
     	
     	vystup = PouziRegex("\\| ?official_languages = [A-Za-z0-9 _ =*.:?!()+-<>\\}\\[#@\\{|'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
-    		//System.out.print(vystup);
+    		vystup = vystup.replace("|official_languages = ", "");
+    		vystup = vystup.replace("| official_languages = ", "");
     	    infobox.setOfficial_languages(vystup);
      	    flag = true;
     	}
     	
     	vystup = PouziRegex("\\| ?government_type = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[ #@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
-    		//System.out.print(vystup);
+    		vystup = vystup.replace("|government_type = ", "");
+    		vystup = vystup.replace("| government_type = ", "");
     	    infobox.setGovernment_type(vystup);
      	    flag = true;
     	}
     	
     	vystup = PouziRegex("\\| ?area_km2 = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
-    		//System.out.print(vystup);
+    		vystup = vystup.replace("|area_km2 = ", "");
+    		vystup = vystup.replace("| area_km2 = ", "");
     	    infobox.setArea_km2(vystup);
      	    flag = true;
     	}
     	
     	vystup = PouziRegex("\\| ?area_sq_mi = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
-    		//System.out.print(vystup);
+    		vystup = vystup.replace("|area_sq_mi = ", "");
+    		vystup = vystup.replace("| area_sq_mi = ", "");
     	    infobox.setArea_sq_mi(vystup);
      	    flag = true;
     	}
     	
     	vystup = PouziRegex("\\| ?population_estimate = [A-Za-z0-9 _ =*.:?!()+->\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
-    		//System.out.print(vystup);
+    		vystup = vystup.replace("|population_estimate = ", "");
+    		vystup = vystup.replace("| population_estimate = ", "");
     	    infobox.setPopulation_estimate(vystup);
      	    flag = true;
     	}
     	
     	vystup = PouziRegex("\\| ?population_estimate_rank = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
-    		//System.out.print(vystup);
+    		vystup = vystup.replace("|population_estimate_rank = ", "");
+    		vystup = vystup.replace("| population_estimate_rank = ", "");
     	    infobox.setPopulation_estimate_rank(vystup);
      	    flag = true;
     	}
     	
     	vystup = PouziRegex("\\| ?currency_code = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
-    		//System.out.print(vystup);
+    		vystup = vystup.replace("|currency_code = ", "");
+    		vystup = vystup.replace("| currency_code = ", "");
     	    infobox.setCurrency_code(vystup);
      	    flag = true;
     	}
     	
     	vystup = PouziRegex("\\| ?currency = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
-    		//System.out.print(vystup);
+    		vystup = vystup.replace("|currency = ", "");
+    		vystup = vystup.replace("| currency = ", "");
     	    infobox.setCurrency(vystup);
      	    flag = true;
     	}
