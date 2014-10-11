@@ -53,7 +53,8 @@ public class HandlerBook  extends DefaultHandler {
     	if (vystup != null){
     		vystup = vystup.replace("|name = ", "");
     		vystup = vystup.replace("| name = ", "");
-    	    infoboxBook.setName(vystup);
+    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
+    		infoboxBook.setName(vystup);
     	    flag = true;
     	}
     	
@@ -61,6 +62,7 @@ public class HandlerBook  extends DefaultHandler {
     	if (vystup != null){
     		vystup = vystup.replace("|translator = ", "");
     		vystup = vystup.replace("| translator = ", "");
+    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
     		infoboxBook.setTranslator(vystup);
     	    flag = true;
     	}
@@ -69,6 +71,7 @@ public class HandlerBook  extends DefaultHandler {
     	if (vystup != null){
     		vystup = vystup.replace("|image = ", "");
     		vystup = vystup.replace("| image = ", "");
+    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
     		infoboxBook.setImage(vystup);
     	    flag = true;
     	}
@@ -77,6 +80,7 @@ public class HandlerBook  extends DefaultHandler {
     	if (vystup != null){
     		vystup = vystup.replace("|caption = ", "");
     		vystup = vystup.replace("| caption = ", "");
+    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
     		infoboxBook.setCaption(vystup);
     	    flag = true;
     	}
@@ -85,6 +89,7 @@ public class HandlerBook  extends DefaultHandler {
     	if (vystup != null){
     		vystup = vystup.replace("|author = ", "");
     		vystup = vystup.replace("| author = ", "");
+    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
     		infoboxBook.setAuthor(vystup);
     	    flag = true;
     	}
@@ -93,14 +98,32 @@ public class HandlerBook  extends DefaultHandler {
     	if (vystup != null){
     		vystup = vystup.replace("|country = ", "");
     		vystup = vystup.replace("| country = ", "");
+    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
     		infoboxBook.setCountry(vystup);
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?language = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = PouziRegex("\\| ?language = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז|]+", vysledok);  	
     	if (vystup != null){
+    		
+    		if(vystup.contains("series") ){
+    			String[] parts = vystup.split("series");
+    			vystup = parts[0]; 
+    		}
+    		
+    		if(vystup.contains("subject") ){
+    			String[] parts = vystup.split("subject");
+    			vystup = parts[0]; 
+    		}
+    		
+    		if(vystup.contains("genre") ){
+    			String[] parts = vystup.split("genre");
+    			vystup = parts[0]; 
+    		}
+
     		vystup = vystup.replace("|language = ", "");
     		vystup = vystup.replace("| language = ", "");
+    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]|","");
     		infoboxBook.setLanguage(vystup);
     	    flag = true;
     	}
@@ -109,6 +132,7 @@ public class HandlerBook  extends DefaultHandler {
     	if (vystup != null){
     		vystup = vystup.replace("|subject = ", "");
     		vystup = vystup.replace("| subject = ", "");
+    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
     		infoboxBook.setSubject(vystup);
     	    flag = true;
     	}
@@ -117,6 +141,7 @@ public class HandlerBook  extends DefaultHandler {
     	if (vystup != null){
     		vystup = vystup.replace("|genre = ", "");
     		vystup = vystup.replace("| genre = ", "");
+    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-\\[\\]]","");
     		infoboxBook.setGenre(vystup);
     	    flag = true;
     	}
@@ -125,6 +150,7 @@ public class HandlerBook  extends DefaultHandler {
     	if (vystup != null){
     		vystup = vystup.replace("|published = ", "");
     		vystup = vystup.replace("| published = ", "");
+    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
     		infoboxBook.setPublished(vystup);
     	    flag = true;
     	}
@@ -133,6 +159,7 @@ public class HandlerBook  extends DefaultHandler {
     	if (vystup != null){
     		vystup = vystup.replace("|media_type = ", "");
     		vystup = vystup.replace("| media_type = ", "");
+    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
     		infoboxBook.setMedia_type(vystup);
     	    flag = true;
     	}
@@ -141,6 +168,7 @@ public class HandlerBook  extends DefaultHandler {
     	if (vystup != null){
     		vystup = vystup.replace("|pages = ", "");
     		vystup = vystup.replace("| pages = ", "");
+    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
     		infoboxBook.setPages(vystup);
     	    flag = true;
     	}
@@ -149,6 +177,7 @@ public class HandlerBook  extends DefaultHandler {
     	if (vystup != null){
     		vystup = vystup.replace("|isbn = ", "");
     		vystup = vystup.replace("| isbn = ", "");
+    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
     		infoboxBook.setIsbn(vystup);
     	    flag = true;
     	}
@@ -157,6 +186,7 @@ public class HandlerBook  extends DefaultHandler {
     	if (vystup != null){
     		vystup = vystup.replace("|preceded_by = ", "");
     		vystup = vystup.replace("| preceded_by = ", "");
+    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
     		infoboxBook.setPreceded_by(vystup);
     	    flag = true;
     	}
@@ -165,6 +195,7 @@ public class HandlerBook  extends DefaultHandler {
     	if (vystup != null){
     		vystup = vystup.replace("|followed_by = ", "");
     		vystup = vystup.replace("| followed_by = ", "");
+    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
     		infoboxBook.setFollowed_by(vystup);
     	    flag = true;
     	}
@@ -182,7 +213,7 @@ public class HandlerBook  extends DefaultHandler {
         	vysledok = vysledok.replaceAll("(\r\n|\n)", " "); //zarovnanie do jedneho riadku
         	vysledok = vysledok.trim().replaceAll(" +", " "); //odstranenie nepotrebnych medzier
         	
-        	String text = PouziRegex("\\{\\{Infobox book \\s*(.*)", vysledok);
+        	String text = PouziRegex("\\{\\{Infobox book\\s*(.*)", vysledok);
         
         	if (text !=null){
         		flag_book  = oparsujBook(text);

@@ -10,6 +10,86 @@ public class Infobox_person {
 	private String death_date;
 	private String death_place;
 	private String occupation;
+	
+	private String birth_day;
+	private String birth_month;
+	private String birth_year;
+	private String death_day;
+	private String death_month;
+	private String death_year;
+	
+	/**
+	 * @return the birth_day
+	 */
+	public String getBirth_day() {
+		return birth_day;
+	}
+	/**
+	 * @param birth_day the birth_day to set
+	 */
+	public void setBirth_day(String birth_day) {
+		this.birth_day = birth_day;
+	}
+	/**
+	 * @return the birth_month
+	 */
+	public String getBirth_month() {
+		return birth_month;
+	}
+	/**
+	 * @param birth_month the birth_month to set
+	 */
+	public void setBirth_month(String birth_month) {
+		this.birth_month = birth_month;
+	}
+	/**
+	 * @return the birth_year
+	 */
+	public String getBirth_year() {
+		return birth_year;
+	}
+	/**
+	 * @param birth_year the birth_year to set
+	 */
+	public void setBirth_year(String birth_year) {
+		this.birth_year = birth_year;
+	}
+	/**
+	 * @return the death_day
+	 */
+	public String getDeath_day() {
+		return death_day;
+	}
+	/**
+	 * @param death_day the death_day to set
+	 */
+	public void setDeath_day(String death_day) {
+		this.death_day = death_day;
+	}
+	/**
+	 * @return the death_month
+	 */
+	public String getDeath_month() {
+		return death_month;
+	}
+	/**
+	 * @param death_month the death_month to set
+	 */
+	public void setDeath_month(String death_month) {
+		this.death_month = death_month;
+	}
+	/**
+	 * @return the death_year
+	 */
+	public String getDeath_year() {
+		return death_year;
+	}
+	/**
+	 * @param death_year the death_year to set
+	 */
+	public void setDeath_year(String death_year) {
+		this.death_year = death_year;
+	}
 	/**
 	 * @return the name
 	 */

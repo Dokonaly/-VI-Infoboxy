@@ -1,19 +1,19 @@
 Statistiky book: 
 Percento nevyparsovanych mien knih: 0.0
-Percento nevyparsovanych translatorov: 95.65217391304347
-Percento nevyparsovanych image: 4.3478260869565215
-Percento nevyparsovanych captation: 39.130434782608695
+Percento nevyparsovanych translatorov: 96.15384615384616
+Percento nevyparsovanych image: 7.6923076923076925
+Percento nevyparsovanych captation: 42.30769230769231
 Percento nevyparsovanych autorov: 0.0
-Percento nevyparsovanych country: 13.043478260869565
-Percento nevyparsovanych languages: 8.695652173913043
-Percento nevyparsovanych subject: 82.6086956521739
-Percento nevyparsovanych genre: 8.695652173913043
-Percento nevyparsovanych published: 65.21739130434783
-Percento nevyparsovanych media_type: 30.43478260869565
-Percento nevyparsovanych pages: 39.130434782608695
-Percento nevyparsovanych isbn: 34.78260869565217
-Percento nevyparsovanych followed_by: 52.17391304347826
-Percento nevyparsovanych precessed_by: 69.56521739130434
+Percento nevyparsovanych country: 11.538461538461538
+Percento nevyparsovanych languages: 0.0
+Percento nevyparsovanych subject: 84.61538461538461
+Percento nevyparsovanych genre: 7.6923076923076925
+Percento nevyparsovanych published: 69.23076923076923
+Percento nevyparsovanych media_type: 34.61538461538461
+Percento nevyparsovanych pages: 42.30769230769231
+Percento nevyparsovanych isbn: 38.46153846153846
+Percento nevyparsovanych followed_by: 50.0
+Percento nevyparsovanych precessed_by: 73.07692307692308
 ********************************************************************
 Statistiky country: 
 Percento nevyparsovanych mien: 4.25531914893617

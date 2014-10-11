@@ -52,6 +52,7 @@ public class HandlerSettlement  extends DefaultHandler {
     	if (vystup != null){
     		vystup = vystup.replace("|official_name = ", "");
     		vystup = vystup.replace("| official_name = ", "");
+    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
     	    infobox_settlement.setOfficial_name(vystup);
     	    flag = true;
     	}
@@ -60,6 +61,7 @@ public class HandlerSettlement  extends DefaultHandler {
     	if (vystup != null){
     		vystup = vystup.replace("|nickname = ", "");
     		vystup = vystup.replace("| nickname = ", "");
+    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
     	    infobox_settlement.setNickname(vystup);
     	    flag = true;
     	}
@@ -68,6 +70,7 @@ public class HandlerSettlement  extends DefaultHandler {
     	if (vystup != null){
     		vystup = vystup.replace("|map_caption = ", "");
     		vystup = vystup.replace("| map_caption = ", "");
+    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
     	    infobox_settlement.setMap_caption(vystup);
     	    flag = true;
     	}
@@ -76,6 +79,7 @@ public class HandlerSettlement  extends DefaultHandler {
     	if (vystup != null){
     		vystup = vystup.replace("|coordinates_region = ", "");
     		vystup = vystup.replace("| coordinates_region = ", "");
+    		vystup = vystup.replaceAll("[^0-9a-zA-Z:.,?! +-]","");
     	    infobox_settlement.setCoordinates_region(vystup);
     	    flag = true;
     	}
@@ -84,6 +88,7 @@ public class HandlerSettlement  extends DefaultHandler {
     	if (vystup != null){
     		vystup = vystup.replace("|leader_title = ", "");
     		vystup = vystup.replace("| leader_title = ", "");
+    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
     	    infobox_settlement.setLeader_title(vystup);
     	    flag = true;
     	}
@@ -92,6 +97,7 @@ public class HandlerSettlement  extends DefaultHandler {
     	if (vystup != null){
     		vystup = vystup.replace("|unit_pref = ", "");
     		vystup = vystup.replace("| unit_pref = ", "");
+    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
     	    infobox_settlement.setUnit_pref(vystup);
     	    flag = true;
     	}
@@ -100,6 +106,7 @@ public class HandlerSettlement  extends DefaultHandler {
     	if (vystup != null){
     		vystup = vystup.replace("|area_total_km2 = ", "");
     		vystup = vystup.replace("| area_total_km2 = ", "");
+    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
     	    infobox_settlement.setArea_total_km2(vystup);
     	    flag = true;
     	}
@@ -108,6 +115,7 @@ public class HandlerSettlement  extends DefaultHandler {
     	if (vystup != null){
     		vystup = vystup.replace("|area_land_km2 = ", "");
     		vystup = vystup.replace("| area_land_km2 = ", "");
+    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
     	    infobox_settlement.setArea_land_km2(vystup);
     	    flag = true;
     	}
@@ -116,6 +124,7 @@ public class HandlerSettlement  extends DefaultHandler {
     	if (vystup != null){
     		vystup = vystup.replace("|population_total = ", "");
     		vystup = vystup.replace("| population_total = ", "");
+    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
     	    infobox_settlement.setPopulation_total(vystup);
     	    flag = true;
     	}
@@ -124,6 +133,7 @@ public class HandlerSettlement  extends DefaultHandler {
     	if (vystup != null){
     		vystup = vystup.replace("|population_density_km2 = ", "");
     		vystup = vystup.replace("| population_density_km2 = ", "");
+    		vystup = vystup.replaceAll("[^0-9a-zA-Z.,:?! +-]","");
     	    infobox_settlement.setPopulation_density_km2(vystup);
     	    flag = true;
     	}
@@ -132,6 +142,7 @@ public class HandlerSettlement  extends DefaultHandler {
     	if (vystup != null){
     		vystup = vystup.replace("|timezone = ", "");
     		vystup = vystup.replace("| timezone = ", "");
+    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-|]","");
     	    infobox_settlement.setTimezone(vystup);
     	    flag = true;
     	}
@@ -140,6 +151,7 @@ public class HandlerSettlement  extends DefaultHandler {
     	if (vystup != null){
     		vystup = vystup.replace("|website = ", "");
     		vystup = vystup.replace("| website = ", "");
+    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-|]","");
     	    infobox_settlement.setWebsite(vystup);
     	    flag = true;
     	}
@@ -148,6 +160,7 @@ public class HandlerSettlement  extends DefaultHandler {
     	if (vystup != null){
     		vystup = vystup.replace("|postal_code = ", "");
     		vystup = vystup.replace("| postal_code = ", "");
+    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-|]","");
     	    infobox_settlement.setPostal_code(vystup);
     	    flag = true;
     	}

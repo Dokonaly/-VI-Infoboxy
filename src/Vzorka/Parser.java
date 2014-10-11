@@ -63,8 +63,14 @@ public class Parser {
     					+person.getImage()+" | "
     					+person.getImage_size()+" | "
     					+person.getBirth_date()+" | "
+    					+person.getBirth_day()+" | "
+    					+person.getBirth_month()+" | "
+    					+person.getBirth_year()+" | "
     					+person.getBirth_place()+" | "
     					+person.getDeath_date()+" | "
+    					+person.getDeath_day()+" | "
+    					+person.getDeath_month()+" | "
+    					+person.getDeath_year()+" | "
     					+person.getDeath_place()+" | "
     					+person.getOccupation()+" | "
 	        			);
@@ -171,7 +177,7 @@ public class Parser {
 	        
 	        for(Infobox_person person : InfoboxPersonList){
 		        addPerson(p, person.getName(), person.getImage(), person.getImage_size(), person.getBirth_date(), person.getBirth_place(), 
-		        		person.getDeath_date(),person.getDeath_place(), person.getOccupation());
+		        		person.getDeath_date(),person.getDeath_place(), person.getOccupation(), person.getBirth_day(), person.getBirth_month(), person.getBirth_year(), person.getDeath_year(), person.getDeath_month(), person.getDeath_day());
 		    }
 	        
 	        b.commit();
@@ -183,7 +189,11 @@ public class Parser {
 	        int hitsPerPage = 500;
 	        Scanner keyboard = new Scanner(System.in);
 	        System.out.println("Vyber druh objektu na vyhladavanie:");
-	        System.out.println("1:	Books \n2:	Settlement\n3:	Person\n4:	Country\n5:	Ukonci vyhladavanie\n");
+	        System.out.println("1:	Books \n" +
+	        				   "2:	Settlement\n" +
+	        				   "3:	Person\n" +
+	        				   "4:	Country\n" +
+	        				   "5:	Ukonci vyhladavanie\n");
 	        
 	        while(myint != 5){
 	        	
@@ -284,8 +294,14 @@ public class Parser {
 		        		"*:	" +Person_enum.image+"\n" +
 		        		"*:	" +Person_enum.image_size +"\n" +
 		        		"*:	" +Person_enum.birth_date+"\n" +
+		        		"*:	" +Person_enum.birth_day+"\n" +
+		        		"*:	" +Person_enum.birth_month+"\n" +
+		        		"*:	" +Person_enum.birth_year+"\n" +
 		        		"*:	" +Person_enum.birth_place+"\n" +
 		        		"*:	" +Person_enum.death_date+"\n" +
+		        		"*:	" +Person_enum.death_day+"\n" +
+		        		"*:	" +Person_enum.death_month+"\n" +
+		        		"*:	" +Person_enum.death_year+"\n" +
 		        		"*:	" +Person_enum.death_place+"\n" +
 		        		"*:	" +Person_enum.occupation+"\n"
 		        		);
@@ -302,8 +318,8 @@ public class Parser {
 		        for(int i=0;i<hitsP.length;++i) {
 		          int docId = hitsP[i].doc;
 		          Document d = searcherP.doc(docId);
-		          System.out.println((i + 1) + ". " + d.get("name") + "\t" + d.get("image") + "\t" + d.get("image_size") + "\t" + d.get("birth_date")
-		        		  + "\t" + d.get("birth_place")  + "\t" + d.get("death_date")  + "\t" + d.get("death_place")  + "\t" + d.get("occupation")
+		          System.out.println((i + 1) + ". " + d.get("name") + "\t" + d.get("image") + "\t" + d.get("image_size") + "\t" + d.get("birth_date") + "\t" + d.get("birth_day") + "\t" + d.get("birth_month") + "\t" + d.get("birth_year")
+		        		  + "\t" + d.get("birth_place")  + "\t" + d.get("death_date") + "\t" + d.get("death_day") + "\t" + d.get("death_month") + "\t" + d.get("death_year")  + "\t" + d.get("death_place")  + "\t" + d.get("occupation")
 		        		  );
 		        }
 		        readerP.close();
@@ -411,7 +427,7 @@ public class Parser {
 	
 	private static void addPerson(IndexWriter w, String name, String image, String image_size,
 			String birth_date, String birth_place, String death_date, String death_place,
-			String occupation) throws IOException {
+			String occupation, String birth_day, String birth_month, String birth_year, String death_year, String death_month, String death_day ) throws IOException {
 		  Document doc = new Document();
 		  
 		  if (name != null) {
@@ -426,6 +442,15 @@ public class Parser {
 		  if (birth_date != null) {
 			  doc.add(new TextField("birth_date", birth_date, Field.Store.YES));
 		  }
+		  if (birth_day != null) {
+			  doc.add(new TextField("birth_day", birth_day, Field.Store.YES));
+		  }
+		  if (birth_month != null) {
+			  doc.add(new TextField("birth_month", birth_month, Field.Store.YES));
+		  }
+		  if (birth_year != null) {
+			  doc.add(new TextField("birth_year", birth_year, Field.Store.YES));
+		  }
 		  if (birth_place != null) {
 			  doc.add(new TextField("birth_place", birth_place, Field.Store.YES));
 		  }
@@ -433,6 +458,16 @@ public class Parser {
 		  if (death_date != null) {
 			  doc.add(new TextField("death_date", death_date, Field.Store.YES));
 		  }
+		  if (death_day != null) {
+			  doc.add(new TextField("death_day", death_day, Field.Store.YES));
+		  }
+		  if (death_month != null) {
+			  doc.add(new TextField("death_month", death_month, Field.Store.YES));
+		  }
+		  if (death_year != null) {
+			  doc.add(new TextField("death_year", death_year, Field.Store.YES));
+		  }
+		  
 		  if (death_place != null) {
 			  doc.add(new TextField("death_place", death_place, Field.Store.YES));
 		  }
