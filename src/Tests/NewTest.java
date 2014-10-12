@@ -1,28 +1,168 @@
 package Tests;
+import Vzorka.*;
 
+import org.apache.lucene.analysis.standard.StandardAnalyzer;
+import org.apache.lucene.document.Document;
+import org.apache.lucene.document.Field;
+import org.apache.lucene.document.StringField;
+import org.apache.lucene.document.TextField;
+import org.apache.lucene.index.DirectoryReader;
+import org.apache.lucene.index.IndexReader;
+import org.apache.lucene.index.IndexWriter;
+import org.apache.lucene.index.IndexWriterConfig;
+import org.apache.lucene.queryparser.classic.ParseException;
+import org.apache.lucene.queryparser.classic.QueryParser;
+import org.apache.lucene.search.IndexSearcher;
+import org.apache.lucene.search.Query;
+import org.apache.lucene.search.ScoreDoc;
+import org.apache.lucene.search.TopScoreDocCollector;
+import org.apache.lucene.store.Directory;
+import org.apache.lucene.store.RAMDirectory;
+import org.apache.lucene.util.Version;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
+ 
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+ 
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import Vzorka.HandlerCountry;
-import Vzorka.Infobox_book;
-
-public class NewTest {
+import org.xml.sax.SAXException;
+import java.util.Scanner;
+public class NewTest  {
 	
-	String retazec = "{{Infobox country" +
-"|conventional_long_name = Union of the Comoros"+ 
-"|common_name = Comoros";
+ 
+	 @Test
+	  public void TestParsovaniaPerson() throws FileNotFoundException, ParseException, Throwable, SAXException {
+		 	SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
+		    HandlerPerson handler_person = new HandlerPerson();
+		    SAXParser saxParser = saxParserFactory.newSAXParser();
+		 try {
+		        saxParser.parse(new File("C:\\Users\\Dokonaly\\Desktop\\data\\sample_enwiki-latest-pages-articles7.xml-p000305002p000464996.bz2.xml"), handler_person);
+		        List<Infobox_person> InfoboxPersonList = handler_person.getInfoboxList();
+		        
+		        for(Infobox_person person : InfoboxPersonList){
+		        	Assert.assertEquals(person.getName(), "Allan Dwan ");
+		        	Assert.assertEquals(person.getImage(), "AllanDwan.jpg ");
+		        	Assert.assertEquals(person.getImage_size(), null);
+		        	
+		        	Assert.assertEquals(person.getBirth_place(), "Toronto, Canada ");
+		        	Assert.assertEquals(person.getDeath_date(), "INY FORMAT");
+		        	Assert.assertEquals(person.getDeath_place(), "Los Angeles, United States ");
+		        	Assert.assertEquals(person.getOccupation(), "Film director Film producer Screenwriter ");
+		        	Assert.assertEquals(person.getBirth_day(), "3");
+		        	Assert.assertEquals(person.getBirth_month(), "4");
+		        	Assert.assertEquals(person.getBirth_year(), "1885");
+		        	Assert.assertEquals(person.getDeath_day(), "28");
+		        	Assert.assertEquals(person.getDeath_month(), "12");
+		        	Assert.assertEquals(person.getDeath_year(), "1981");
+		        }
+		 } catch (IOException e) {
+		        e.printStackTrace();
+		  }  
+	  }
+	 
+	 @Test
+	  public void TestParsovaniaCountry() throws FileNotFoundException, ParseException, Throwable, SAXException {
+		 	SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
+			HandlerCountry handler_country = new HandlerCountry();
+		    SAXParser saxParser = saxParserFactory.newSAXParser();
+		 try {
+			 	saxParser.parse(new File("C:\\Users\\Dokonaly\\Desktop\\data\\sample_enwiki-latest-pages-articles7.xml-p000305002p000464996.bz2.xml"), handler_country);
+		        List<Infobox_country> InfoboxList = handler_country.getInfoboxList();
+
+		        for(Infobox_country country : InfoboxList){
+		        	
+		        	Assert.assertEquals(country.getTitle(), "Cook Islands ");   	
+		        	Assert.assertEquals(country.getCommon_name(), "the Cook Islands ");   
+		        	Assert.assertEquals(country.getImage_flag(), "Flag of the Cook Islands.svg ");   
+		        	Assert.assertEquals(country.getImage_coat(), "Coat of arms of cook islands.gif ");   
+		        	Assert.assertEquals(country.getCapital(), "Avarua ");   
+		        	Assert.assertEquals(country.getOfficial_religion(), null);   
+		        	Assert.assertEquals(country.getOfficial_languages(), "unbulleted list English Cook Islands M");   
+		        	Assert.assertEquals(country.getGovernment_type(), "nowrap Constitutional monarchy ");   
+		        	Assert.assertEquals(country.getArea_km2(), "240 ");   
+		        	Assert.assertEquals(country.getArea_sq_mi(), "91 ");  
+		        	Assert.assertEquals(country.getPopulation_estimate(), null);   
+		        	Assert.assertEquals(country.getPopulation_estimate_rank(), "218th small2005small "); 
+		        	Assert.assertEquals(country.getCurrency(), "New Zealand dollar ");   
+		        	Assert.assertEquals(country.getCurrency_code(), null); 
+		        }
+		 } catch (IOException e) {
+		        e.printStackTrace();
+		  }  
+	  }
+	 
+ 
+
+	 @Test
+	  public void TestParsovaniaBook() throws FileNotFoundException, ParseException, Throwable, SAXException {
+		 	SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
+			HandlerBook handler_book = new HandlerBook();
+		    SAXParser saxParser = saxParserFactory.newSAXParser();
+		 try {
+			 	saxParser.parse(new File("C:\\Users\\Dokonaly\\Desktop\\data\\sample_enwiki-latest-pages-articles7.xml-p000305002p000464996.bz2.xml"), handler_book);
+		        List<Infobox_book> InfoboxbookList = handler_book.getInfoboxList();
+ 
+		        for(Infobox_book book : InfoboxbookList){
+		        	
+		        	Assert.assertEquals(book.getName(), "The Cider House Rules ");
+		        	Assert.assertEquals(book.getTranslator(), null);
+		        	Assert.assertEquals(book.getImage(), "Image:CiderHouseRules.jpg ");
+		        	Assert.assertEquals(book.getCaption(), "First edition cover ");
+		        	Assert.assertEquals(book.getAuthor(), "John Irving ");
+		        	Assert.assertEquals(book.getCountry(), "United States ");
+		        	Assert.assertEquals(book.getLanguage(), "English language|English ");
+		        	Assert.assertEquals(book.getSubject(), null);
+		        	
+		        	Assert.assertEquals(book.getGenre(), null);
+		        	Assert.assertEquals(book.getPublished(), null);
+		        	Assert.assertEquals(book.getMedia_type(), "Print Hardcover and Paperback ");
+		        	Assert.assertEquals(book.getPages(), null);
+		        	Assert.assertEquals(book.getIsbn(), "ISBN 0-688-03036-X ");
+		        	Assert.assertEquals(book.getPreceded_by(), "The Hotel New Hampshire ");
+		        	Assert.assertEquals(book.getFollowed_by(), "A Prayer for Owen Meany ");
+		        }
+		 } catch (IOException e) {
+		        e.printStackTrace();
+		  }
+		 
+		  
+	  }
+	 @Test
+	  public void TestParsovaniaSettlement() throws FileNotFoundException, ParseException, Throwable, SAXException {
+		 	SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
+			HandlerSettlement handler_settlement = new HandlerSettlement();
+		    SAXParser saxParser = saxParserFactory.newSAXParser();
+		 try {
+			 	saxParser.parse(new File("C:\\Users\\Dokonaly\\Desktop\\data\\sample_enwiki-latest-pages-articles7.xml-p000305002p000464996.bz2.xml"), handler_settlement);
+		        List<Infobox_settlement> InfoboxSettlementList = handler_settlement.getInfoboxList();
+
+		        for(Infobox_settlement sett : InfoboxSettlementList){
+		        	Assert.assertEquals(sett.getOfficial_name(), "Bishkek ");
+		        	Assert.assertEquals(sett.getNickname(), null);
+		        	Assert.assertEquals(sett.getMap_caption(), null);
+		        	Assert.assertEquals(sett.getCoordinates_region(), "KG ");
+		        	Assert.assertEquals(sett.getLeader_title(), "Mayor ");
+		        	Assert.assertEquals(sett.getUnit_pref(), null);
+		        	Assert.assertEquals(sett.getArea_total_km2(), "127 ");
+		        	Assert.assertEquals(sett.getArea_land_km2(), null);
+		        	Assert.assertEquals(sett.getPopulation_total(), "874400 ");
+		        	Assert.assertEquals(sett.getPopulation_density_km2(), "auto ");
+		        	Assert.assertEquals(sett.getTimezone(), "UTC+6");
+		        	Assert.assertEquals(sett.getWebsite(), "http://meria.kg/index.php?lang=kg ");
+		        	Assert.assertEquals(sett.getPostal_code(), "720000-720085 ");
+		        }
+		 } catch (IOException e) {
+		        e.printStackTrace();
+		  }
+		 
+		  
+	  }
 	
-	Infobox_book book = new Infobox_book();
-	HandlerCountry handlerC = new HandlerCountry();
-		
-  @Test
-  public void testOparsuj_country() {
-	  
-	  retazec = retazec.replaceAll("(\r\n|\n)", " "); 
-	  retazec = retazec.trim().replaceAll(" +", " "); 
-  	
-  	  String text = handlerC.PouziRegex("\\{\\{Infobox country \\s*(.*)", retazec);
-	  boolean flag = handlerC.oparsujCountry(true, text);
-	  Assert.assertEquals(flag, false);
-  }
 }

@@ -54,6 +54,7 @@ public class HandlerCountry  extends DefaultHandler {
     		vystup = vystup.replace("|conventional_long_name = ", "");
     		vystup = vystup.replace("| conventional_long_name = ", "");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
+    		vystup = vystup.replaceAll("  "," ");
     		infobox.setTitle(vystup);
      	    flag = true;
     	}
@@ -63,6 +64,7 @@ public class HandlerCountry  extends DefaultHandler {
     		vystup = vystup.replace("|common_name = ", "");
     		vystup = vystup.replace("| common_name = ", "");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
+    		vystup = vystup.replaceAll("  "," ");
     	    infobox.setCommon_name(vystup);
      	    flag = true;
     	}
@@ -72,6 +74,7 @@ public class HandlerCountry  extends DefaultHandler {
     		vystup = vystup.replace("|image_flag = ", "");
     		vystup = vystup.replace("| image_flag = ", "");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
+    		vystup = vystup.replaceAll("  "," ");
     	    infobox.setImage_flag(vystup);
      	    flag = true;
     	}
@@ -81,6 +84,7 @@ public class HandlerCountry  extends DefaultHandler {
     		vystup = vystup.replace("|image_coat = ", "");
     		vystup = vystup.replace("| image_coat = ", "");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
+    		vystup = vystup.replaceAll("  "," ");
     	    infobox.setImage_coat(vystup);
      	    flag = true;
     	}
@@ -94,7 +98,8 @@ public class HandlerCountry  extends DefaultHandler {
     		
     		vystup = vystup.replace("|capital = ", "");
     		vystup = vystup.replace("| capital = ", "");
-    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-\\[\\]]","");
+    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
+    		vystup = vystup.replaceAll("  "," ");
     	    infobox.setCapital(vystup);
      	    flag = true;
     	}
@@ -104,6 +109,7 @@ public class HandlerCountry  extends DefaultHandler {
     		vystup = vystup.replace("|official_religion = ", "");
     		vystup = vystup.replace("| official_religion = ", "");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
+    		vystup = vystup.replaceAll("  "," ");
     	    infobox.setOfficial_religion(vystup);
      	    flag = true;
     	}
@@ -113,11 +119,12 @@ public class HandlerCountry  extends DefaultHandler {
     		vystup = vystup.replace("|official_languages = ", "");
     		vystup = vystup.replace("| official_languages = ", "");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
+    		vystup = vystup.replaceAll("  "," ");
     	    infobox.setOfficial_languages(vystup);
      	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?government_type = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[ #@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = PouziRegex("\\| ?government_type = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[ #@\\{}'`$%^&;<>,ֹציז|]+", vysledok);  	
     	if (vystup != null){
     		if(vystup.contains("leader_title") ){
     			String[] parts = vystup.split("leader_title");
@@ -126,7 +133,9 @@ public class HandlerCountry  extends DefaultHandler {
     		
     		vystup = vystup.replace("|government_type = ", "");
     		vystup = vystup.replace("| government_type = ", "");
-    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
+    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! |+-]","");
+    		vystup = vystup.replaceAll("\\|"," ");
+    		vystup = vystup.replaceAll("  "," ");
     	    infobox.setGovernment_type(vystup);
      	    flag = true;
     	}
@@ -136,6 +145,7 @@ public class HandlerCountry  extends DefaultHandler {
     		vystup = vystup.replace("|area_km2 = ", "");
     		vystup = vystup.replace("| area_km2 = ", "");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
+    		vystup = vystup.replaceAll("  "," ");
     	    infobox.setArea_km2(vystup);
      	    flag = true;
     	}
@@ -145,6 +155,7 @@ public class HandlerCountry  extends DefaultHandler {
     		vystup = vystup.replace("|area_sq_mi = ", "");
     		vystup = vystup.replace("| area_sq_mi = ", "");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
+    		vystup = vystup.replaceAll("  "," ");
     	    infobox.setArea_sq_mi(vystup);
      	    flag = true;
     	}
@@ -154,6 +165,7 @@ public class HandlerCountry  extends DefaultHandler {
     		vystup = vystup.replace("|population_estimate = ", "");
     		vystup = vystup.replace("| population_estimate = ", "");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
+    		vystup = vystup.replaceAll("  "," ");
     	    infobox.setPopulation_estimate(vystup);
      	    flag = true;
     	}
@@ -163,24 +175,32 @@ public class HandlerCountry  extends DefaultHandler {
     		vystup = vystup.replace("|population_estimate_rank = ", "");
     		vystup = vystup.replace("| population_estimate_rank = ", "");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
+    		vystup = vystup.replaceAll("  "," ");
     	    infobox.setPopulation_estimate_rank(vystup);
      	    flag = true;
     	}
     	
     	vystup = PouziRegex("\\| ?currency_code = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
+    		
     		vystup = vystup.replace("|currency_code = ", "");
     		vystup = vystup.replace("| currency_code = ", "");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
+    		vystup = vystup.replaceAll("  "," ");
     	    infobox.setCurrency_code(vystup);
      	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?currency = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = PouziRegex("\\| ?currency = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז|]+", vysledok);  	
     	if (vystup != null){
+    		if(vystup.contains("currency_code") ){
+    			String[] parts = vystup.split("currency_code");
+    			vystup = parts[0]; 
+    		}
     		vystup = vystup.replace("|currency = ", "");
     		vystup = vystup.replace("| currency = ", "");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
+    		vystup = vystup.replaceAll("  "," ");
     	    infobox.setCurrency(vystup);
      	    flag = true;
     	}

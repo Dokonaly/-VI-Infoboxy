@@ -48,7 +48,7 @@ public class HandlerSettlement  extends DefaultHandler {
     
     public boolean oparsujSettlement(boolean flag, String vysledok){
     	flag = false;
-    	String vystup = PouziRegex("\\| ?official_name = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	String vystup = PouziRegex("\\| ?official_name ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
     		vystup = vystup.replace("|official_name = ", "");
     		vystup = vystup.replace("| official_name = ", "");
@@ -57,7 +57,7 @@ public class HandlerSettlement  extends DefaultHandler {
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?nickname = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = PouziRegex("\\| ?nickname ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
     		vystup = vystup.replace("|nickname = ", "");
     		vystup = vystup.replace("| nickname = ", "");
@@ -66,7 +66,7 @@ public class HandlerSettlement  extends DefaultHandler {
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?map_caption = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = PouziRegex("\\| ?map_caption ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
     		vystup = vystup.replace("|map_caption = ", "");
     		vystup = vystup.replace("| map_caption = ", "");
@@ -75,7 +75,7 @@ public class HandlerSettlement  extends DefaultHandler {
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?coordinates_region = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = PouziRegex("\\| ?coordinates_region ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
     		vystup = vystup.replace("|coordinates_region = ", "");
     		vystup = vystup.replace("| coordinates_region = ", "");
@@ -84,16 +84,18 @@ public class HandlerSettlement  extends DefaultHandler {
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?leader_title = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = PouziRegex("\\| ?leader_title ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
     		vystup = vystup.replace("|leader_title = ", "");
+    		vystup = vystup.replace("|leader_title= ", "");
+    		vystup = vystup.replace("|leader_title=", "");
     		vystup = vystup.replace("| leader_title = ", "");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
     	    infobox_settlement.setLeader_title(vystup);
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?unit_pref = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = PouziRegex("\\| ?unit_pref ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
     		vystup = vystup.replace("|unit_pref = ", "");
     		vystup = vystup.replace("| unit_pref = ", "");
@@ -102,7 +104,7 @@ public class HandlerSettlement  extends DefaultHandler {
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?area_total_km2 = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = PouziRegex("\\| ?area_total_km2 ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
     		vystup = vystup.replace("|area_total_km2 = ", "");
     		vystup = vystup.replace("| area_total_km2 = ", "");
@@ -111,7 +113,7 @@ public class HandlerSettlement  extends DefaultHandler {
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?area_land_km2 = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = PouziRegex("\\| ?area_land_km2 ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
     		vystup = vystup.replace("|area_land_km2 = ", "");
     		vystup = vystup.replace("| area_land_km2 = ", "");
@@ -120,8 +122,19 @@ public class HandlerSettlement  extends DefaultHandler {
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?population_total = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{|'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = PouziRegex("\\| ?population_total ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{|'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
+    		
+    		if(vystup.contains("population_density_km2") ){
+    			String[] parts = vystup.split("population_density_km2");
+    			vystup = parts[0]; 
+    		}
+    		
+    		if(vystup.contains("population_as_of") ){
+    			String[] parts = vystup.split("population_as_of");
+    			vystup = parts[0]; 
+    		}
+    		
     		vystup = vystup.replace("|population_total = ", "");
     		vystup = vystup.replace("| population_total = ", "");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
@@ -129,7 +142,7 @@ public class HandlerSettlement  extends DefaultHandler {
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?population_density_km2 = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{|'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = PouziRegex("\\| ?population_density_km2 ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
     		vystup = vystup.replace("|population_density_km2 = ", "");
     		vystup = vystup.replace("| population_density_km2 = ", "");
@@ -138,16 +151,18 @@ public class HandlerSettlement  extends DefaultHandler {
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?timezone = [A-Za-z0-9 _ =*.:?!()+-<>\\[#@\\{}|'` $%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = PouziRegex("\\| ?timezone ?= [A-Za-z0-9 _ =*.:?!()+-<>\\[#@\\{}|'` $%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
     		vystup = vystup.replace("|timezone = ", "");
     		vystup = vystup.replace("| timezone = ", "");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-|]","");
+    		vystup = vystup.replaceAll("\\[","");
+    		vystup = vystup.replaceAll("\\]","");
     	    infobox_settlement.setTimezone(vystup);
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?website = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = PouziRegex("\\| ?website ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
     		vystup = vystup.replace("|website = ", "");
     		vystup = vystup.replace("| website = ", "");
@@ -156,7 +171,7 @@ public class HandlerSettlement  extends DefaultHandler {
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?postal_code = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = PouziRegex("\\| ?postal_code ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
     		vystup = vystup.replace("|postal_code = ", "");
     		vystup = vystup.replace("| postal_code = ", "");

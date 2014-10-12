@@ -55,6 +55,7 @@ public class HandlerPerson  extends DefaultHandler {
     		vystup = vystup.replace("|name = ", "");
     		vystup = vystup.replace("| name = ", "");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
+    		vystup = vystup.replaceAll("  "," ");
     		infoboxPerson.setName(vystup);
     	    flag = true;
     	}
@@ -64,6 +65,7 @@ public class HandlerPerson  extends DefaultHandler {
     		vystup = vystup.replace("|image_size = ", "");
     		vystup = vystup.replace("| image_size = ", "");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
+    		vystup = vystup.replaceAll("  "," ");
     		infoboxPerson.setImage_size(vystup);
     	    flag = true;
     	}
@@ -73,6 +75,7 @@ public class HandlerPerson  extends DefaultHandler {
     		vystup = vystup.replace("|image = ", "");
     		vystup = vystup.replace("| image = ", "");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
+    		vystup = vystup.replaceAll("  "," ");
     		infoboxPerson.setImage(vystup);
     	    flag = true;
     	}
@@ -112,6 +115,7 @@ public class HandlerPerson  extends DefaultHandler {
     			}
 	    		
     			if (vysl !=null){
+    					
     			infoboxPerson.setBirth_year(vysl);
     			}
     			if (vysl_mesiac !=null){
@@ -139,6 +143,7 @@ public class HandlerPerson  extends DefaultHandler {
     		vystup = vystup.replace("|birth_place = ", "");
     		vystup = vystup.replace("| birth_place = ", "");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
+    		vystup = vystup.replaceAll("  "," ");
     		infoboxPerson.setBirth_place(vystup);
     	    flag = true;
     	}
@@ -210,6 +215,7 @@ public class HandlerPerson  extends DefaultHandler {
     		vystup = vystup.replace("|death_place = ", "");
     		vystup = vystup.replace("| death_place = ", "");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
+    		vystup = vystup.replaceAll("  "," ");
     		infoboxPerson.setDeath_place(vystup);
     	    flag = true;
     	}
@@ -219,6 +225,7 @@ public class HandlerPerson  extends DefaultHandler {
     		vystup = vystup.replace("|occupation = ", "");
     		vystup = vystup.replace("| occupation = ", "");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
+    		vystup = vystup.replaceAll("  "," ");
     		infoboxPerson.setOccupation(vystup);
     	    flag = true;
     	}

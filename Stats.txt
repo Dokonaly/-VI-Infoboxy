@@ -46,13 +46,13 @@ Percento nevyparsovanych mien: 32.94117647058824
 Percento nevyparsovanych nickname: 63.529411764705884
 Percento nevyparsovanych captation: 34.11764705882353
 Percento nevyparsovanych coordinates_region: 18.823529411764707
-Percento nevyparsovanych leader titulov: 24.705882352941178
+Percento nevyparsovanych leader titulov: 22.35294117647059
 Percento nevyparsovanych unit_pref: 45.88235294117647
 Percento nevyparsovanych area_total_km2: 17.647058823529413
 Percento nevyparsovanych area_land_km2: 54.11764705882353
 Percento nevyparsovanych populacii: 2.3529411764705883
-Percento nevyparsovanych population_density: 9.411764705882353
+Percento nevyparsovanych population_density: 18.823529411764707
 Percento nevyparsovanych timezone: 23.529411764705884
-Percento nevyparsovanych website: 12.941176470588236
+Percento nevyparsovanych website: 42.35294117647059
 Percento nevyparsovanych postal_code: 21.176470588235293
 ********************************************************************
