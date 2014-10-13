@@ -1,6 +1,7 @@
 package Vzorka;
 import Enums.*;
 
+import org.apache.commons.compress.compressors.bzip2.BZip2CompressorInputStream;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
@@ -22,6 +23,7 @@ import org.apache.lucene.util.Version;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -29,6 +31,8 @@ import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
  
@@ -37,6 +41,8 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
  
 import org.xml.sax.SAXException;
+
+
 import java.util.Scanner;
 public class Parser {
 	public static void main(String[] args) throws FileNotFoundException, ParseException {
@@ -51,13 +57,25 @@ public class Parser {
 	        HandlerBook handler_book = new HandlerBook();
 	        HandlerPerson handler_person = new HandlerPerson();
 	        
+	        URL url = new URL("http://dumps.wikimedia.org/enwiki/latest/enwiki-latest-pages-articles1.xml-p000000010p000010000.bz2");
+	        URLConnection connection = url.openConnection();
+
 	        //oparsovanie pomocou kniznice SAX
-	        saxParser.parse(new File("C:\\Users\\Dokonaly\\Desktop\\data\\ukazka.xml"), handler_country);
-	        saxParser.parse(new File("C:\\Users\\Dokonaly\\Desktop\\data\\ukazka.xml"), handler_settlement);
-	        saxParser.parse(new File("C:\\Users\\Dokonaly\\Desktop\\data\\ukazka.xml"), handler_book);
-	        saxParser.parse(new File("C:\\Users\\Dokonaly\\Desktop\\data\\ukazka.xml"), handler_person);
+	        /*
+	        saxParser.parse(connection.getInputStream(), handler_country);
+	        saxParser.parse(connection.getInputStream(), handler_settlement);
+	        saxParser.parse(connection.getInputStream(), handler_book);
+	        saxParser.parse(connection.getInputStream(), handler_person);
+	        */
+	        
+	        String cesta = "data/ukazka.xml";
+	        saxParser.parse(new File(cesta), handler_country);
+	        saxParser.parse(new File(cesta), handler_settlement);
+	        saxParser.parse(new File(cesta), handler_book);
+	        saxParser.parse(new File(cesta), handler_person);
 		    
-	        //zoznami jednotlivych objektov
+	        
+	        //zoznamy jednotlivych objektov
 	        List<Infobox_country> InfoboxList = handler_country.getInfoboxList();
 	        List<Infobox_settlement> InfoboxSettlementList = handler_settlement.getInfoboxList();
 	        List<Infobox_book> InfoboxbookList = handler_book.getInfoboxList();

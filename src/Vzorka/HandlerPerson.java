@@ -98,7 +98,7 @@ public class HandlerPerson  extends DefaultHandler {
     				ret  = pomocna.replace(rok, "");
     	    		if(ret != null && ret.length()>2){
     	    			mesiac  = ret.substring(1);
-    	    			if (mesiac.contains("|")){
+    	    			if (mesiac.contains("|") ){
 	    	    			String[] parts = mesiac.split("\\|");
 	    	    			if(parts.length >=0){
 	    	    			vysl_mesiac = parts[0]; 
