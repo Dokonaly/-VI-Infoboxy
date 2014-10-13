@@ -1,8 +1,9 @@
 package Vzorka;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Infobox_country {
+public class Infobox_country implements Serializable{
 	
 	private String title;
 	private String common_name;

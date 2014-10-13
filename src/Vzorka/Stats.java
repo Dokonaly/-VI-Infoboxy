@@ -4,6 +4,8 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.List;
 
+
+//Kompletne vypocitanie statistik
 public class Stats {
 
 	public void stats_book (List<Infobox_book> InfoboxbookList, PrintWriter out_stats){
@@ -337,16 +339,15 @@ public class Stats {
 	}
 	
 	public double prepocet(int velkost, int pocet){
+		//vypocitanie statistik
 		double rozdiel = velkost - pocet;
-		
 		double a = 100.0/velkost;
-		
 		return a*rozdiel;
 	}
 	
 	public void vypocitaj_statistiky(List<Infobox_book> InfoboxbookList, List<Infobox_country> InfoboxList, List<Infobox_settlement> InfoboxSettlementList, List<Infobox_person> InfoboxPersonList) throws FileNotFoundException{
+		//Zapisanie do suboru
 		PrintWriter out_stats = new PrintWriter("Stats.txt");
-		
 		stats_book(InfoboxbookList, out_stats);
 		stats_country(InfoboxList, out_stats);
 		stats_person(InfoboxPersonList, out_stats);

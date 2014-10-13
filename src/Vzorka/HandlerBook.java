@@ -14,7 +14,7 @@ public class HandlerBook  extends DefaultHandler {
 	private List<Infobox_book> infoboxBookList = null;
 	private Infobox_book infoboxBook = null;
 	private StringBuffer sb;
-	
+	Help pomoc = new Help();
 	public List<Infobox_book> getInfoboxList() {
         return infoboxBookList;
     }
@@ -36,74 +36,66 @@ public class HandlerBook  extends DefaultHandler {
         } 
     }
  
-    public String PouziRegex(String regex, String vstup){
-    	Pattern pattern = Pattern.compile(regex);
-    	Matcher matcher = pattern.matcher(vstup);
-    	if (matcher.find())
-    	{
-    		return matcher.group(0);
-    	}
-    	return null;
-    }
-    
+   
+    //oparsovanie infoboxu book
     public boolean oparsujBook(String vysledok){
     	boolean flag = false;
-    	
-    	String vystup = PouziRegex("\\| ?name = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    
+    	String vystup = pomoc.PouziRegex("\\| ?name ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
-    		vystup = vystup.replace("|name = ", "");
-    		vystup = vystup.replace("| name = ", "");
+    		vystup = pomoc.ocisti_retazec(vystup, "name");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
+    		vystup = pomoc.posledna_medzera(vystup);
     		infoboxBook.setName(vystup);
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?translator = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = pomoc.PouziRegex("\\| ?translator ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
-    		vystup = vystup.replace("|translator = ", "");
-    		vystup = vystup.replace("| translator = ", "");
+    		vystup = pomoc.ocisti_retazec(vystup, "translator");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
+    		vystup = pomoc.posledna_medzera(vystup);
     		infoboxBook.setTranslator(vystup);
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?image = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = pomoc.PouziRegex("\\| ?image ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
-    		vystup = vystup.replace("|image = ", "");
-    		vystup = vystup.replace("| image = ", "");
+    		vystup = pomoc.ocisti_retazec(vystup, "image");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
+    		vystup = pomoc.posledna_medzera(vystup);
     		infoboxBook.setImage(vystup);
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?caption = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = pomoc.PouziRegex("\\| ?caption ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
-    		vystup = vystup.replace("|caption = ", "");
-    		vystup = vystup.replace("| caption = ", "");
+    		vystup = pomoc.ocisti_retazec(vystup, "caption");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
+    		vystup = pomoc.posledna_medzera(vystup);
     		infoboxBook.setCaption(vystup);
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?author = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = pomoc.PouziRegex("\\| ?author ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
-    		vystup = vystup.replace("|author = ", "");
-    		vystup = vystup.replace("| author = ", "");
+    		vystup = pomoc.ocisti_retazec(vystup, "author");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
+    		vystup = pomoc.posledna_medzera(vystup);
     		infoboxBook.setAuthor(vystup);
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?country = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = pomoc.PouziRegex("\\| ?country ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
-    		vystup = vystup.replace("|country = ", "");
-    		vystup = vystup.replace("| country = ", "");
+    		vystup = pomoc.ocisti_retazec(vystup, "country");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
+    		vystup = pomoc.posledna_medzera(vystup);
     		infoboxBook.setCountry(vystup);
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?language = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז|]+", vysledok);  	
+    	vystup = pomoc.PouziRegex("\\| ?language ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז|]+", vysledok);  	
     	if (vystup != null){
     		
     		if(vystup.contains("series") ){
@@ -121,81 +113,81 @@ public class HandlerBook  extends DefaultHandler {
     			vystup = parts[0]; 
     		}
 
-    		vystup = vystup.replace("|language = ", "");
-    		vystup = vystup.replace("| language = ", "");
+    		vystup = pomoc.ocisti_retazec(vystup, "language");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]|","");
+    		vystup = pomoc.posledna_medzera(vystup);
     		infoboxBook.setLanguage(vystup);
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?subject = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = pomoc.PouziRegex("\\| ?subject ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
-    		vystup = vystup.replace("|subject = ", "");
-    		vystup = vystup.replace("| subject = ", "");
+    		vystup = pomoc.ocisti_retazec(vystup, "subject");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
+    		vystup = pomoc.posledna_medzera(vystup);
     		infoboxBook.setSubject(vystup);
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?genre = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = pomoc.PouziRegex("\\| ?genre ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
-    		vystup = vystup.replace("|genre = ", "");
-    		vystup = vystup.replace("| genre = ", "");
+    		vystup = pomoc.ocisti_retazec(vystup, "genre");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-\\[\\]]","");
+    		vystup = pomoc.posledna_medzera(vystup);
     		infoboxBook.setGenre(vystup);
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?published = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = pomoc.PouziRegex("\\| ?published ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
-    		vystup = vystup.replace("|published = ", "");
-    		vystup = vystup.replace("| published = ", "");
+    		vystup = pomoc.ocisti_retazec(vystup, "published");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
+    		vystup = pomoc.posledna_medzera(vystup);
     		infoboxBook.setPublished(vystup);
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?media_type = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = pomoc.PouziRegex("\\| ?media_type ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
-    		vystup = vystup.replace("|media_type = ", "");
-    		vystup = vystup.replace("| media_type = ", "");
+    		vystup = pomoc.ocisti_retazec(vystup, "media_type");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
+    		vystup = pomoc.posledna_medzera(vystup);
     		infoboxBook.setMedia_type(vystup);
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?pages = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = pomoc.PouziRegex("\\| ?pages ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
-    		vystup = vystup.replace("|pages = ", "");
-    		vystup = vystup.replace("| pages = ", "");
+    		vystup = pomoc.ocisti_retazec(vystup, "pages");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
+    		vystup = pomoc.posledna_medzera(vystup);
     		infoboxBook.setPages(vystup);
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?isbn = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = pomoc.PouziRegex("\\| ?isbn ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
-    		vystup = vystup.replace("|isbn = ", "");
-    		vystup = vystup.replace("| isbn = ", "");
+    		vystup = pomoc.ocisti_retazec(vystup, "isbn");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
+    		vystup = pomoc.posledna_medzera(vystup);
     		infoboxBook.setIsbn(vystup);
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?preceded_by = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = pomoc.PouziRegex("\\| ?preceded_by ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
-    		vystup = vystup.replace("|preceded_by = ", "");
-    		vystup = vystup.replace("| preceded_by = ", "");
+    		vystup = pomoc.ocisti_retazec(vystup, "preceded_by");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
+    		vystup = pomoc.posledna_medzera(vystup);
     		infoboxBook.setPreceded_by(vystup);
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?followed_by = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = pomoc.PouziRegex("\\| ?followed_by ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
-    		vystup = vystup.replace("|followed_by = ", "");
-    		vystup = vystup.replace("| followed_by = ", "");
+    		vystup =pomoc.ocisti_retazec(vystup, "followed_by");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
+    		vystup = pomoc.posledna_medzera(vystup);
     		infoboxBook.setFollowed_by(vystup);
     	    flag = true;
     	}
@@ -207,13 +199,16 @@ public class HandlerBook  extends DefaultHandler {
     public void endElement(String uri, String localName, String qName) throws SAXException {
     	boolean flag_book = false;
     	
+    	
         if (bTitle) {
-          
-        	String vysledok = sb.toString();
-        	vysledok = vysledok.replaceAll("(\r\n|\n)", " "); //zarovnanie do jedneho riadku
-        	vysledok = vysledok.trim().replaceAll(" +", " "); //odstranenie nepotrebnych medzier
         	
-        	String text = PouziRegex("\\{\\{Infobox book\\s*(.*)", vysledok);
+        	String vysledok = sb.toString();
+        	//zarovnanie do jedneho riadku
+        	vysledok = vysledok.replaceAll("(\r\n|\n)", " "); 
+        	//odstranenie nepotrebnych medzier
+        	vysledok = vysledok.trim().replaceAll(" +", " ");
+        	//vybratie infoboxu book
+        	String text = pomoc.PouziRegex("\\{\\{Infobox book\\s*(.*)", vysledok);
         
         	if (text !=null){
         		flag_book  = oparsujBook(text);

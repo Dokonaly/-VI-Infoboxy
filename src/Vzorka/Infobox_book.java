@@ -1,6 +1,8 @@
 package Vzorka;
 
-public class Infobox_book {
+import java.io.Serializable;
+
+public class Infobox_book implements Serializable {
 	private String name;
 	private String translator;
 	private String image;

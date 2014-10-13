@@ -1,6 +1,8 @@
 package Vzorka;
 
-public class Infobox_settlement {
+import java.io.Serializable;
+
+public class Infobox_settlement implements Serializable {
 	
 	private String official_name;
 	private String nickname;

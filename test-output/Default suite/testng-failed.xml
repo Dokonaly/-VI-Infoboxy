@@ -5,7 +5,7 @@
     <classes>
       <class name="Tests.NewTest">
         <methods>
-          <include name="TestParsovaniaPerson"/>
+          <include name="TestParsovaniaCountry"/>
         </methods>
       </class> <!-- Tests.NewTest -->
     </classes>

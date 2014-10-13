@@ -18,7 +18,7 @@ public class HandlerPerson  extends DefaultHandler {
 	public List<Infobox_person> getInfoboxList() {
         return infoboxPersonList;
     }
-
+	Help pomoc = new Help();
 	boolean bTitle = false;
 	
     @Override
@@ -35,52 +35,43 @@ public class HandlerPerson  extends DefaultHandler {
         	bTitle = true;
         } 
     }
- 
-    public String PouziRegex(String regex, String vstup){
-    	Pattern pattern = Pattern.compile(regex);
-    	Matcher matcher = pattern.matcher(vstup);
-    	if (matcher.find())
-    	{
-    		return matcher.group(0);
-    	}
-    	return null;
-    }
     
+    //oparsovanie infoboxu person
     public boolean oparsujPerson(String vysledok){
     	boolean flag = false;
     	
-    	String vystup = PouziRegex("\\| ?name = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  
+    	String vystup = pomoc.PouziRegex("\\| ?name ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  
     	
     	if (vystup != null){
-    		vystup = vystup.replace("|name = ", "");
-    		vystup = vystup.replace("| name = ", "");
+    		vystup =pomoc.ocisti_retazec(vystup, "name");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
     		vystup = vystup.replaceAll("  "," ");
+    		vystup = pomoc.posledna_medzera(vystup);
     		infoboxPerson.setName(vystup);
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?image_size = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = pomoc.PouziRegex("\\| ?image_size ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
-    		vystup = vystup.replace("|image_size = ", "");
-    		vystup = vystup.replace("| image_size = ", "");
+    		vystup =pomoc.ocisti_retazec(vystup, "image_size");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
     		vystup = vystup.replaceAll("  "," ");
+    		vystup = pomoc.posledna_medzera(vystup);
     		infoboxPerson.setImage_size(vystup);
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?image = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = pomoc.PouziRegex("\\| ?image ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
-    		vystup = vystup.replace("|image = ", "");
-    		vystup = vystup.replace("| image = ", "");
+    		vystup = pomoc.ocisti_retazec(vystup, "image");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
     		vystup = vystup.replaceAll("  "," ");
+    		vystup = pomoc.posledna_medzera(vystup);
     		infoboxPerson.setImage(vystup);
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?birth_date = [^}]+", vysledok);  	
+    	vystup = pomoc.PouziRegex("\\| ?birth_date ?= [^}]+", vysledok);  	
     	if (vystup != null){
     		
     		if(vystup.contains("birth_place")){
@@ -99,7 +90,7 @@ public class HandlerPerson  extends DefaultHandler {
     			String vysl = "";
     			String ret = "";
     			if(pomocna != null){
-    			rok  = PouziRegex("\\|\\|?[0-9][^|]+", pomocna);  
+    			rok  = pomoc.PouziRegex("\\|\\|?[0-9][^|]+", pomocna);  
     			
 
     			if (rok !=null){
@@ -107,10 +98,18 @@ public class HandlerPerson  extends DefaultHandler {
     				ret  = pomocna.replace(rok, "");
     	    		if(ret != null && ret.length()>2){
     	    			mesiac  = ret.substring(1);
-    	    			String[] parts = mesiac.split("\\|");
-    	    			
-    	    			vysl_mesiac = parts[0]; 
-    	    			den = parts[1]; 
+    	    			if (mesiac.contains("|")){
+	    	    			String[] parts = mesiac.split("\\|");
+	    	    			if(parts.length >=0){
+	    	    			vysl_mesiac = parts[0]; 
+	    	    			}
+	    	    			if (parts.length > 0){
+	    	    			den = parts[1]; 
+	    	    			}
+    	    			}
+    	    			else {
+    	    				vysl_mesiac = mesiac; 
+    	    			}
     	    		}
     			}
 	    		
@@ -138,17 +137,17 @@ public class HandlerPerson  extends DefaultHandler {
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?birth_place = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = pomoc.PouziRegex("\\| ?birth_place ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
-    		vystup = vystup.replace("|birth_place = ", "");
-    		vystup = vystup.replace("| birth_place = ", "");
+    		vystup = pomoc.ocisti_retazec(vystup, "birth_place");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
     		vystup = vystup.replaceAll("  "," ");
+    		vystup = pomoc.posledna_medzera(vystup);
     		infoboxPerson.setBirth_place(vystup);
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?death_date = [^}]+", vysledok);  	
+    	vystup = pomoc.PouziRegex("\\| ?death_date ?= [^}]+", vysledok);  	
     	    	
     	if (vystup != null){
     		
@@ -168,7 +167,7 @@ public class HandlerPerson  extends DefaultHandler {
     			String vysl = "";
     			String ret = "";
     			if(pomocna != null){
-    			rok  = PouziRegex("\\|\\|?[0-9][^|]+", pomocna);  
+    			rok  = pomoc.PouziRegex("\\|\\|?[0-9][^|]+", pomocna);  
     			
 
     			if (rok !=null){
@@ -210,22 +209,22 @@ public class HandlerPerson  extends DefaultHandler {
     	
     	
     	
-    	vystup = PouziRegex("\\| ?death_place = [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = pomoc.PouziRegex("\\| ?death_place ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
-    		vystup = vystup.replace("|death_place = ", "");
-    		vystup = vystup.replace("| death_place = ", "");
+    		vystup =pomoc.ocisti_retazec(vystup, "death_place");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
     		vystup = vystup.replaceAll("  "," ");
+    		vystup = pomoc.posledna_medzera(vystup);
     		infoboxPerson.setDeath_place(vystup);
     	    flag = true;
     	}
     	
-    	vystup = PouziRegex("\\| ?occupation = [A-Za-z0-9 _ =*.:?!()+-<>\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = pomoc.PouziRegex("\\| ?occupation ?= [A-Za-z0-9 _ =*.:?!()+-<>\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
-    		vystup = vystup.replace("|occupation = ", "");
-    		vystup = vystup.replace("| occupation = ", "");
+    		vystup = pomoc.ocisti_retazec(vystup, "occupation");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
     		vystup = vystup.replaceAll("  "," ");
+    		vystup = pomoc.posledna_medzera(vystup);
     		infoboxPerson.setOccupation(vystup);
     	    flag = true;
     	}
@@ -240,10 +239,12 @@ public class HandlerPerson  extends DefaultHandler {
         if (bTitle) {
           
         	String vysledok = sb.toString();
-        	vysledok = vysledok.replaceAll("(\r\n|\n)", " "); //zarovnanie do jedneho riadku
-        	vysledok = vysledok.trim().replaceAll(" +", " "); //odstranenie nepotrebnych medzier
-        	
-        	String text = PouziRegex("\\{\\{Infobox person \\s*(.*)", vysledok);
+        	//zarovnanie do jedneho riadku
+        	vysledok = vysledok.replaceAll("(\r\n|\n)", " "); 
+        	//odstranenie nepotrebnych medzier
+        	vysledok = vysledok.trim().replaceAll(" +", " "); 
+        	//vybratie kompletneho infoboxu person
+        	String text = pomoc.PouziRegex("\\{\\{Infobox person \\s*(.*)", vysledok);
         
         	if (text !=null){
         		flag_person  = oparsujPerson(text);
