@@ -1,4 +1,4 @@
-package Vzorka;
+package Parser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +9,10 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+/**
+ * @author Dokonaly
+ *
+ */
 public class HandlerBook  extends DefaultHandler {
 	
 	private List<Infobox_book> infoboxBookList = null;
@@ -21,6 +25,9 @@ public class HandlerBook  extends DefaultHandler {
 
 	boolean bTitle = false;
 	
+    /* (non-Javadoc)
+     * @see org.xml.sax.helpers.DefaultHandler#startElement(java.lang.String, java.lang.String, java.lang.String, org.xml.sax.Attributes)
+     */
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes)
             throws SAXException {
@@ -38,6 +45,10 @@ public class HandlerBook  extends DefaultHandler {
  
    
     //oparsovanie infoboxu book
+    /**
+     * @param vysledok
+     * @return
+     */
     public boolean oparsujBook(String vysledok){
     	boolean flag = false;
     
@@ -195,6 +206,9 @@ public class HandlerBook  extends DefaultHandler {
     	return flag;
     }
     
+    /* (non-Javadoc)
+     * @see org.xml.sax.helpers.DefaultHandler#endElement(java.lang.String, java.lang.String, java.lang.String)
+     */
     @Override
     public void endElement(String uri, String localName, String qName) throws SAXException {
     	boolean flag_book = false;
@@ -241,6 +255,9 @@ public class HandlerBook  extends DefaultHandler {
         }
     }
  
+    /* (non-Javadoc)
+     * @see org.xml.sax.helpers.DefaultHandler#characters(char[], int, int)
+     */
     @Override
     public void characters(char ch[], int start, int length) throws SAXException {
          if (sb!=null && bTitle) {

@@ -1,5 +1,9 @@
 package Enums;
 
+/**
+ * @author Dokonaly
+ *
+ */
 public enum Settlement_enum {
 	official_name,
 	nickname,

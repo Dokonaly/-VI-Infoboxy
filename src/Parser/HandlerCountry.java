@@ -1,4 +1,4 @@
-package Vzorka;
+package Parser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +9,10 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+/**
+ * @author Dokonaly
+ *
+ */
 public class HandlerCountry  extends DefaultHandler {
 	
 	private List<Infobox_country> infoboxList = null;
@@ -21,6 +25,9 @@ public class HandlerCountry  extends DefaultHandler {
 	Help pomoc = new Help();
 	boolean bTitle = false;
 
+    /* (non-Javadoc)
+     * @see org.xml.sax.helpers.DefaultHandler#startElement(java.lang.String, java.lang.String, java.lang.String, org.xml.sax.Attributes)
+     */
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes)
             throws SAXException {
@@ -37,6 +44,11 @@ public class HandlerCountry  extends DefaultHandler {
     }
     
     //oparsovanie infoboxu country
+    /**
+     * @param flag
+     * @param vysledok
+     * @return
+     */
     public boolean oparsujCountry(boolean flag, String vysledok){
    
     	String vystup = pomoc.PouziRegex("\\| ?conventional_long_name ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
@@ -197,6 +209,9 @@ public class HandlerCountry  extends DefaultHandler {
     	return flag;
     }
     
+    /* (non-Javadoc)
+     * @see org.xml.sax.helpers.DefaultHandler#endElement(java.lang.String, java.lang.String, java.lang.String)
+     */
     @Override
     public void endElement(String uri, String localName, String qName) throws SAXException {
     	boolean flag_country = false;
@@ -243,6 +258,9 @@ public class HandlerCountry  extends DefaultHandler {
         }
     }
  
+    /* (non-Javadoc)
+     * @see org.xml.sax.helpers.DefaultHandler#characters(char[], int, int)
+     */
     @Override
     public void characters(char ch[], int start, int length) throws SAXException {
     

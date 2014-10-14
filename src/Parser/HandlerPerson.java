@@ -1,4 +1,4 @@
-package Vzorka;
+package Parser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +9,10 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+/**
+ * @author Dokonaly
+ *
+ */
 public class HandlerPerson  extends DefaultHandler {
 	
 	private List<Infobox_person> infoboxPersonList = null;
@@ -37,6 +41,11 @@ public class HandlerPerson  extends DefaultHandler {
     }
     
     //oparsovanie infoboxu person
+    /**
+     * @param vysledok
+     * @return
+     */
+  
     public boolean oparsujPerson(String vysledok){
     	boolean flag = false;
     	
@@ -80,45 +89,38 @@ public class HandlerPerson  extends DefaultHandler {
     		}
     		
     		if (vystup.contains("{")){
-    			String pomocna = vystup.replace("|birth_date = ", "");
-        		pomocna = pomocna.replace("| birth_date = ", "");
+    			String pomocna = pomoc.ocisti_retazec(vystup, "birth_date");
     			pomocna = pomocna.replaceAll("[^0-9\\|]","");
     			String rok="";
     			String den="";
     			String mesiac="";
-    			String vysl_mesiac = "";
-    			String vysl = "";
-    			String ret = "";
-    			if(pomocna != null){
-    			rok  = pomoc.PouziRegex("\\|\\|?[0-9][^|]+", pomocna);  
     			
-
+    			String[] parts = pomocna.split("\\|");
+    			for (int i = 0;i<parts.length;i++){
+    				if (parts[i]!=null){
+    					if (rok ==""){
+    						rok = parts[i];
+    						continue;
+    					}
+    					if (mesiac ==""){
+    						mesiac = parts[i];
+    						continue;
+    					}	
+    					if (den == ""){
+    						den = parts[i];
+    						break;
+    					}
+    				}
+    			}
+    			
+    			if(pomocna != null){
+    			   			    		
     			if (rok !=null){
-    				vysl = rok.replaceAll("[^0-9]","");
-    				ret  = pomocna.replace(rok, "");
-    	    		if(ret != null && ret.length()>2){
-    	    			mesiac  = ret.substring(1);
-    	    			if (mesiac.contains("|") ){
-	    	    			String[] parts = mesiac.split("\\|");
-	    	    			if(parts.length >=0){
-	    	    			vysl_mesiac = parts[0]; 
-	    	    			}
-	    	    			if (parts.length > 0){
-	    	    			den = parts[1]; 
-	    	    			}
-    	    			}
-    	    			else {
-    	    				vysl_mesiac = mesiac; 
-    	    			}
-    	    		}
-    			}
-	    		
-    			if (vysl !=null){
     					
-    			infoboxPerson.setBirth_year(vysl);
+    			infoboxPerson.setBirth_year(rok);
     			}
-    			if (vysl_mesiac !=null){
-    			infoboxPerson.setBirth_month(vysl_mesiac);
+    			if (mesiac !=null){
+    			infoboxPerson.setBirth_month(mesiac);
     			}
     			if (den !=null){
     			infoboxPerson.setBirth_day(den);
@@ -157,40 +159,40 @@ public class HandlerPerson  extends DefaultHandler {
     		}
     		
     		if (vystup.contains("{")){
-    			String pomocna = vystup.replace("|death_date = ", "");
-        		pomocna = pomocna.replace("| death_date = ", "");
+    			String pomocna = pomoc.ocisti_retazec(vystup, "death_date");
     			pomocna = pomocna.replaceAll("[^0-9\\|]","");
     			String rok="";
     			String den="";
     			String mesiac="";
-    			String vysl_mesiac = "";
-    			String vysl = "";
-    			String ret = "";
-    			if(pomocna != null){
-    			rok  = pomoc.PouziRegex("\\|\\|?[0-9][^|]+", pomocna);  
     			
-
+    			String[] parts = pomocna.split("\\|");
+    			for (int i = 0;i<parts.length;i++){
+    				if (parts[i]!=null){
+    					if (rok ==""){
+    						rok = parts[i];
+    						continue;
+    					}
+    					if (mesiac ==""){
+    						mesiac = parts[i];
+    						continue;
+    					}	
+    					if (den == ""){
+    						den = parts[i];
+    						break;
+    					}
+    				}
+    			}
+    			
+    			if(pomocna != null){
+    			   			    		
     			if (rok !=null){
-    				vysl = rok.replaceAll("[^0-9]","");
-    				ret  = pomocna.replace(rok, "");
-    	    		if(ret != null && ret.length()>2){
-    	    			mesiac  = ret.substring(1);
-    	    			String[] parts = mesiac.split("\\|");
-    	    			
-    	    			if(parts.length>1){
-    	    			vysl_mesiac = parts[0]; 
-    	    			den = parts[1]; 
-    	    			}
-    	    		}
+    					
+    			infoboxPerson.setDeath_year(rok);
     			}
-	    		
-    			if(vysl!=null){
-    			infoboxPerson.setDeath_year(vysl);
+    			if (mesiac !=null){
+    			infoboxPerson.setDeath_month(mesiac);
     			}
-    			if(vysl_mesiac!=null){
-    			infoboxPerson.setDeath_month(vysl_mesiac);
-    			}
-    			if(den!=null){
+    			if (den !=null){
     			infoboxPerson.setDeath_day(den);
     			}
     			}
@@ -206,9 +208,7 @@ public class HandlerPerson  extends DefaultHandler {
     		}
     	    flag = true;
     	}
-    	
-    	
-    	
+
     	vystup = pomoc.PouziRegex("\\| ?death_place ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
     		vystup =pomoc.ocisti_retazec(vystup, "death_place");
@@ -232,6 +232,9 @@ public class HandlerPerson  extends DefaultHandler {
       	return flag;
     }
     
+    /* (non-Javadoc)
+     * @see org.xml.sax.helpers.DefaultHandler#endElement(java.lang.String, java.lang.String, java.lang.String)
+     */
     @Override
     public void endElement(String uri, String localName, String qName) throws SAXException {
     	boolean flag_person = false;
@@ -275,6 +278,9 @@ public class HandlerPerson  extends DefaultHandler {
         }
     }
  
+    /* (non-Javadoc)
+     * @see org.xml.sax.helpers.DefaultHandler#characters(char[], int, int)
+     */
     @Override
     public void characters(char ch[], int start, int length) throws SAXException {
          if (sb!=null && bTitle) {

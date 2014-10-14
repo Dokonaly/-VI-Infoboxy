@@ -1,8 +1,12 @@
-package Vzorka;
+package Parser;
 
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * @author Dokonaly
+ *
+ */
 public class Infobox_country implements Serializable{
 	
 	private String title;

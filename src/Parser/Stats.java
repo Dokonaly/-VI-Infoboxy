@@ -1,4 +1,4 @@
-package Vzorka;
+package Parser;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -6,8 +6,16 @@ import java.util.List;
 
 
 //Kompletne vypocitanie statistik
+/**
+ * @author Dokonaly
+ *
+ */
 public class Stats {
 
+	/**
+	 * @param InfoboxbookList
+	 * @param out_stats
+	 */
 	public void stats_book (List<Infobox_book> InfoboxbookList, PrintWriter out_stats){
 		
 		int velkost = InfoboxbookList.size();
@@ -106,6 +114,10 @@ public class Stats {
 		
 	}
 	
+	/**
+	 * @param InfoboxList
+	 * @param out_stats
+	 */
 	public void stats_country ( List<Infobox_country> InfoboxList, PrintWriter out_stats){
 		int velkost = InfoboxList.size();
 		int pocet_mien = 0;
@@ -196,6 +208,10 @@ public class Stats {
 		out_stats.println("********************************************************************");
 	}
 	
+	/**
+	 * @param InfoboxPersonList
+	 * @param out_stats
+	 */
 	public void stats_person ( List<Infobox_person> InfoboxPersonList, PrintWriter out_stats){
 		int velkost = InfoboxPersonList.size();
 		int pocet_mien = 0;
@@ -253,6 +269,10 @@ public class Stats {
 		out_stats.println("********************************************************************");
 	}
 	
+	/**
+	 * @param InfoboxSettlementList
+	 * @param out_stats
+	 */
 	public void stats_settlement (List<Infobox_settlement> InfoboxSettlementList, PrintWriter out_stats){
 		int velkost = InfoboxSettlementList.size();
 		int pocet_mien = 0;
@@ -338,6 +358,11 @@ public class Stats {
 		
 	}
 	
+	/**
+	 * @param velkost
+	 * @param pocet
+	 * @return
+	 */
 	public double prepocet(int velkost, int pocet){
 		//vypocitanie statistik
 		double rozdiel = velkost - pocet;
@@ -345,6 +370,13 @@ public class Stats {
 		return a*rozdiel;
 	}
 	
+	/**
+	 * @param InfoboxbookList
+	 * @param InfoboxList
+	 * @param InfoboxSettlementList
+	 * @param InfoboxPersonList
+	 * @throws FileNotFoundException
+	 */
 	public void vypocitaj_statistiky(List<Infobox_book> InfoboxbookList, List<Infobox_country> InfoboxList, List<Infobox_settlement> InfoboxSettlementList, List<Infobox_person> InfoboxPersonList) throws FileNotFoundException{
 		//Zapisanie do suboru
 		PrintWriter out_stats = new PrintWriter("Stats.txt");

@@ -1,5 +1,5 @@
 package Tests;
-import Vzorka.*;
+import Parser.*;
 
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
@@ -34,10 +34,20 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.xml.sax.SAXException;
 import java.util.Scanner;
+/**
+ * @author Dokonaly
+ *
+ */
 public class NewTest  {
 	
  
-	 @Test
+	 /**
+	 * @throws FileNotFoundException
+	 * @throws ParseException
+	 * @throws Throwable
+	 * @throws SAXException
+	 */
+	@Test
 	  public void TestParsovaniaPerson() throws FileNotFoundException, ParseException, Throwable, SAXException {
 		 	SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
 		    HandlerPerson handler_person = new HandlerPerson();
@@ -67,7 +77,13 @@ public class NewTest  {
 		  }  
 	  }
 	 
-	 @Test
+	 /**
+	 * @throws FileNotFoundException
+	 * @throws ParseException
+	 * @throws Throwable
+	 * @throws SAXException
+	 */
+	@Test
 	  public void TestParsovaniaCountry() throws FileNotFoundException, ParseException, Throwable, SAXException {
 		 	SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
 			HandlerCountry handler_country = new HandlerCountry();
@@ -100,7 +116,13 @@ public class NewTest  {
 	 
  
 
-	 @Test
+	 /**
+	 * @throws FileNotFoundException
+	 * @throws ParseException
+	 * @throws Throwable
+	 * @throws SAXException
+	 */
+	@Test
 	  public void TestParsovaniaBook() throws FileNotFoundException, ParseException, Throwable, SAXException {
 		 	SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
 			HandlerBook handler_book = new HandlerBook();
@@ -134,7 +156,13 @@ public class NewTest  {
 		 
 		  
 	  }
-	 @Test
+	 /**
+	 * @throws FileNotFoundException
+	 * @throws ParseException
+	 * @throws Throwable
+	 * @throws SAXException
+	 */
+	@Test
 	  public void TestParsovaniaSettlement() throws FileNotFoundException, ParseException, Throwable, SAXException {
 		 	SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
 			HandlerSettlement handler_settlement = new HandlerSettlement();

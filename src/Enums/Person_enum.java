@@ -1,5 +1,9 @@
 package Enums;
 
+/**
+ * @author Dokonaly
+ *
+ */
 public enum Person_enum {
 	name,
 	image,

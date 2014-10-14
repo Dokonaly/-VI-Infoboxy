@@ -1,7 +1,11 @@
-package Vzorka;
+package Parser;
 
 import java.io.Serializable;
 
+/**
+ * @author Dokonaly
+ *
+ */
 public class Infobox_settlement implements Serializable {
 	
 	private String official_name;

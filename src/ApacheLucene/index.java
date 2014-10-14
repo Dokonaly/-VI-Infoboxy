@@ -3,7 +3,7 @@ import Enums.Book_enum;
 import Enums.Country_enum;
 import Enums.Person_enum;
 import Enums.Settlement_enum;
-import Vzorka.*;
+import Parser.*;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -30,8 +30,31 @@ import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.RAMDirectory;
 import org.apache.lucene.util.Version;
 
+/**
+ * @author Dokonaly
+ *
+ */
 public class index {
 	
+	/**
+	 * @param w
+	 * @param name
+	 * @param translator
+	 * @param image
+	 * @param captation
+	 * @param author
+	 * @param country
+	 * @param language
+	 * @param subject
+	 * @param genre
+	 * @param published
+	 * @param media_type
+	 * @param pages
+	 * @param isbn
+	 * @param get_followed_by
+	 * @param get_preceded_by
+	 * @throws IOException
+	 */
 	private static void addBook(IndexWriter w, String name, String translator, String image,
 			String captation, String author, String country, String language,
 			String subject, String genre, String published, String media_type,
@@ -87,6 +110,24 @@ public class index {
 		  w.addDocument(doc);
 		}
 	
+	/**
+	 * @param w
+	 * @param name
+	 * @param image
+	 * @param image_size
+	 * @param birth_date
+	 * @param birth_place
+	 * @param death_date
+	 * @param death_place
+	 * @param occupation
+	 * @param birth_day
+	 * @param birth_month
+	 * @param birth_year
+	 * @param death_year
+	 * @param death_month
+	 * @param death_day
+	 * @throws IOException
+	 */
 	private static void addPerson(IndexWriter w, String name, String image, String image_size,
 			String birth_date, String birth_place, String death_date, String death_place,
 			String occupation, String birth_day, String birth_month, String birth_year, String death_year, String death_month, String death_day ) throws IOException {
@@ -139,6 +180,24 @@ public class index {
 		  w.addDocument(doc);
 		}
 
+	/**
+	 * @param w
+	 * @param title
+	 * @param common_name
+	 * @param image_flag
+	 * @param image_coat
+	 * @param capital
+	 * @param official_religion
+	 * @param official_languages
+	 * @param government_type
+	 * @param area_km2
+	 * @param area_sq_mi
+	 * @param population_estimate
+	 * @param population_estimate_rank
+	 * @param currency
+	 * @param currency_code
+	 * @throws IOException
+	 */
 	private static void addCountry(IndexWriter w, String title, String common_name, String image_flag,
 			String image_coat, String capital, String official_religion, String official_languages,
 			String government_type, String area_km2, String area_sq_mi, String population_estimate,
@@ -193,6 +252,23 @@ public class index {
 		  w.addDocument(doc);
 		}
 	
+	/**
+	 * @param w
+	 * @param official_name
+	 * @param nickname
+	 * @param map_caption
+	 * @param coordinates_region
+	 * @param leader_title
+	 * @param unit_pref
+	 * @param area_total_km2
+	 * @param area_land_km2
+	 * @param population_total
+	 * @param population_density_km2
+	 * @param timezone
+	 * @param website
+	 * @param postal_code
+	 * @throws IOException
+	 */
 	private static void addSettlement(IndexWriter w, String official_name, String nickname, String map_caption,
 			String coordinates_region, String leader_title, String unit_pref, String area_total_km2,
 			String area_land_km2, String population_total, String population_density_km2, String timezone,
@@ -245,6 +321,12 @@ public class index {
 		  w.addDocument(doc);
 		}
 	
+	/**
+	 * @param args
+	 * @throws FileNotFoundException
+	 * @throws ParseException
+	 * @throws ClassNotFoundException
+	 */
 	public static void main(String[] args) throws FileNotFoundException, ParseException, ClassNotFoundException {
 		List<Infobox_country> InfoboxList;
         List<Infobox_settlement> InfoboxSettlementList;

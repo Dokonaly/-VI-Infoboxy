@@ -1,5 +1,9 @@
 package Enums;
 
+/**
+ * @author Dokonaly
+ *
+ */
 public enum Country_enum {
 	title,
 	common_name,

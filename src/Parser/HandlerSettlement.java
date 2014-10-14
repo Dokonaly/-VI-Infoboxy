@@ -1,4 +1,4 @@
-package Vzorka;
+package Parser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +9,10 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+/**
+ * @author Dokonaly
+ *
+ */
 public class HandlerSettlement  extends DefaultHandler {
 	
 	private List<Infobox_settlement> infobox_settlementList = null;
@@ -21,6 +25,9 @@ public class HandlerSettlement  extends DefaultHandler {
 
 	boolean bTitle = false;
 	Help pomoc = new Help();
+    /* (non-Javadoc)
+     * @see org.xml.sax.helpers.DefaultHandler#startElement(java.lang.String, java.lang.String, java.lang.String, org.xml.sax.Attributes)
+     */
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes)
             throws SAXException {
@@ -39,6 +46,11 @@ public class HandlerSettlement  extends DefaultHandler {
     }
 
     //metoda na oparsovanie infoboxu
+    /**
+     * @param flag
+     * @param vysledok
+     * @return
+     */
     public boolean oparsujSettlement(boolean flag, String vysledok){
     	flag = false;
     	
@@ -176,6 +188,9 @@ public class HandlerSettlement  extends DefaultHandler {
     	return flag;
     }
     
+    /* (non-Javadoc)
+     * @see org.xml.sax.helpers.DefaultHandler#endElement(java.lang.String, java.lang.String, java.lang.String)
+     */
     @Override
     public void endElement(String uri, String localName, String qName) throws SAXException {
     	boolean flag_settlement = false;
@@ -219,6 +234,9 @@ public class HandlerSettlement  extends DefaultHandler {
         }
     }
  
+    /* (non-Javadoc)
+     * @see org.xml.sax.helpers.DefaultHandler#characters(char[], int, int)
+     */
     @Override
     public void characters(char ch[], int start, int length) throws SAXException {
     

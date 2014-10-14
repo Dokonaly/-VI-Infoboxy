@@ -1,5 +1,9 @@
 package Enums;
 
+/**
+ * @author Dokonaly
+ *
+ */
 public enum Book_enum {
 	name, 
 	translator,

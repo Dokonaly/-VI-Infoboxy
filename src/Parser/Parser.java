@@ -1,4 +1,4 @@
-package Vzorka;
+package Parser;
 import Enums.*;
 
 import org.apache.commons.compress.compressors.bzip2.BZip2CompressorInputStream;
@@ -44,7 +44,17 @@ import org.xml.sax.SAXException;
 
 
 import java.util.Scanner;
+/**
+ * @author Dokonaly
+ *
+ */
 public class Parser {
+	
+	/**
+	 * @param args
+	 * @throws FileNotFoundException
+	 * @throws ParseException
+	 */
 	public static void main(String[] args) throws FileNotFoundException, ParseException {
 	    SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
 	    
@@ -68,11 +78,12 @@ public class Parser {
 	        saxParser.parse(connection.getInputStream(), handler_person);
 	        */
 	        
-	        String cesta = "data/ukazka.xml";
+	        String cesta = "data/ukazka-stredna.xml";
+	        saxParser.parse(new File(cesta), handler_person);
 	        saxParser.parse(new File(cesta), handler_country);
 	        saxParser.parse(new File(cesta), handler_settlement);
 	        saxParser.parse(new File(cesta), handler_book);
-	        saxParser.parse(new File(cesta), handler_person);
+	        
 		    
 	        
 	        //zoznamy jednotlivych objektov
