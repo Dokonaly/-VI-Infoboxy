@@ -57,7 +57,7 @@ public class index {
 	 */
 	private static void addBook(IndexWriter w, String name, String translator, String image,
 			String captation, String author, String country, String language,
-			String subject, String genre, String published, String media_type,
+			String subject, String[] genre, String published, 
 		    String pages,String isbn,  String get_followed_by, String get_preceded_by) throws IOException {
 		  Document doc = new Document();
 		  if (name != null) {
@@ -85,15 +85,14 @@ public class index {
 		  if (subject != null) {
 			  doc.add(new TextField("subject", subject, Field.Store.YES));
 		  }
+		  /*
 		  if (genre != null) {
 			  doc.add(new TextField("genre", genre, Field.Store.YES));
-		  }
+		  }*/
 		  if (published != null) {
 			  doc.add(new TextField("published", published, Field.Store.YES));
 		  }
-		  if (media_type != null) {
-			  doc.add(new TextField("media_type", media_type, Field.Store.YES));
-		  }
+		 
 		  if (isbn != null) {
 			  doc.add(new TextField("isbn", isbn, Field.Store.YES));
 		  }
@@ -367,7 +366,7 @@ public class index {
 	        for(Infobox_book book : InfoboxbookList){
 		        addBook(b, book.getName(), book.getTranslator(), book.getImage(), book.getCaption(), book.getAuthor(), 
 		        		book.getCountry(),book.getLanguage(), book.getSubject(), book.getGenre(), book.getPublished(),
-		        		book.getMedia_type(), book.getPages(),  book.getIsbn(), book.getFollowed_by() , book.getPreceded_by());
+		        		 book.getPages(),  book.getIsbn(), book.getFollowed_by() , book.getPreceded_by());
 	        }
 	        
 	        for(Infobox_country country : InfoboxList){

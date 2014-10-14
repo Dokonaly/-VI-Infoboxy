@@ -1,5 +1,6 @@
 package Parser;
 
+import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -52,5 +53,21 @@ public class Help {
     		}
 		return ret;
     	
+    }
+    
+    public String[] rozdel_do_pola(String ret, String[] rozdelovac){
+    	String[] vysledok = new String[1];
+    	String[] parts;
+    	String pomoc;
+    	for (int i =0; i<rozdelovac.length;i++){
+    		if (ret.contains(rozdelovac[i])) {
+    			pomoc = ret.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
+    			parts = pomoc.split(rozdelovac[i]);
+    			return  parts ;
+        	}
+    	}
+    		String a = ret.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
+    		Arrays.fill(vysledok, a);
+    		return vysledok;
     }
 }

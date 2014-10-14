@@ -144,7 +144,7 @@ public class NewTest  {
 		        	
 		        	Assert.assertEquals(book.getGenre(), null);
 		        	Assert.assertEquals(book.getPublished(), null);
-		        	Assert.assertEquals(book.getMedia_type(), "Print Hardcover and Paperback");
+		        	
 		        	Assert.assertEquals(book.getPages(), null);
 		        	Assert.assertEquals(book.getIsbn(), "ISBN 0-688-03036-X");
 		        	Assert.assertEquals(book.getPreceded_by(), "The Hotel New Hampshire");

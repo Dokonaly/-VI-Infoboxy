@@ -1,6 +1,7 @@
 package Parser;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 /**
  * @author Dokonaly
@@ -15,10 +16,23 @@ public class Infobox_book implements Serializable {
 	private String country;
 	private String language;
 	private String subject;
-	private String genre;
+	private String[] genre;
 	private String published;
-	private String media_type;
+
 	private String pages;
+	/**
+	 * @return the genre
+	 */
+	public String[] getGenre() {
+		return genre;
+	}
+	/**
+	 * @param genre the genre to set
+	 */
+	public void setGenre(String[] genre) {
+		this.genre = genre;
+	}
+	
 	private String isbn;
 	private String preceded_by;
 	private String followed_by;
@@ -119,18 +133,7 @@ public class Infobox_book implements Serializable {
 	public void setSubject(String subject) {
 		this.subject = subject;
 	}
-	/**
-	 * @return the genre
-	 */
-	public String getGenre() {
-		return genre;
-	}
-	/**
-	 * @param genre the genre to set
-	 */
-	public void setGenre(String genre) {
-		this.genre = genre;
-	}
+	
 	/**
 	 * @return the published
 	 */
@@ -143,18 +146,7 @@ public class Infobox_book implements Serializable {
 	public void setPublished(String published) {
 		this.published = published;
 	}
-	/**
-	 * @return the media_type
-	 */
-	public String getMedia_type() {
-		return media_type;
-	}
-	/**
-	 * @param media_type the media_type to set
-	 */
-	public void setMedia_type(String media_type) {
-		this.media_type = media_type;
-	}
+	
 	/**
 	 * @return the pages
 	 */

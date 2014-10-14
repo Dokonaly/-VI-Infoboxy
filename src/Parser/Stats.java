@@ -29,7 +29,7 @@ public class Stats {
 		int pocet_subject = 0;
 		int pocet_genre = 0;
 		int pocet_published = 0;
-		int pocet_media_type = 0;
+		
 		int pocet_pages = 0;
 		int pocet_isbn = 0;
 		int pocet_followed_by = 0;
@@ -77,9 +77,7 @@ public class Stats {
 				pocet_published++;
 			}
 			
-			if (book.getMedia_type() != null) {
-				pocet_media_type++;
-			}
+			
 			if (book.getPages() != null) {
 				pocet_pages++;
 			}
@@ -105,7 +103,6 @@ public class Stats {
 		out_stats.println("Percento nevyparsovanych subject: " + prepocet(velkost, pocet_subject));
 		out_stats.println("Percento nevyparsovanych genre: " + prepocet(velkost, pocet_genre));
 		out_stats.println("Percento nevyparsovanych published: " + prepocet(velkost, pocet_published));
-		out_stats.println("Percento nevyparsovanych media_type: " + prepocet(velkost, pocet_media_type));
 		out_stats.println("Percento nevyparsovanych pages: " + prepocet(velkost, pocet_pages));
 		out_stats.println("Percento nevyparsovanych isbn: " + prepocet(velkost, pocet_isbn));
 		out_stats.println("Percento nevyparsovanych followed_by: " + prepocet(velkost, pocet_followed_by));

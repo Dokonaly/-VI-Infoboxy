@@ -94,6 +94,7 @@ public class HandlerBook  extends DefaultHandler {
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
     		vystup = pomoc.posledna_medzera(vystup);
     		infoboxBook.setAuthor(vystup);
+    		
     	    flag = true;
     	}
     	
@@ -125,6 +126,7 @@ public class HandlerBook  extends DefaultHandler {
     		}
 
     		vystup = pomoc.ocisti_retazec(vystup, "language");
+    		vystup = vystup.replaceAll("\\|"," ");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]|","");
     		vystup = pomoc.posledna_medzera(vystup);
     		infoboxBook.setLanguage(vystup);
@@ -143,9 +145,16 @@ public class HandlerBook  extends DefaultHandler {
     	vystup = pomoc.PouziRegex("\\| ?genre ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
     		vystup = pomoc.ocisti_retazec(vystup, "genre");
-    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-\\[\\]]","");
-    		vystup = pomoc.posledna_medzera(vystup);
-    		infoboxBook.setGenre(vystup);
+    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-\\[\\];\\/*]","");
+    		String[] rozdelovac = {",",";","*"};
+    		if (vystup != null){
+    		String[] pole =  pomoc.rozdel_do_pola(vystup,rozdelovac);
+    		String a;		
+    		for(int i=0;i<pole.length;i++){
+    			pole[i]  = pomoc.posledna_medzera(pole[i]);
+    			infoboxBook.setGenre(pole);
+    		}
+    		}
     	    flag = true;
     	}
     	
@@ -158,15 +167,7 @@ public class HandlerBook  extends DefaultHandler {
     	    flag = true;
     	}
     	
-    	vystup = pomoc.PouziRegex("\\| ?media_type ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
-    	if (vystup != null){
-    		vystup = pomoc.ocisti_retazec(vystup, "media_type");
-    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
-    		vystup = pomoc.posledna_medzera(vystup);
-    		infoboxBook.setMedia_type(vystup);
-    	    flag = true;
-    	}
-    	
+    
     	vystup = pomoc.PouziRegex("\\| ?pages ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
     		vystup = pomoc.ocisti_retazec(vystup, "pages");
@@ -240,7 +241,6 @@ public class HandlerBook  extends DefaultHandler {
         					+infoboxBook.getSubject()+" "
         					+infoboxBook.getGenre()+" "
         					+infoboxBook.getPublished()+" "
-        					+infoboxBook.getMedia_type()+" "
         					+infoboxBook.getPages()+" "
         					+infoboxBook.getIsbn()+" "
         					+infoboxBook.getFollowed_by()+" "
