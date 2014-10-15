@@ -109,20 +109,34 @@ public class HandlerCountry  extends DefaultHandler {
     	vystup = pomoc.PouziRegex("\\| ?official_religion ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
     		vystup =pomoc.ocisti_retazec(vystup, "official_religion");
-    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
-    		vystup = vystup.replaceAll("  "," ");
-    		vystup = pomoc.posledna_medzera(vystup);
-    	    infobox.setOfficial_religion(vystup);
+    		String[] rozdelovac = {"!!"};
+    		if (vystup != null){
+    		String upraveny = pomoc.priprav_pole(vystup);
+    		String[] pole =  pomoc.rozdel_do_pola(upraveny,rozdelovac);
+    		String a;		
+    		for(int i=0;i<pole.length;i++){
+    			pole[i]  = pomoc.posledna_medzera(pole[i]);
+    			infobox.setOfficial_religion(pole);
+    		}
+    		}
+    	   
      	    flag = true;
     	}
     	
     	vystup = pomoc.PouziRegex("\\| ?official_languages ?= [A-Za-z0-9 _ =*.:?!()+-<>\\}\\[#@\\{|'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
     		vystup =pomoc.ocisti_retazec(vystup, "official_languages");
-    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
-    		vystup = vystup.replaceAll("  "," ");
-    		vystup = pomoc.posledna_medzera(vystup);
-    	    infobox.setOfficial_languages(vystup);
+    		String[] rozdelovac = {"!!"};
+    		if (vystup != null){
+    		String upraveny = pomoc.priprav_pole(vystup);
+    		String[] pole =  pomoc.rozdel_do_pola(upraveny,rozdelovac);
+    		String a;		
+    		for(int i=0;i<pole.length;i++){
+    			pole[i]  = pomoc.posledna_medzera(pole[i]);
+    			infobox.setOfficial_languages(pole);
+    		}
+    		}
+    	    
      	    flag = true;
     	}
     	
@@ -134,11 +148,18 @@ public class HandlerCountry  extends DefaultHandler {
     		}
     		
     		vystup =pomoc.ocisti_retazec(vystup, "government_type");
-    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! |+-]","");
-    		vystup = vystup.replaceAll("\\|"," ");
-    		vystup = vystup.replaceAll("  "," ");
-    		vystup = pomoc.posledna_medzera(vystup);
-    	    infobox.setGovernment_type(vystup);
+    		
+    		String[] rozdelovac = {"!!"};
+    		if (vystup != null){
+    		String upraveny = pomoc.priprav_pole(vystup);
+    		String[] pole =  pomoc.rozdel_do_pola(upraveny,rozdelovac);
+    		String a;		
+    		for(int i=0;i<pole.length;i++){
+    			pole[i]  = pomoc.posledna_medzera(pole[i]);
+    			infobox.setGovernment_type(pole);
+    		}
+    		}
+    		
      	    flag = true;
     	}
     	

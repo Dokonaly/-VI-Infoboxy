@@ -249,9 +249,7 @@ public class Stats {
 				pocet_datumov_smrti_mesto++;
 			}
 			
-			if (person.getOccupation() != null) {
-				pocet_occupation++;
-			}		
+				
         }
 		
 		out_stats.println("Statistiky person: ");

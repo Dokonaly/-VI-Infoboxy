@@ -95,22 +95,35 @@ public class HandlerPerson  extends DefaultHandler {
     			String den="";
     			String mesiac="";
     			
+    			if(pomocna.length()>1){
+    			
+    			String a = pomocna.substring(0, 1);
+    			String b = pomocna.substring(1, 2);
+    			
+    			if (b.contains("|") && a.contains("|")){
+    				pomocna = pomocna.substring(2, pomocna.length());
+    			}
+    			
+    			else if ( a.contains("|")){
+    				pomocna = pomocna.substring(1, pomocna.length());
+    			}
+    			}
     			String[] parts = pomocna.split("\\|");
     			for (int i = 0;i<parts.length;i++){
-    				if (parts[i]!=null){
-    					if (rok ==""){
+    				
+    					if (rok =="" && parts[i]!=""){
     						rok = parts[i];
     						continue;
     					}
-    					if (mesiac ==""){
+    					if (mesiac =="" && parts[i]!=null){
     						mesiac = parts[i];
     						continue;
     					}	
-    					if (den == ""){
+    					if (den == "" && parts[i]!=null){
     						den = parts[i];
     						break;
     					}
-    				}
+    				
     			}
     			
     			if(pomocna != null){
@@ -165,22 +178,34 @@ public class HandlerPerson  extends DefaultHandler {
     			String den="";
     			String mesiac="";
     			
+    			if(pomocna.length()>1){
+    			String a = pomocna.substring(0, 1);
+    			String b = pomocna.substring(1, 2);
+    			
+    			if (b.contains("|") && a.contains("|")){
+    				pomocna = pomocna.substring(2, pomocna.length());
+    			}
+    			
+    			else if ( a.contains("|")){
+    				pomocna = pomocna.substring(1, pomocna.length());
+    			}
+    			}
     			String[] parts = pomocna.split("\\|");
     			for (int i = 0;i<parts.length;i++){
-    				if (parts[i]!=null){
-    					if (rok ==""){
+    				
+    					if (rok =="" && parts[i]!=""){
     						rok = parts[i];
     						continue;
     					}
-    					if (mesiac ==""){
+    					if (mesiac =="" && parts[i]!=null){
     						mesiac = parts[i];
     						continue;
     					}	
-    					if (den == ""){
+    					if (den == "" && parts[i]!=null){
     						den = parts[i];
     						break;
     					}
-    				}
+    				
     			}
     			
     			if(pomocna != null){
@@ -219,16 +244,7 @@ public class HandlerPerson  extends DefaultHandler {
     	    flag = true;
     	}
     	
-    	vystup = pomoc.PouziRegex("\\| ?occupation ?= [A-Za-z0-9 _ =*.:?!()+-<>\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
-    	if (vystup != null){
-    		vystup = pomoc.ocisti_retazec(vystup, "occupation");
-    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
-    		vystup = vystup.replaceAll("  "," ");
-    		vystup = pomoc.posledna_medzera(vystup);
-    		infoboxPerson.setOccupation(vystup);
-    	    flag = true;
-    	}
-    
+    	
       	return flag;
     }
     
@@ -266,8 +282,7 @@ public class HandlerPerson  extends DefaultHandler {
         					+infoboxPerson.getDeath_day()+" "
         					+infoboxPerson.getDeath_month()+" "
         					+infoboxPerson.getDeath_year()+" "
-        					+infoboxPerson.getDeath_place()+" "
-        					+infoboxPerson.getOccupation()
+        					+infoboxPerson.getDeath_place()
     	        			);
         			
         			infoboxPersonList.add(infoboxPerson);    			

@@ -64,7 +64,7 @@ public class NewTest  {
 		        	Assert.assertEquals(person.getBirth_place(), "Toronto, Canada");
 		        	Assert.assertEquals(person.getDeath_date(), "INY FORMAT");
 		        	Assert.assertEquals(person.getDeath_place(), "Los Angeles, United States");
-		        	Assert.assertEquals(person.getOccupation(), "Film director Film producer Screenwriter");
+		        	
 		        	Assert.assertEquals(person.getBirth_day(), "3");
 		        	Assert.assertEquals(person.getBirth_month(), "4");
 		        	Assert.assertEquals(person.getBirth_year(), "1885");
@@ -99,9 +99,24 @@ public class NewTest  {
 		        	Assert.assertEquals(country.getImage_flag(), "Flag of the Cook Islands.svg");   
 		        	Assert.assertEquals(country.getImage_coat(), "Coat of arms of cook islands.gif");   
 		        	Assert.assertEquals(country.getCapital(), "Avarua");   
-		        	Assert.assertEquals(country.getOfficial_religion(), null);   
-		        	Assert.assertEquals(country.getOfficial_languages(), "unbulleted list English Cook Islands M");   
-		        	Assert.assertEquals(country.getGovernment_type(), "nowrap Constitutional monarchy");   
+		        	
+		        	String[] pole5 = country.getOfficial_religion();
+		        	String[] pole6 = null;
+		        	Assert.assertEquals(pole5, pole6);
+		        	
+		        		        	
+		        	String[] pole = country.getOfficial_languages();
+		        	String[] pole2 = {"Cook Islands M"};
+		        	for (int i = 0; i<pole.length;i++ ){
+		        		Assert.assertEquals(pole[i], pole2[i]);
+		        	}
+		        	
+		        	String[] pole3 = country.getGovernment_type();
+		        	String[] pole4 = {"Constitutional monarchy"};
+		        	for (int i = 0; i<pole3.length;i++ ){
+		        		Assert.assertEquals(pole3[i], pole4[i]);
+		        	}
+		        	  
 		        	Assert.assertEquals(country.getArea_km2(), "240");   
 		        	Assert.assertEquals(country.getArea_sq_mi(), "91");  
 		        	Assert.assertEquals(country.getPopulation_estimate(), null);   
@@ -142,7 +157,12 @@ public class NewTest  {
 		        	Assert.assertEquals(book.getLanguage(), "English language|English");
 		        	Assert.assertEquals(book.getSubject(), null);
 		        	
-		        	Assert.assertEquals(book.getGenre(), null);
+		        	String[] pole = book.getGenre();
+		        	String[] pole2 = {""};
+		        	for (int i = 0; i<pole.length;i++ ){
+		        		Assert.assertEquals(pole[i], pole2[i]);
+		        	}
+
 		        	Assert.assertEquals(book.getPublished(), null);
 		        	
 		        	Assert.assertEquals(book.getPages(), null);
@@ -184,7 +204,12 @@ public class NewTest  {
 		        	Assert.assertEquals(sett.getPopulation_density_km2(), "auto");
 		        	Assert.assertEquals(sett.getTimezone(), "UTC+6");
 		        	Assert.assertEquals(sett.getWebsite(), "http://meria.kg/index.php?lang=kg");
-		        	Assert.assertEquals(sett.getPostal_code(), "720000-720085");
+		        	String[] pole = sett.getPostal_code();
+		        	String[] pole2 = {"720000","720085"};
+		        	for (int i = 0; i<pole.length;i++ ){
+		        		Assert.assertEquals(pole[i], pole2[i]);
+		        	}
+		        	
 		        }
 		 } catch (IOException e) {
 		        e.printStackTrace();

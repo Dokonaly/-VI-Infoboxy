@@ -20,7 +20,7 @@ public class Infobox_settlement implements Serializable {
 	private String population_density_km2;
 	private String timezone;
 	private String website;
-	private String postal_code;
+	private String[] postal_code;
 	/**
 	 * @return the official_name
 	 */
@@ -168,15 +168,16 @@ public class Infobox_settlement implements Serializable {
 	/**
 	 * @return the postal_code
 	 */
-	public String getPostal_code() {
+	public String[] getPostal_code() {
 		return postal_code;
 	}
 	/**
 	 * @param postal_code the postal_code to set
 	 */
-	public void setPostal_code(String postal_code) {
+	public void setPostal_code(String[] postal_code) {
 		this.postal_code = postal_code;
 	}
+	
 	
 	
 }

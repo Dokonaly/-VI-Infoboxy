@@ -15,7 +15,7 @@ public class Infobox_person implements Serializable{
 	private String birth_place;
 	private String death_date;
 	private String death_place;
-	private String occupation;
+
 	
 	private String birth_day;
 	private String birth_month;
@@ -180,17 +180,5 @@ public class Infobox_person implements Serializable{
 	public void setDeath_place(String death_place) {
 		this.death_place = death_place;
 	}
-	/**
-	 * @return the occupation
-	 */
-	public String getOccupation() {
-		return occupation;
-	}
-	/**
-	 * @param occupation the occupation to set
-	 */
-	public void setOccupation(String occupation) {
-		this.occupation = occupation;
-	}
-	
+
 }

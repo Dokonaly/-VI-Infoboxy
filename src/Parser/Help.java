@@ -61,13 +61,54 @@ public class Help {
     	String pomoc;
     	for (int i =0; i<rozdelovac.length;i++){
     		if (ret.contains(rozdelovac[i])) {
-    			pomoc = ret.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
+    			pomoc = ret.replaceAll("[^|0-9a-zA-Z.:,?! +-]","");
     			parts = pomoc.split(rozdelovac[i]);
     			return  parts ;
         	}
     	}
-    		String a = ret.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
+    		String a = ret.replaceAll("[^|0-9a-zA-Z.:,?! +-]","");
     		Arrays.fill(vysledok, a);
     		return vysledok;
+    }
+    
+    public String priprav_pole(String ret){
+    	int zatvorky = 0;
+    	String pole = "";
+    	for (int i = 0; i < ret.length();i++){
+    		String a= Character.toString(ret.charAt(i));
+    		String b = "";
+    		if (i<ret.length()-1){
+    		 b= Character.toString(ret.charAt(i+1));
+    		}
+    		if (a.contains("[") && b.contains("[") && zatvorky == 0){
+    			zatvorky++;
+    			continue;
+    		}
+    		
+    		if ( a.contains("[") && zatvorky == 1){
+    			zatvorky++;
+    			continue;
+    		}
+    		
+    		if (a.contains("]") && b.contains("]") && zatvorky == 2){
+    			zatvorky--;
+    			continue;
+    		}
+    		
+    		if (a.contains("]")  && zatvorky == 1){
+    			zatvorky--;
+    			pole = pole.concat("!!");
+    			continue;
+    		}
+    		
+    		if (zatvorky == 2){
+    			pole = pole.concat(Character.toString(ret.charAt(i)));
+    			continue;
+    		}
+
+    	
+    	}
+    	return pole;
+    	
     }
 }

@@ -14,40 +14,56 @@ public class Infobox_country implements Serializable{
 	private String image_flag;
 	private String image_coat;
 	private String capital;
-	private String official_religion;
-	private String official_languages;
-	private String government_type;
+	private String[] official_religion;
+	private String[] official_languages;
+	private String[] government_type;
 	private String area_km2;
 	private String area_sq_mi;
 	private String population_estimate;
 	private String population_estimate_rank;
 	private String currency;
 	private String currency_code;
+
+
+	/**
+	 * @return the official_religion
+	 */
+	public String[] getOfficial_religion() {
+		return official_religion;
+	}
+
+	/**
+	 * @param official_religion the official_religion to set
+	 */
+	public void setOfficial_religion(String[] official_religion) {
+		this.official_religion = official_religion;
+	}
+
 	/**
 	 * @return the official_languages
 	 */
-	public String getOfficial_languages() {
+	public String[] getOfficial_languages() {
 		return official_languages;
 	}
 
 	/**
 	 * @param official_languages the official_languages to set
 	 */
-	public void setOfficial_languages(String official_languages) {
+	public void setOfficial_languages(String[] official_languages) {
 		this.official_languages = official_languages;
 	}
 
 	/**
 	 * @return the government_type
 	 */
-	public String getGovernment_type() {
+	public String[] getGovernment_type() {
 		return government_type;
 	}
 
 	/**
 	 * @param government_type the government_type to set
 	 */
-	public void setGovernment_type(String government_type) {
+	public void setGovernment_type(String[] government_type) {
 		this.government_type = government_type;
 	}
 
@@ -137,19 +153,6 @@ public class Infobox_country implements Serializable{
 
 	
 	
-	/**
-	 * @return the official_religion
-	 */
-	public String getOfficial_religion() {
-		return official_religion;
-	}
-
-	/**
-	 * @param official_religion the official_religion to set
-	 */
-	public void setOfficial_religion(String official_religion) {
-		this.official_religion = official_religion;
-	}
 
 	/**
 	 * @return the capital

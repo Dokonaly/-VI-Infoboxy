@@ -78,11 +78,12 @@ public class Parser {
 	        saxParser.parse(connection.getInputStream(), handler_person);
 	        */
 	        
-	        String cesta = "data/ukazka.xml";
+	        String cesta = "data/ukazka-stredna.xml";
+	        saxParser.parse(new File(cesta), handler_settlement);
+	        saxParser.parse(new File(cesta), handler_country);
 	        saxParser.parse(new File(cesta), handler_book);
 	        saxParser.parse(new File(cesta), handler_person);
-	        saxParser.parse(new File(cesta), handler_country);
-	        saxParser.parse(new File(cesta), handler_settlement);
+	        
 	       
 	        
 		    

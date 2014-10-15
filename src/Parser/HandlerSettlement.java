@@ -84,7 +84,7 @@ public class HandlerSettlement  extends DefaultHandler {
     	
     	vystup = pomoc.PouziRegex("\\| ?coordinates_region ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
-    		pomoc.ocisti_retazec(vystup, "coordinates_region");
+    		vystup = pomoc.ocisti_retazec(vystup, "coordinates_region");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z:.,?! +-]","");
     		vystup = pomoc.posledna_medzera(vystup);
     	    infobox_settlement.setCoordinates_region(vystup);
@@ -158,11 +158,30 @@ public class HandlerSettlement  extends DefaultHandler {
     	
     	vystup = pomoc.PouziRegex("\\| ?timezone ?= [A-Za-z0-9 _ =*.:?!()+-<>\\[#@\\{}|'` $%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
+    		if(vystup.contains("utc_offset") ){
+    			String[] parts = vystup.split("utc_offset");
+    			vystup = parts[0]; 
+    		}
+    		if(vystup.contains("timezone_DST") ){
+    			String[] parts = vystup.split("timezone_DST");
+    			vystup = parts[0]; 
+    		}
+    		
+    		if(vystup.contains("utc_offset1") ){
+    			String[] parts = vystup.split("utc_offset1");
+    			vystup = parts[0]; 
+    		}
+    		
     		vystup = pomoc.ocisti_retazec(vystup, "timezone");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-|]","");
     		vystup = vystup.replaceAll("\\[","");
     		vystup = vystup.replaceAll("\\]","");
     		vystup = pomoc.posledna_medzera(vystup);
+    		String a = vystup.substring(0, 1);
+    		if(a.contains("|")){
+    			infobox_settlement.setTimezone(null);
+    		}
+    			
     	    infobox_settlement.setTimezone(vystup);
     	    flag = true;
     	}
@@ -179,9 +198,18 @@ public class HandlerSettlement  extends DefaultHandler {
     	vystup = pomoc.PouziRegex("\\| ?postal_code ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
     		vystup = pomoc.ocisti_retazec(vystup, "postal_code");
-    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-|]","");
-    		vystup = pomoc.posledna_medzera(vystup);
-    	    infobox_settlement.setPostal_code(vystup);
+    		
+    		vystup = vystup.replaceAll("[^0-9.:,?! +-\\[\\];\\/*]","");
+    		String[] rozdelovac = {",","-"};
+    		if (vystup != null){
+    		String[] pole =  pomoc.rozdel_do_pola(vystup,rozdelovac);
+    		String a;		
+    		for(int i=0;i<pole.length;i++){
+    			pole[i]  = pomoc.posledna_medzera(pole[i]);
+    			infobox_settlement.setPostal_code(pole);
+    		}
+    		}
+    	    
     	    flag = true;
     	}
     	

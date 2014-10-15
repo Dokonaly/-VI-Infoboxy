@@ -89,6 +89,13 @@ public class index {
 		  if (genre != null) {
 			  doc.add(new TextField("genre", genre, Field.Store.YES));
 		  }*/
+		  if (genre != null) {
+			 
+		  	  for (int i = 0;i<genre.length;i++){
+		  		doc.add(new TextField("genre",genre[i],Field.Store.YES));
+			  }
+			 
+		  }
 		  if (published != null) {
 			  doc.add(new TextField("published", published, Field.Store.YES));
 		  }
@@ -129,7 +136,7 @@ public class index {
 	 */
 	private static void addPerson(IndexWriter w, String name, String image, String image_size,
 			String birth_date, String birth_place, String death_date, String death_place,
-			String occupation, String birth_day, String birth_month, String birth_year, String death_year, String death_month, String death_day ) throws IOException {
+			String birth_day, String birth_month, String birth_year, String death_year, String death_month, String death_day ) throws IOException {
 		  Document doc = new Document();
 		  
 		  if (name != null) {
@@ -173,9 +180,7 @@ public class index {
 		  if (death_place != null) {
 			  doc.add(new TextField("death_place", death_place, Field.Store.YES));
 		  }
-		  if (occupation != null) {
-			  doc.add(new TextField("occupation", occupation, Field.Store.YES));
-		  }
+		 
 		  w.addDocument(doc);
 		}
 
@@ -198,8 +203,8 @@ public class index {
 	 * @throws IOException
 	 */
 	private static void addCountry(IndexWriter w, String title, String common_name, String image_flag,
-			String image_coat, String capital, String official_religion, String official_languages,
-			String government_type, String area_km2, String area_sq_mi, String population_estimate,
+			String image_coat, String capital, String[] official_religion, String[] official_languages,
+			String[] government_type, String area_km2, String area_sq_mi, String population_estimate,
 		    String population_estimate_rank,String currency, String currency_code) throws IOException {
 		  Document doc = new Document();
 		  
@@ -221,15 +226,40 @@ public class index {
 			  doc.add(new TextField("capital", capital, Field.Store.YES));
 		  }
 		  if (official_religion != null) {
+				 
+		  	  for (int i = 0;i<official_religion.length;i++){
+		  		doc.add(new TextField("official_religion",official_religion[i],Field.Store.YES));
+			  }
+			 
+		  }
+		  
+		  if (official_languages != null) {
+				 
+		  	  for (int i = 0;i<official_languages.length;i++){
+		  		doc.add(new TextField("official_languages",official_languages[i],Field.Store.YES));
+			  }
+			 
+		  }
+		  
+		  if (government_type != null) {
+				 
+		  	  for (int i = 0;i<government_type.length;i++){
+		  		doc.add(new TextField("government_type",government_type[i],Field.Store.YES));
+			  }
+			 
+		  }
+		  /*
+		  if (official_religion != null) {
 			  doc.add(new TextField("official_religion", official_religion, Field.Store.YES));
 		  }
 		  
 		  if (official_languages != null) {
 			  doc.add(new TextField("official_languages", official_languages, Field.Store.YES));
 		  }
+		  /*
 		  if (government_type != null) {
 			  doc.add(new TextField("government_type", government_type, Field.Store.YES));
-		  }
+		  }*/
 		  if (area_km2 != null) {
 			  doc.add(new TextField("area_km2", area_km2, Field.Store.YES));
 		  }
@@ -271,7 +301,7 @@ public class index {
 	private static void addSettlement(IndexWriter w, String official_name, String nickname, String map_caption,
 			String coordinates_region, String leader_title, String unit_pref, String area_total_km2,
 			String area_land_km2, String population_total, String population_density_km2, String timezone,
-		    String website,String postal_code) throws IOException {
+		    String website,String[] postal_code) throws IOException {
 		  Document doc = new Document();
 		  
 		 
@@ -309,10 +339,18 @@ public class index {
 		  }
 		  if (timezone != null) {
 			  doc.add(new TextField("timezone", timezone, Field.Store.YES));
-		  }
+		  }/*
 		  if (postal_code != null) {
 			  doc.add(new TextField("postal_code", postal_code, Field.Store.YES));
+		  }*/
+		  if (postal_code != null) {
+				 
+		  	  for (int i = 0;i<postal_code.length;i++){
+		  		doc.add(new TextField("postal_code",postal_code[i],Field.Store.YES));
+			  }
+			 
 		  }
+		  
 		  if (website != null) {
 			  doc.add(new TextField("website", website, Field.Store.YES));
 		  }
@@ -383,7 +421,7 @@ public class index {
 	        
 	        for(Infobox_person person : InfoboxPersonList){
 		        addPerson(p, person.getName(), person.getImage(), person.getImage_size(), person.getBirth_date(), person.getBirth_place(), 
-		        		person.getDeath_date(),person.getDeath_place(), person.getOccupation(), person.getBirth_day(), person.getBirth_month(), person.getBirth_year(), person.getDeath_year(), person.getDeath_month(), person.getDeath_day());
+		        		person.getDeath_date(),person.getDeath_place(), person.getBirth_day(), person.getBirth_month(), person.getBirth_year(), person.getDeath_year(), person.getDeath_month(), person.getDeath_day());
 		    }
 		    
 	        b.commit();
@@ -411,7 +449,8 @@ public class index {
 		       
 		        System.out.println("Zadaj vyhladavaciu frazu:");
 		        String fraza = keyboard.next();
-		        
+		        System.out.print(fraza);		
+		       // String fraza = "local government";
 		        if ( myint == 1){
 		        	
 		        	System.out.println("Zadaj vyhladavaci atribut:");
@@ -433,7 +472,7 @@ public class index {
 			        		"*:	" +Book_enum.followed_by +"\n" 
 			        		);
 			        String atribut = keyboard.next();
-	        
+			        
 		        	String querystrB = args.length > 0 ? args[0] : fraza;
 			        Query qB = new QueryParser(Version.LUCENE_40, atribut, analyzerB).parse(querystrB);
 			        IndexReader readerB = DirectoryReader.open(indexB);
