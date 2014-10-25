@@ -1,6 +1,7 @@
 package Parser;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -54,7 +55,7 @@ public class HandlerSettlement  extends DefaultHandler {
     public boolean oparsujSettlement(boolean flag, String vysledok){
     	flag = false;
     	
-    	String vystup = pomoc.PouziRegex("\\| ?official_name ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	String vystup = pomoc.PouziRegex("\\| ?official_name ?= [^|]+", vysledok);  	
     	if (vystup != null){
     		vystup = pomoc.ocisti_retazec(vystup, "official_name");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
@@ -63,7 +64,7 @@ public class HandlerSettlement  extends DefaultHandler {
     	    flag = true;
     	}
     	
-    	vystup = pomoc.PouziRegex("\\| ?nickname ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = pomoc.PouziRegex("\\| ?nickname ?= [^|]+", vysledok);  	
     	if (vystup != null){
     		vystup = pomoc.ocisti_retazec(vystup, "nickname");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
@@ -72,7 +73,7 @@ public class HandlerSettlement  extends DefaultHandler {
     	    flag = true;
     	}
     	
-    	vystup = pomoc.PouziRegex("\\| ?map_caption ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = pomoc.PouziRegex("\\| ?map_caption ?= [^|]+", vysledok);  	
     	if (vystup != null){
     		vystup = pomoc.ocisti_retazec(vystup, "map_caption");
     		
@@ -82,7 +83,7 @@ public class HandlerSettlement  extends DefaultHandler {
     	    flag = true;
     	}
     	
-    	vystup = pomoc.PouziRegex("\\| ?coordinates_region ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = pomoc.PouziRegex("\\| ?coordinates_region ?= [^|]+", vysledok);  	
     	if (vystup != null){
     		vystup = pomoc.ocisti_retazec(vystup, "coordinates_region");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z:.,?! +-]","");
@@ -91,7 +92,7 @@ public class HandlerSettlement  extends DefaultHandler {
     	    flag = true;
     	}
     	
-    	vystup = pomoc.PouziRegex("\\| ?leader_title ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = pomoc.PouziRegex("\\| ?leader_title ?= [^|]+", vysledok);  	
     	if (vystup != null){
     		vystup = pomoc.ocisti_retazec(vystup, "leader_title");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
@@ -100,7 +101,7 @@ public class HandlerSettlement  extends DefaultHandler {
     	    flag = true;
     	}
     	
-    	vystup = pomoc.PouziRegex("\\| ?unit_pref ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = pomoc.PouziRegex("\\| ?unit_pref ?= [^|]+", vysledok);  	
     	if (vystup != null){
     		vystup = pomoc.ocisti_retazec(vystup, "unit_pref");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
@@ -109,7 +110,7 @@ public class HandlerSettlement  extends DefaultHandler {
     	    flag = true;
     	}
     	
-    	vystup = pomoc.PouziRegex("\\| ?area_total_km2 ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = pomoc.PouziRegex("\\| ?area_total_km2 ?= [^|]+", vysledok);  	
     	if (vystup != null){
     		vystup = pomoc.ocisti_retazec(vystup, "area_total_km2");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
@@ -118,7 +119,7 @@ public class HandlerSettlement  extends DefaultHandler {
     	    flag = true;
     	}
     	
-    	vystup = pomoc.PouziRegex("\\| ?area_land_km2 ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = pomoc.PouziRegex("\\| ?area_land_km2 ?= [^|]+", vysledok);  	
     	if (vystup != null){
     		vystup = pomoc.ocisti_retazec(vystup, "area_land_km2");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
@@ -147,7 +148,7 @@ public class HandlerSettlement  extends DefaultHandler {
     	    flag = true;
     	}
     	
-    	vystup = pomoc.PouziRegex("\\| ?population_density_km2 ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = pomoc.PouziRegex("\\| ?population_density_km2 ?= [^|]+", vysledok);  	
     	if (vystup != null){
     		vystup = pomoc.ocisti_retazec(vystup, "population_density_km2");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.,:?! +-]","");
@@ -186,7 +187,7 @@ public class HandlerSettlement  extends DefaultHandler {
     	    flag = true;
     	}
     	
-    	vystup = pomoc.PouziRegex("\\| ?website ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = pomoc.PouziRegex("\\| ?website ?= [^|]+", vysledok);  	
     	if (vystup != null){
     		vystup = pomoc.ocisti_retazec(vystup, "website");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-|]","");
@@ -195,7 +196,7 @@ public class HandlerSettlement  extends DefaultHandler {
     	    flag = true;
     	}
     	
-    	vystup = pomoc.PouziRegex("\\| ?postal_code ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = pomoc.PouziRegex("\\| ?postal_code ?= [^|]+", vysledok);  	
     	if (vystup != null){
     		vystup = pomoc.ocisti_retazec(vystup, "postal_code");
     		
@@ -238,6 +239,7 @@ public class HandlerSettlement  extends DefaultHandler {
         	}
         	if (flag_settlement == true){
         		if ( infobox_settlement.getOfficial_name()!= null ||  infobox_settlement.getPopulation_total() != null){
+        			String psc = Arrays.toString(infobox_settlement.getPostal_code());
         			System.out.println(infobox_settlement.getOfficial_name()+" "
         					+infobox_settlement.getNickname() +" "
         					+infobox_settlement.getMap_caption()+" "
@@ -251,7 +253,7 @@ public class HandlerSettlement  extends DefaultHandler {
         					+infobox_settlement.getPopulation_density_km2()+" "
         					+infobox_settlement.getTimezone()+" "
         					+infobox_settlement.getWebsite()+" "
-        					+infobox_settlement.getPostal_code()
+        					+psc
         					);
         			infobox_settlementList.add(infobox_settlement);
             	       			

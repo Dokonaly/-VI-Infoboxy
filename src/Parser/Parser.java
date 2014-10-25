@@ -106,7 +106,7 @@ public class Parser {
 			
 			//vypocitanie statistik
 	        Stats statisky = new Stats();
-	        statisky.vypocitaj_statistiky(InfoboxbookList, InfoboxList, InfoboxSettlementList, InfoboxPersonList);
+	        //statisky.vypocitaj_statistiky(InfoboxbookList, InfoboxList, InfoboxSettlementList, InfoboxPersonList);
   
 	         
 	        

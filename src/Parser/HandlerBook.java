@@ -38,7 +38,8 @@ public class HandlerBook  extends DefaultHandler {
             if (infoboxBookList == null) {
             	infoboxBookList = new ArrayList<>();
             }
-        } else if (qName.equalsIgnoreCase("text")) {
+        } 
+        if (qName.equalsIgnoreCase("text")) {
         	bTitle = true;
         } 
     }
@@ -52,7 +53,7 @@ public class HandlerBook  extends DefaultHandler {
     public boolean oparsujBook(String vysledok){
     	boolean flag = false;
     
-    	String vystup = pomoc.PouziRegex("\\| ?name ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	String vystup = pomoc.PouziRegex("\\| ?name ?= [^|]+", vysledok);  	
     	if (vystup != null){
     		vystup = pomoc.ocisti_retazec(vystup, "name");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
@@ -61,7 +62,7 @@ public class HandlerBook  extends DefaultHandler {
     	    flag = true;
     	}
     	
-    	vystup = pomoc.PouziRegex("\\| ?translator ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = pomoc.PouziRegex("\\| ?translator ?= [^|]+", vysledok);  	
     	if (vystup != null){
     		vystup = pomoc.ocisti_retazec(vystup, "translator");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
@@ -70,7 +71,7 @@ public class HandlerBook  extends DefaultHandler {
     	    flag = true;
     	}
     	
-    	vystup = pomoc.PouziRegex("\\| ?image ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = pomoc.PouziRegex("\\| ?image ?= [^|]+", vysledok);  	
     	if (vystup != null){
     		vystup = pomoc.ocisti_retazec(vystup, "image");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
@@ -79,7 +80,7 @@ public class HandlerBook  extends DefaultHandler {
     	    flag = true;
     	}
     	
-    	vystup = pomoc.PouziRegex("\\| ?caption ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = pomoc.PouziRegex("\\| ?caption ?= [^|]+", vysledok);  	
     	if (vystup != null){
     		vystup = pomoc.ocisti_retazec(vystup, "caption");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
@@ -88,7 +89,7 @@ public class HandlerBook  extends DefaultHandler {
     	    flag = true;
     	}
     	
-    	vystup = pomoc.PouziRegex("\\| ?author ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = pomoc.PouziRegex("\\| ?author ?= [^|]+", vysledok);  	
     	if (vystup != null){
     		vystup = pomoc.ocisti_retazec(vystup, "author");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
@@ -98,7 +99,7 @@ public class HandlerBook  extends DefaultHandler {
     	    flag = true;
     	}
     	
-    	vystup = pomoc.PouziRegex("\\| ?country ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = pomoc.PouziRegex("\\| ?country ?= [^|]+", vysledok);  	
     	if (vystup != null){
     		vystup = pomoc.ocisti_retazec(vystup, "country");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
@@ -133,7 +134,7 @@ public class HandlerBook  extends DefaultHandler {
     	    flag = true;
     	}
     	
-    	vystup = pomoc.PouziRegex("\\| ?subject ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = pomoc.PouziRegex("\\| ?subject ?= [^|]+", vysledok);  	
     	if (vystup != null){
     		vystup = pomoc.ocisti_retazec(vystup, "subject");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
@@ -142,7 +143,7 @@ public class HandlerBook  extends DefaultHandler {
     	    flag = true;
     	}
     	
-    	vystup = pomoc.PouziRegex("\\| ?genre ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = pomoc.PouziRegex("\\| ?genre ?= [^|]+", vysledok);  	
     	if (vystup != null){
     		vystup = pomoc.ocisti_retazec(vystup, "genre");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-\\[\\];\\/*]","");
@@ -158,7 +159,7 @@ public class HandlerBook  extends DefaultHandler {
     	    flag = true;
     	}
     	
-    	vystup = pomoc.PouziRegex("\\| ?published ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = pomoc.PouziRegex("\\| ?published ?= [^|]+", vysledok);  	
     	if (vystup != null){
     		vystup = pomoc.ocisti_retazec(vystup, "published");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
@@ -168,7 +169,7 @@ public class HandlerBook  extends DefaultHandler {
     	}
     	
     
-    	vystup = pomoc.PouziRegex("\\| ?pages ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = pomoc.PouziRegex("\\| ?pages ?= [^|]+", vysledok);  	
     	if (vystup != null){
     		vystup = pomoc.ocisti_retazec(vystup, "pages");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
@@ -177,7 +178,7 @@ public class HandlerBook  extends DefaultHandler {
     	    flag = true;
     	}
     	
-    	vystup = pomoc.PouziRegex("\\| ?isbn ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = pomoc.PouziRegex("\\| ?isbn ?= [^|]+", vysledok);  	
     	if (vystup != null){
     		vystup = pomoc.ocisti_retazec(vystup, "isbn");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
@@ -186,7 +187,7 @@ public class HandlerBook  extends DefaultHandler {
     	    flag = true;
     	}
     	
-    	vystup = pomoc.PouziRegex("\\| ?preceded_by ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = pomoc.PouziRegex("\\| ?preceded_by ?= [^|]+", vysledok);  	
     	if (vystup != null){
     		vystup = pomoc.ocisti_retazec(vystup, "preceded_by");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
@@ -195,7 +196,7 @@ public class HandlerBook  extends DefaultHandler {
     	    flag = true;
     	}
     	
-    	vystup = pomoc.PouziRegex("\\| ?followed_by ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = pomoc.PouziRegex("\\| ?followed_by ?= [^|]+", vysledok);  	
     	if (vystup != null){
     		vystup =pomoc.ocisti_retazec(vystup, "followed_by");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");

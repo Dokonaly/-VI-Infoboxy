@@ -49,7 +49,7 @@ public class HandlerPerson  extends DefaultHandler {
     public boolean oparsujPerson(String vysledok){
     	boolean flag = false;
     	
-    	String vystup = pomoc.PouziRegex("\\| ?name ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  
+    	String vystup = pomoc.PouziRegex("\\| ?name ?= [^|]+", vysledok);  
     	
     	if (vystup != null){
     		vystup =pomoc.ocisti_retazec(vystup, "name");
@@ -60,7 +60,7 @@ public class HandlerPerson  extends DefaultHandler {
     	    flag = true;
     	}
     	
-    	vystup = pomoc.PouziRegex("\\| ?image_size ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = pomoc.PouziRegex("\\| ?image_size ?= [^|]+", vysledok);  	
     	if (vystup != null){
     		vystup =pomoc.ocisti_retazec(vystup, "image_size");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
@@ -70,7 +70,7 @@ public class HandlerPerson  extends DefaultHandler {
     	    flag = true;
     	}
     	
-    	vystup = pomoc.PouziRegex("\\| ?image ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = pomoc.PouziRegex("\\| ?image ?= [^|]+", vysledok);  	
     	if (vystup != null){
     		vystup = pomoc.ocisti_retazec(vystup, "image");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
@@ -140,7 +140,7 @@ public class HandlerPerson  extends DefaultHandler {
     			}
     			}
     			
-    			infoboxPerson.setBirth_date("INY FORMAT");
+    			infoboxPerson.setBirth_date("ZNAMY FORMAT");
     			
     		}
     		else{
@@ -152,7 +152,7 @@ public class HandlerPerson  extends DefaultHandler {
     	    flag = true;
     	}
     	
-    	vystup = pomoc.PouziRegex("\\| ?birth_place ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = pomoc.PouziRegex("\\| ?birth_place ?= [^|]+", vysledok);  	
     	if (vystup != null){
     		vystup = pomoc.ocisti_retazec(vystup, "birth_place");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
@@ -222,7 +222,7 @@ public class HandlerPerson  extends DefaultHandler {
     			}
     			}
     			
-    			infoboxPerson.setDeath_date("INY FORMAT");
+    			infoboxPerson.setDeath_date("ZNAMY FORMAT");
     			
     		}
     		else{
@@ -234,7 +234,7 @@ public class HandlerPerson  extends DefaultHandler {
     	    flag = true;
     	}
 
-    	vystup = pomoc.PouziRegex("\\| ?death_place ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = pomoc.PouziRegex("\\| ?death_place ?= [^|]+", vysledok);  	
     	if (vystup != null){
     		vystup =pomoc.ocisti_retazec(vystup, "death_place");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");

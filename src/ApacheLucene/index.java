@@ -9,6 +9,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -485,6 +486,7 @@ public class index {
 			        for(int i=0;i<hitsB.length;++i) {
 			          int docId = hitsB[i].doc;
 			          Document d = searcherB.doc(docId);
+			          
 			          System.out.println((i + 1) + ". " + d.get("isbn") + "\t" + d.get("name") + "\t" + d.get("translator") + "\t" + d.get("image")
 			        		  + "\t" + d.get("captation")  + "\t" + d.get("author")  + "\t" + d.get("country")  + "\t" + d.get("language")
 			        		  + "\t" + d.get("subject") + "\t" + d.get("genre") + "\t" + d.get("published") + "\t" + d.get("media_type")

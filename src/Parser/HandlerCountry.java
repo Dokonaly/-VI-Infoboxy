@@ -38,7 +38,8 @@ public class HandlerCountry  extends DefaultHandler {
             if (infoboxList == null) {
             	infoboxList = new ArrayList<>();
             }
-        } else if (qName.equalsIgnoreCase("text")) {
+           
+        }  else if (qName.equalsIgnoreCase("text")) {
         	bTitle = true;
         } 
     }
@@ -51,7 +52,7 @@ public class HandlerCountry  extends DefaultHandler {
      */
     public boolean oparsujCountry(boolean flag, String vysledok){
    
-    	String vystup = pomoc.PouziRegex("\\| ?conventional_long_name ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	String vystup = pomoc.PouziRegex("\\| ?conventional_long_name ?= [^|]+", vysledok);  	
     	if (vystup != null){
     		vystup = pomoc.ocisti_retazec(vystup, "conventional_long_name");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
@@ -61,7 +62,7 @@ public class HandlerCountry  extends DefaultHandler {
      	    flag = true;
     	}
     
-    	vystup = pomoc.PouziRegex("\\| ?common_name ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = pomoc.PouziRegex("\\| ?common_name ?= [^|]+", vysledok);  	
     	if (vystup != null){
     		vystup = pomoc.ocisti_retazec(vystup, "common_name");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
@@ -71,7 +72,7 @@ public class HandlerCountry  extends DefaultHandler {
      	    flag = true;
     	}
     	
-    	vystup = pomoc.PouziRegex("\\| ?image_flag ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = pomoc.PouziRegex("\\| ?image_flag ?= [^|]+", vysledok);  	
     	if (vystup != null){
     		vystup =pomoc.ocisti_retazec(vystup, "image_flag");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
@@ -81,7 +82,7 @@ public class HandlerCountry  extends DefaultHandler {
      	    flag = true;
     	}
     	
-    	vystup = pomoc.PouziRegex("\\| ?image_coat ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = pomoc.PouziRegex("\\| ?image_coat ?= [^|]+", vysledok);  	
     	if (vystup != null){
     		vystup =pomoc.ocisti_retazec(vystup, "image_coat");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
@@ -91,7 +92,7 @@ public class HandlerCountry  extends DefaultHandler {
      	    flag = true;
     	}
     	
-    	vystup = pomoc.PouziRegex("\\| ?capital ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}|'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = pomoc.PouziRegex("\\| ?capital ?= [^|]+", vysledok);  	
     	if (vystup != null){
     		if(vystup.contains("latd") ){
     			String[] parts = vystup.split("latd");
@@ -163,7 +164,7 @@ public class HandlerCountry  extends DefaultHandler {
      	    flag = true;
     	}
     	
-    	vystup = pomoc.PouziRegex("\\| ?area_km2 ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = pomoc.PouziRegex("\\| ?area_km2 ?= [^|]+", vysledok);  	
     	if (vystup != null){
     		vystup =pomoc.ocisti_retazec(vystup, "area_km2");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
@@ -173,7 +174,7 @@ public class HandlerCountry  extends DefaultHandler {
      	    flag = true;
     	}
     	
-    	vystup = pomoc.PouziRegex("\\| ?area_sq_mi ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = pomoc.PouziRegex("\\| ?area_sq_mi ?= [^|]+", vysledok);  	
     	if (vystup != null){
     		vystup =pomoc.ocisti_retazec(vystup, "area_sq_mi");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
@@ -183,7 +184,7 @@ public class HandlerCountry  extends DefaultHandler {
      	    flag = true;
     	}
     	
-    	vystup = pomoc.PouziRegex("\\| ?population_estimate ?= [A-Za-z0-9 _ =*.:?!()+->\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = pomoc.PouziRegex("\\| ?population_estimate ?= [^|]+", vysledok);  	
     	if (vystup != null){
     		vystup =pomoc.ocisti_retazec(vystup, "population_estimate");
     		vystup = vystup.replaceAll("  "," ");
@@ -192,7 +193,7 @@ public class HandlerCountry  extends DefaultHandler {
      	    flag = true;
     	}
     	
-    	vystup = pomoc.PouziRegex("\\| ?population_estimate_rank ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = pomoc.PouziRegex("\\| ?population_estimate_rank ?= [^|]+", vysledok);  	
     	if (vystup != null){
     		vystup =pomoc.ocisti_retazec(vystup, "population_estimate_rank");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
@@ -202,7 +203,7 @@ public class HandlerCountry  extends DefaultHandler {
      	    flag = true;
     	}
     	
-    	vystup = pomoc.PouziRegex("\\| ?currency_code ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז]+", vysledok);  	
+    	vystup = pomoc.PouziRegex("\\| ?currency_code ?= [^|]+", vysledok);  	
     	if (vystup != null){
     		
     		vystup =pomoc.ocisti_retazec(vystup, "currency_code");

@@ -1,4 +1,4 @@
-package Tests;
+package Unit_tests;
 import Parser.*;
 
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
@@ -38,7 +38,7 @@ import java.util.Scanner;
  * @author Dokonaly
  *
  */
-public class NewTest  {
+public class Test_input_output  {
 	
  
 	 /**

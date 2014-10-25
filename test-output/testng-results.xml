@@ -2,24 +2,24 @@
 <testng-results skipped="0" failed="0" total="4" passed="4">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="545" started-at="2014-10-15T13:39:46Z" finished-at="2014-10-15T13:39:46Z">
+  <suite name="Default suite" duration-ms="902" started-at="2014-10-17T17:16:47Z" finished-at="2014-10-17T17:16:48Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="545" started-at="2014-10-15T13:39:46Z" finished-at="2014-10-15T13:39:46Z">
+    <test name="Default test" duration-ms="902" started-at="2014-10-17T17:16:47Z" finished-at="2014-10-17T17:16:48Z">
       <class name="Tests.NewTest">
-        <test-method status="PASS" signature="TestParsovaniaBook()[pri:0, instance:Tests.NewTest@98e4cc7]" name="TestParsovaniaBook" duration-ms="377" started-at="2014-10-15T15:39:46Z" finished-at="2014-10-15T15:39:46Z">
+        <test-method status="PASS" signature="TestParsovaniaBook()[pri:0, instance:Tests.NewTest@5d52a1b7]" name="TestParsovaniaBook" duration-ms="605" started-at="2014-10-17T19:16:47Z" finished-at="2014-10-17T19:16:48Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- TestParsovaniaBook -->
-        <test-method status="PASS" signature="TestParsovaniaCountry()[pri:0, instance:Tests.NewTest@98e4cc7]" name="TestParsovaniaCountry" duration-ms="63" started-at="2014-10-15T15:39:46Z" finished-at="2014-10-15T15:39:46Z">
+        <test-method status="PASS" signature="TestParsovaniaCountry()[pri:0, instance:Tests.NewTest@5d52a1b7]" name="TestParsovaniaCountry" duration-ms="82" started-at="2014-10-17T19:16:48Z" finished-at="2014-10-17T19:16:48Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- TestParsovaniaCountry -->
-        <test-method status="PASS" signature="TestParsovaniaPerson()[pri:0, instance:Tests.NewTest@98e4cc7]" name="TestParsovaniaPerson" duration-ms="40" started-at="2014-10-15T15:39:46Z" finished-at="2014-10-15T15:39:46Z">
+        <test-method status="PASS" signature="TestParsovaniaPerson()[pri:0, instance:Tests.NewTest@5d52a1b7]" name="TestParsovaniaPerson" duration-ms="92" started-at="2014-10-17T19:16:48Z" finished-at="2014-10-17T19:16:48Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- TestParsovaniaPerson -->
-        <test-method status="PASS" signature="TestParsovaniaSettlement()[pri:0, instance:Tests.NewTest@98e4cc7]" name="TestParsovaniaSettlement" duration-ms="40" started-at="2014-10-15T15:39:46Z" finished-at="2014-10-15T15:39:46Z">
+        <test-method status="PASS" signature="TestParsovaniaSettlement()[pri:0, instance:Tests.NewTest@5d52a1b7]" name="TestParsovaniaSettlement" duration-ms="59" started-at="2014-10-17T19:16:48Z" finished-at="2014-10-17T19:16:48Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- TestParsovaniaSettlement -->
