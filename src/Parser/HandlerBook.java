@@ -18,6 +18,7 @@ public class HandlerBook  extends DefaultHandler {
 	private List<Infobox_book> infoboxBookList = null;
 	private Infobox_book infoboxBook = null;
 	private StringBuffer sb;
+	int counter = 0;
 	Help pomoc = new Help();
 	public List<Infobox_book> getInfoboxList() {
         return infoboxBookList;
@@ -204,7 +205,7 @@ public class HandlerBook  extends DefaultHandler {
     		infoboxBook.setFollowed_by(vystup);
     	    flag = true;
     	}
-    	
+    	counter++;
     	return flag;
     }
     
@@ -232,7 +233,7 @@ public class HandlerBook  extends DefaultHandler {
         	if (flag_book == true){
         		if ( infoboxBook.getName()!= null && infoboxBook.getAuthor() != null){
         			
-        			System.out.println(infoboxBook.getName()+" "
+        			/*System.out.println(infoboxBook.getName()+" "
         					+infoboxBook.getAuthor() +" "
         					+infoboxBook.getTranslator()+" "
         					+infoboxBook.getImage()+" "
@@ -246,10 +247,11 @@ public class HandlerBook  extends DefaultHandler {
         					+infoboxBook.getIsbn()+" "
         					+infoboxBook.getFollowed_by()+" "
         					+infoboxBook.getPreceded_by()
-        					);
+        					);*/
         			
         			infoboxBookList.add(infoboxBook);    			
         		}
+        		System.out.println(counter);
         	}	
             bTitle = false;
             flag_book = false;     	 

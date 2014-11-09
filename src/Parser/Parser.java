@@ -67,33 +67,26 @@ public class Parser {
 	        HandlerBook handler_book = new HandlerBook();
 	        HandlerPerson handler_person = new HandlerPerson();
 	        
-	        URL url = new URL("http://dumps.wikimedia.org/enwiki/latest/enwiki-latest-pages-articles1.xml-p000000010p000010000.bz2");
-	        URLConnection connection = url.openConnection();
-
 	        //oparsovanie pomocou kniznice SAX
-	        /*
-	        saxParser.parse(connection.getInputStream(), handler_country);
-	        saxParser.parse(connection.getInputStream(), handler_settlement);
-	        saxParser.parse(connection.getInputStream(), handler_book);
-	        saxParser.parse(connection.getInputStream(), handler_person);
-	        */
-	        
-	        String cesta = "data/ukazka-stredna.xml";
+	        String cesta = "data/ukazka-velka.xml";
 	        saxParser.parse(new File(cesta), handler_settlement);
 	        saxParser.parse(new File(cesta), handler_country);
 	        saxParser.parse(new File(cesta), handler_book);
 	        saxParser.parse(new File(cesta), handler_person);
-	        
-	       
-	        
-		    
-	        
+
 	        //zoznamy jednotlivych objektov
 	        List<Infobox_country> InfoboxList = handler_country.getInfoboxList();
+	        System.out.println("Pocet spracovanych: "+InfoboxList.size());
+	        
 	        List<Infobox_settlement> InfoboxSettlementList = handler_settlement.getInfoboxList();
+	        System.out.println("Pocet spracovanych: "+InfoboxSettlementList.size());
+	        
 	        List<Infobox_book> InfoboxbookList = handler_book.getInfoboxList();
+	        System.out.println("Pocet spracovanych: "+InfoboxbookList.size());
+	        
 	        List<Infobox_person> InfoboxPersonList = handler_person.getInfoboxList();
-	       
+	        System.out.println("Pocet spracovanych: "+InfoboxPersonList.size());
+	        
 	        //serializacia
 	        FileOutputStream fileOut = new FileOutputStream("Objects.ser");
 			ObjectOutputStream out = new ObjectOutputStream(fileOut);
@@ -106,7 +99,7 @@ public class Parser {
 			
 			//vypocitanie statistik
 	        Stats statisky = new Stats();
-	        //statisky.vypocitaj_statistiky(InfoboxbookList, InfoboxList, InfoboxSettlementList, InfoboxPersonList);
+	        statisky.vypocitaj_statistiky(InfoboxbookList, InfoboxList, InfoboxSettlementList, InfoboxPersonList);
   
 	         
 	        

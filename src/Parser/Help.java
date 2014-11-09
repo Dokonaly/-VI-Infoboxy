@@ -38,7 +38,7 @@ public class Help {
 	    	}
 	    	return null;
 	 }
-	//odstranenie poslednej medzeri    
+	//odstranenie poslednej medzery    
     /**
      * @param ret
      * @return

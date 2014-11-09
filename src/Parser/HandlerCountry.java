@@ -18,7 +18,7 @@ public class HandlerCountry  extends DefaultHandler {
 	private List<Infobox_country> infoboxList = null;
 	private Infobox_country infobox = null;
 	private StringBuffer sb;
-	
+	int counter = 0;
 	public List<Infobox_country> getInfoboxList() {
         return infoboxList;
     }
@@ -227,7 +227,7 @@ public class HandlerCountry  extends DefaultHandler {
     	    infobox.setCurrency(vystup);
      	    flag = true;
     	}
-    	
+    	counter++;
     	return flag;
     }
     
@@ -253,7 +253,7 @@ public class HandlerCountry  extends DefaultHandler {
         	}
         	if (flag_country == true){
         		if ( infobox.getTitle()!= null ||  infobox.getCommon_name() != null){
-        			System.out.println(infobox.getTitle()+" "
+        			/*System.out.println(infobox.getTitle()+" "
         		
         					+infobox.getCommon_name() +" "
         					+infobox.getImage_flag()+" "
@@ -268,11 +268,12 @@ public class HandlerCountry  extends DefaultHandler {
         					+infobox.getCurrency_code()+" "
         					+infobox.getPopulation_estimate()+" "
         					+infobox.getPopulation_estimate_rank()
-        					);
+        					);*/
         			
         			infoboxList.add(infobox);
             	       			
         		}
+        		System.out.println(counter);
         	}	
 
             bTitle = false;

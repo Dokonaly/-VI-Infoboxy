@@ -260,7 +260,7 @@ public class Stats {
 		out_stats.println("Percento nevyparsovanych miest narodeni: " + prepocet(velkost, pocet_narodeni_mesto));
 		out_stats.println("Percento nevyparsovanych datumov umrti: " + prepocet(velkost, pocet_datumov_smrti));
 		out_stats.println("Percento nevyparsovanych miest umrti: " + prepocet(velkost, pocet_datumov_smrti_mesto));
-		out_stats.println("Percento nevyparsovanych occupation: " + prepocet(velkost, pocet_occupation));
+		
 		out_stats.println("********************************************************************");
 	}
 	

@@ -86,10 +86,7 @@ public class index {
 		  if (subject != null) {
 			  doc.add(new TextField("subject", subject, Field.Store.YES));
 		  }
-		  /*
-		  if (genre != null) {
-			  doc.add(new TextField("genre", genre, Field.Store.YES));
-		  }*/
+		
 		  if (genre != null) {
 			 
 		  	  for (int i = 0;i<genre.length;i++){
@@ -249,18 +246,6 @@ public class index {
 			  }
 			 
 		  }
-		  /*
-		  if (official_religion != null) {
-			  doc.add(new TextField("official_religion", official_religion, Field.Store.YES));
-		  }
-		  
-		  if (official_languages != null) {
-			  doc.add(new TextField("official_languages", official_languages, Field.Store.YES));
-		  }
-		  /*
-		  if (government_type != null) {
-			  doc.add(new TextField("government_type", government_type, Field.Store.YES));
-		  }*/
 		  if (area_km2 != null) {
 			  doc.add(new TextField("area_km2", area_km2, Field.Store.YES));
 		  }
@@ -402,6 +387,7 @@ public class index {
 	        IndexWriter p = new IndexWriter(indexP, configP);
 	        IndexWriter c = new IndexWriter(indexC, configC);
 		    
+	        //indexovanie jednotlivych listov
 	        for(Infobox_book book : InfoboxbookList){
 		        addBook(b, book.getName(), book.getTranslator(), book.getImage(), book.getCaption(), book.getAuthor(), 
 		        		book.getCountry(),book.getLanguage(), book.getSubject(), book.getGenre(), book.getPublished(),

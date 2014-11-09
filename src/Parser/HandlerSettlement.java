@@ -19,6 +19,7 @@ public class HandlerSettlement  extends DefaultHandler {
 	private List<Infobox_settlement> infobox_settlementList = null;
 	private Infobox_settlement infobox_settlement = null;
 	private StringBuffer sb;
+	int counter = 0;
 	
 	public List<Infobox_settlement> getInfoboxList() {
         return infobox_settlementList;
@@ -214,6 +215,8 @@ public class HandlerSettlement  extends DefaultHandler {
     	    flag = true;
     	}
     	
+    	
+    	counter++;
     	return flag;
     }
     
@@ -240,7 +243,7 @@ public class HandlerSettlement  extends DefaultHandler {
         	if (flag_settlement == true){
         		if ( infobox_settlement.getOfficial_name()!= null ||  infobox_settlement.getPopulation_total() != null){
         			String psc = Arrays.toString(infobox_settlement.getPostal_code());
-        			System.out.println(infobox_settlement.getOfficial_name()+" "
+        			/*System.out.println(infobox_settlement.getOfficial_name()+" "
         					+infobox_settlement.getNickname() +" "
         					+infobox_settlement.getMap_caption()+" "
         					+infobox_settlement.getCoordinates_region()+" "
@@ -254,13 +257,16 @@ public class HandlerSettlement  extends DefaultHandler {
         					+infobox_settlement.getTimezone()+" "
         					+infobox_settlement.getWebsite()+" "
         					+psc
-        					);
+        					);*/
         			infobox_settlementList.add(infobox_settlement);
-            	       			
+            	      
+        			
         		}
+        		System.out.println(counter);
         	}	
             bTitle = false;
-            flag_settlement = false;     	 
+            flag_settlement = false;
+           
         }
     }
  

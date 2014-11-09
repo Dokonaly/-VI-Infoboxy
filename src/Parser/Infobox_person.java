@@ -15,8 +15,6 @@ public class Infobox_person implements Serializable{
 	private String birth_place;
 	private String death_date;
 	private String death_place;
-
-	
 	private String birth_day;
 	private String birth_month;
 	private String birth_year;

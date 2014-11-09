@@ -18,7 +18,7 @@ public class HandlerPerson  extends DefaultHandler {
 	private List<Infobox_person> infoboxPersonList = null;
 	private Infobox_person infoboxPerson = null;
 	private StringBuffer sb;
-	
+	int counter = 0;
 	public List<Infobox_person> getInfoboxList() {
         return infoboxPersonList;
     }
@@ -231,6 +231,7 @@ public class HandlerPerson  extends DefaultHandler {
     			infoboxPerson.setDeath_day("ZLY FORMAT DATUMU!");
     			infoboxPerson.setDeath_date(vystup);
     		}
+    		
     	    flag = true;
     	}
 
@@ -244,7 +245,7 @@ public class HandlerPerson  extends DefaultHandler {
     	    flag = true;
     	}
     	
-    	
+    	counter++;
       	return flag;
     }
     
@@ -271,7 +272,7 @@ public class HandlerPerson  extends DefaultHandler {
         	if (flag_person == true){
         		if ( infoboxPerson.getName()!= null){
         			
-        			System.out.println(infoboxPerson.getName()+" "
+        			/*System.out.println(infoboxPerson.getName()+" "
         					+infoboxPerson.getImage()+" "
         					+infoboxPerson.getImage_size()+" "
         					+infoboxPerson.getBirth_date()+" "
@@ -283,10 +284,11 @@ public class HandlerPerson  extends DefaultHandler {
         					+infoboxPerson.getDeath_month()+" "
         					+infoboxPerson.getDeath_year()+" "
         					+infoboxPerson.getDeath_place()
-    	        			);
+    	        			);*/
         			
         			infoboxPersonList.add(infoboxPerson);    			
         		}
+        		System.out.println(counter);
         	}	
             bTitle = false;
             flag_person = false;     	 
