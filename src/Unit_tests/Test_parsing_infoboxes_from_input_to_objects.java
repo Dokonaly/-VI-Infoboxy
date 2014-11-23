@@ -34,26 +34,16 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.xml.sax.SAXException;
 import java.util.Scanner;
-/**
- * @author Dokonaly
- *
- */
-public class Test_input_output  {
-	
- 
-	 /**
-	 * @throws FileNotFoundException
-	 * @throws ParseException
-	 * @throws Throwable
-	 * @throws SAXException
-	 */
-	@Test
+
+public class Test_parsing_infoboxes_from_input_to_objects  {
+	  
+	  @Test
 	  public void TestParsovaniaPerson() throws FileNotFoundException, ParseException, Throwable, SAXException {
 		 	SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
 		    HandlerPerson handler_person = new HandlerPerson();
 		    SAXParser saxParser = saxParserFactory.newSAXParser();
 		 try {
-		        saxParser.parse(new File("C:\\Users\\Dokonaly\\Desktop\\data\\sample_enwiki-latest-pages-articles7.xml-p000305002p000464996.bz2.xml"), handler_person);
+		        saxParser.parse(new File("C:\\Users\\Dokonaly\\Google Drive\\FIIT rok 5\\VI\\Infobox projekt\\-VI-Infoboxy\\data\\infoboxes_example_input_test.xml"), handler_person);
 		        List<Infobox_person> InfoboxPersonList = handler_person.getInfoboxList();
 		        
 		        for(Infobox_person person : InfoboxPersonList){
@@ -62,7 +52,7 @@ public class Test_input_output  {
 		        	Assert.assertEquals(person.getImage_size(), null);
 		        	
 		        	Assert.assertEquals(person.getBirth_place(), "Toronto, Canada");
-		        	Assert.assertEquals(person.getDeath_date(), "INY FORMAT");
+		        	Assert.assertEquals(person.getDeath_date(), "ZNAMY FORMAT");
 		        	Assert.assertEquals(person.getDeath_place(), "Los Angeles, United States");
 		        	
 		        	Assert.assertEquals(person.getBirth_day(), "3");
@@ -77,19 +67,13 @@ public class Test_input_output  {
 		  }  
 	  }
 	 
-	 /**
-	 * @throws FileNotFoundException
-	 * @throws ParseException
-	 * @throws Throwable
-	 * @throws SAXException
-	 */
-	@Test
+	  @Test
 	  public void TestParsovaniaCountry() throws FileNotFoundException, ParseException, Throwable, SAXException {
 		 	SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
 			HandlerCountry handler_country = new HandlerCountry();
 		    SAXParser saxParser = saxParserFactory.newSAXParser();
 		 try {
-			 	saxParser.parse(new File("C:\\Users\\Dokonaly\\Desktop\\data\\sample_enwiki-latest-pages-articles7.xml-p000305002p000464996.bz2.xml"), handler_country);
+			 	saxParser.parse(new File("C:\\Users\\Dokonaly\\Google Drive\\FIIT rok 5\\VI\\Infobox projekt\\-VI-Infoboxy\\data\\infoboxes_example_input_test.xml"), handler_country);
 		        List<Infobox_country> InfoboxList = handler_country.getInfoboxList();
 
 		        for(Infobox_country country : InfoboxList){
@@ -106,7 +90,7 @@ public class Test_input_output  {
 		        	
 		        		        	
 		        	String[] pole = country.getOfficial_languages();
-		        	String[] pole2 = {"Cook Islands M"};
+		        	String[] pole2 = {"Cook Islands Maori"};
 		        	for (int i = 0; i<pole.length;i++ ){
 		        		Assert.assertEquals(pole[i], pole2[i]);
 		        	}
@@ -129,21 +113,13 @@ public class Test_input_output  {
 		  }  
 	  }
 	 
- 
-
-	 /**
-	 * @throws FileNotFoundException
-	 * @throws ParseException
-	 * @throws Throwable
-	 * @throws SAXException
-	 */
-	@Test
+	  @Test
 	  public void TestParsovaniaBook() throws FileNotFoundException, ParseException, Throwable, SAXException {
 		 	SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
 			HandlerBook handler_book = new HandlerBook();
 		    SAXParser saxParser = saxParserFactory.newSAXParser();
 		 try {
-			 	saxParser.parse(new File("C:\\Users\\Dokonaly\\Desktop\\data\\sample_enwiki-latest-pages-articles7.xml-p000305002p000464996.bz2.xml"), handler_book);
+			 	saxParser.parse(new File("C:\\Users\\Dokonaly\\Google Drive\\FIIT rok 5\\VI\\Infobox projekt\\-VI-Infoboxy\\data\\infoboxes_example_input_test.xml"), handler_book);
 		        List<Infobox_book> InfoboxbookList = handler_book.getInfoboxList();
  
 		        for(Infobox_book book : InfoboxbookList){
@@ -176,19 +152,14 @@ public class Test_input_output  {
 		 
 		  
 	  }
-	 /**
-	 * @throws FileNotFoundException
-	 * @throws ParseException
-	 * @throws Throwable
-	 * @throws SAXException
-	 */
-	@Test
+	  
+	  @Test
 	  public void TestParsovaniaSettlement() throws FileNotFoundException, ParseException, Throwable, SAXException {
 		 	SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
 			HandlerSettlement handler_settlement = new HandlerSettlement();
 		    SAXParser saxParser = saxParserFactory.newSAXParser();
 		 try {
-			 	saxParser.parse(new File("C:\\Users\\Dokonaly\\Desktop\\data\\sample_enwiki-latest-pages-articles7.xml-p000305002p000464996.bz2.xml"), handler_settlement);
+			 	saxParser.parse(new File("C:\\Users\\Dokonaly\\Google Drive\\FIIT rok 5\\VI\\Infobox projekt\\-VI-Infoboxy\\data\\infoboxes_example_input_test.xml"), handler_settlement);
 		        List<Infobox_settlement> InfoboxSettlementList = handler_settlement.getInfoboxList();
 
 		        for(Infobox_settlement sett : InfoboxSettlementList){
@@ -214,8 +185,6 @@ public class Test_input_output  {
 		 } catch (IOException e) {
 		        e.printStackTrace();
 		  }
-		 
-		  
 	  }
 	
 }

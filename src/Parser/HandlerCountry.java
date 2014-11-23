@@ -9,15 +9,14 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-/**
- * @author Dokonaly
- *
- */
 public class HandlerCountry  extends DefaultHandler {
 	
+	//zoznam najdenych infoboxov typu country
 	private List<Infobox_country> infoboxList = null;
+	//aktualne spracovavany infobox
 	private Infobox_country infobox = null;
 	private StringBuffer sb;
+	//pocitadlo
 	int counter = 0;
 	public List<Infobox_country> getInfoboxList() {
         return infoboxList;
@@ -25,33 +24,26 @@ public class HandlerCountry  extends DefaultHandler {
 	Help pomoc = new Help();
 	boolean bTitle = false;
 
-    /* (non-Javadoc)
-     * @see org.xml.sax.helpers.DefaultHandler#startElement(java.lang.String, java.lang.String, java.lang.String, org.xml.sax.Attributes)
-     */
-    @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes)
             throws SAXException {
  
     	sb = new StringBuffer();
+    	//ak najdem page vytvorim novy infobox
         if (qName.equalsIgnoreCase("Page")) {                
             infobox = new Infobox_country();
             if (infoboxList == null) {
             	infoboxList = new ArrayList<>();
             }
-           
+          //vyparsovanie atributu text
         }  else if (qName.equalsIgnoreCase("text")) {
         	bTitle = true;
         } 
     }
     
-    //oparsovanie infoboxu country
-    /**
-     * @param flag
-     * @param vysledok
-     * @return
-     */
+    //metoda na oparsovanie infoboxu, v atribute vysledok je ulozeny text na spracovanie
     public boolean oparsujCountry(boolean flag, String vysledok){
-   
+    	
+    	//postupne vyberanie jednotlivych atributov z textu
     	String vystup = pomoc.PouziRegex("\\| ?conventional_long_name ?= [^|]+", vysledok);  	
     	if (vystup != null){
     		vystup = pomoc.ocisti_retazec(vystup, "conventional_long_name");
@@ -231,15 +223,13 @@ public class HandlerCountry  extends DefaultHandler {
     	return flag;
     }
     
-    /* (non-Javadoc)
-     * @see org.xml.sax.helpers.DefaultHandler#endElement(java.lang.String, java.lang.String, java.lang.String)
-     */
-    @Override
+    //funkcia sa zavola ked sa najde koniec elementu
     public void endElement(String uri, String localName, String qName) throws SAXException {
     	boolean flag_country = false;
     	
+    	//ak najdem koniec
         if (bTitle) {
-          
+        	//do premennej vysledok si ulozim vyparsovany infobox
         	String vysledok = sb.toString();
         	//zarovnanie do jedneho riadku
         	vysledok = vysledok.replaceAll("(\r\n|\n)", " "); 
@@ -247,31 +237,17 @@ public class HandlerCountry  extends DefaultHandler {
         	vysledok = vysledok.trim().replaceAll(" +", " "); 
         	//vybratie infoboxu country
         	String text = pomoc.PouziRegex("\\{\\{Infobox country \\s*(.*)", vysledok);
-
+        	
+        	//spustim vyparsovanie jednotlivych atributov z infoboxu
         	if (text !=null){
         	flag_country  = oparsujCountry(flag_country, text);
         	}
+        	//ak som nieco vyparsoval...
         	if (flag_country == true){
+        		//infobox country musi obsahovat aspon title alebo common name inak ho ignorujem ....
         		if ( infobox.getTitle()!= null ||  infobox.getCommon_name() != null){
-        			/*System.out.println(infobox.getTitle()+" "
-        		
-        					+infobox.getCommon_name() +" "
-        					+infobox.getImage_flag()+" "
-        					+infobox.getImage_coat()+" "
-        					+infobox.getCapital()+" "
-        					+infobox.getOfficial_religion()+" "
-        					+infobox.getOfficial_languages()+" "
-        					+infobox.getGovernment_type()+" "
-        					+infobox.getArea_km2()+" "
-        					+infobox.getArea_sq_mi()+" "
-        					+infobox.getCurrency()+" "
-        					+infobox.getCurrency_code()+" "
-        					+infobox.getPopulation_estimate()+" "
-        					+infobox.getPopulation_estimate_rank()
-        					);*/
-        			
-        			infoboxList.add(infobox);
-            	       			
+        			//ak obsahuje tak ho pridam do listu
+        			infoboxList.add(infobox); 			
         		}
         		System.out.println(counter);
         	}	
@@ -281,13 +257,8 @@ public class HandlerCountry  extends DefaultHandler {
         }
     }
  
-    /* (non-Javadoc)
-     * @see org.xml.sax.helpers.DefaultHandler#characters(char[], int, int)
-     */
-    @Override
+    // spracovavanie vstupu
     public void characters(char ch[], int start, int length) throws SAXException {
-    
-    	 
          if (sb!=null && bTitle) {
              for (int i=start; i<start+length; i++) {
             	 sb.append(ch[i]);

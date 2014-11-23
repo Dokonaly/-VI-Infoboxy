@@ -9,15 +9,14 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-/**
- * @author Dokonaly
- *
- */
 public class HandlerBook  extends DefaultHandler {
 	
+	//zoznam najdenych infoboxov typu person
 	private List<Infobox_book> infoboxBookList = null;
+	//aktualne spracovavany infobox
 	private Infobox_book infoboxBook = null;
 	private StringBuffer sb;
+	//pocitadlo
 	int counter = 0;
 	Help pomoc = new Help();
 	public List<Infobox_book> getInfoboxList() {
@@ -26,34 +25,29 @@ public class HandlerBook  extends DefaultHandler {
 
 	boolean bTitle = false;
 	
-    /* (non-Javadoc)
-     * @see org.xml.sax.helpers.DefaultHandler#startElement(java.lang.String, java.lang.String, java.lang.String, org.xml.sax.Attributes)
-     */
-    @Override
+ 
     public void startElement(String uri, String localName, String qName, Attributes attributes)
             throws SAXException {
  
     	sb = new StringBuffer();
+    	//ak najdem page vytvorim novy infobox
         if (qName.equalsIgnoreCase("Page")) {                
         	infoboxBook = new Infobox_book();
             if (infoboxBookList == null) {
             	infoboxBookList = new ArrayList<>();
             }
         } 
+        //vyparsovanie atributu text
         if (qName.equalsIgnoreCase("text")) {
         	bTitle = true;
         } 
     }
  
-   
-    //oparsovanie infoboxu book
-    /**
-     * @param vysledok
-     * @return
-     */
+    //metoda na oparsovanie infoboxu, v atribute vysledok je ulozeny text na spracovanie
     public boolean oparsujBook(String vysledok){
     	boolean flag = false;
     
+    	//postupne vyberanie jednotlivych atributov z textu
     	String vystup = pomoc.PouziRegex("\\| ?name ?= [^|]+", vysledok);  	
     	if (vystup != null){
     		vystup = pomoc.ocisti_retazec(vystup, "name");
@@ -209,16 +203,13 @@ public class HandlerBook  extends DefaultHandler {
     	return flag;
     }
     
-    /* (non-Javadoc)
-     * @see org.xml.sax.helpers.DefaultHandler#endElement(java.lang.String, java.lang.String, java.lang.String)
-     */
-    @Override
+    //funkcia sa zavola ked sa najde koniec elementu
     public void endElement(String uri, String localName, String qName) throws SAXException {
     	boolean flag_book = false;
     	
-    	
+    	//ak najdem koniec
         if (bTitle) {
-        	
+        	//do premennej vysledok si ulozim vyparsovany infobox
         	String vysledok = sb.toString();
         	//zarovnanie do jedneho riadku
         	vysledok = vysledok.replaceAll("(\r\n|\n)", " "); 
@@ -227,28 +218,16 @@ public class HandlerBook  extends DefaultHandler {
         	//vybratie infoboxu book
         	String text = pomoc.PouziRegex("\\{\\{Infobox book\\s*(.*)", vysledok);
         
+        	//spustim vyparsovanie jednotlivych atributov z infoboxu
         	if (text !=null){
         		flag_book  = oparsujBook(text);
         	}
+        	//ak som nieco vyparsoval...
         	if (flag_book == true){
+        		//infobox book musi obsahovat aspon name a authora inak ho ignorujem ....
         		if ( infoboxBook.getName()!= null && infoboxBook.getAuthor() != null){
         			
-        			/*System.out.println(infoboxBook.getName()+" "
-        					+infoboxBook.getAuthor() +" "
-        					+infoboxBook.getTranslator()+" "
-        					+infoboxBook.getImage()+" "
-        					+infoboxBook.getCaption()+" "
-        					+infoboxBook.getCountry()+" "
-        					+infoboxBook.getLanguage()+" "
-        					+infoboxBook.getSubject()+" "
-        					+infoboxBook.getGenre()+" "
-        					+infoboxBook.getPublished()+" "
-        					+infoboxBook.getPages()+" "
-        					+infoboxBook.getIsbn()+" "
-        					+infoboxBook.getFollowed_by()+" "
-        					+infoboxBook.getPreceded_by()
-        					);*/
-        			
+        			//ak obsahuje tak ho pridam do listu
         			infoboxBookList.add(infoboxBook);    			
         		}
         		System.out.println(counter);
@@ -258,10 +237,7 @@ public class HandlerBook  extends DefaultHandler {
         }
     }
  
-    /* (non-Javadoc)
-     * @see org.xml.sax.helpers.DefaultHandler#characters(char[], int, int)
-     */
-    @Override
+    // spracovavanie vstupu
     public void characters(char ch[], int start, int length) throws SAXException {
          if (sb!=null && bTitle) {
              for (int i=start; i<start+length; i++) {

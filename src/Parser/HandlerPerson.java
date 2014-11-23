@@ -9,15 +9,14 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-/**
- * @author Dokonaly
- *
- */
 public class HandlerPerson  extends DefaultHandler {
 	
+	//zoznam najdenych infoboxov typu person
 	private List<Infobox_person> infoboxPersonList = null;
+	//aktualne spracovavany infobox
 	private Infobox_person infoboxPerson = null;
 	private StringBuffer sb;
+	//pocitadlo
 	int counter = 0;
 	public List<Infobox_person> getInfoboxList() {
         return infoboxPersonList;
@@ -30,27 +29,25 @@ public class HandlerPerson  extends DefaultHandler {
             throws SAXException {
  
     	sb = new StringBuffer();
+    	//ak najdem page vytvorim novy infobox
         if (qName.equalsIgnoreCase("Page")) {                
         	infoboxPerson = new Infobox_person();
             if (infoboxPersonList == null) {
             	infoboxPersonList = new ArrayList<>();
             }
+          //vyparsovanie atributu text
         } else if (qName.equalsIgnoreCase("text")) {
         	bTitle = true;
         } 
     }
     
-    //oparsovanie infoboxu person
-    /**
-     * @param vysledok
-     * @return
-     */
-  
+    //metoda na oparsovanie infoboxu, v atribute vysledok je ulozeny text na spracovanie
     public boolean oparsujPerson(String vysledok){
     	boolean flag = false;
     	
     	String vystup = pomoc.PouziRegex("\\| ?name ?= [^|]+", vysledok);  
     	
+    	//postupne vyberanie jednotlivych atributov z textu
     	if (vystup != null){
     		vystup =pomoc.ocisti_retazec(vystup, "name");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
@@ -249,15 +246,14 @@ public class HandlerPerson  extends DefaultHandler {
       	return flag;
     }
     
-    /* (non-Javadoc)
-     * @see org.xml.sax.helpers.DefaultHandler#endElement(java.lang.String, java.lang.String, java.lang.String)
-     */
-    @Override
+    //funkcia sa zavola ked sa najde koniec elementu
     public void endElement(String uri, String localName, String qName) throws SAXException {
     	boolean flag_person = false;
     	
+    	//ak najdem koniec
         if (bTitle) {
           
+        	//do premennej vysledok si ulozim vyparsovany infobox
         	String vysledok = sb.toString();
         	//zarovnanie do jedneho riadku
         	vysledok = vysledok.replaceAll("(\r\n|\n)", " "); 
@@ -266,26 +262,15 @@ public class HandlerPerson  extends DefaultHandler {
         	//vybratie kompletneho infoboxu person
         	String text = pomoc.PouziRegex("\\{\\{Infobox person \\s*(.*)", vysledok);
         
+        	//spustim vyparsovanie jednotlivych atributov z infoboxu
         	if (text !=null){
         		flag_person  = oparsujPerson(text);
         	}
+        	//ak som nieco vyparsoval...
         	if (flag_person == true){
+        		//infobox person musi obsahovat aspon name ....
         		if ( infoboxPerson.getName()!= null){
-        			
-        			/*System.out.println(infoboxPerson.getName()+" "
-        					+infoboxPerson.getImage()+" "
-        					+infoboxPerson.getImage_size()+" "
-        					+infoboxPerson.getBirth_date()+" "
-        					+infoboxPerson.getBirth_day()+" "
-        					+infoboxPerson.getBirth_month()+" "
-        					+infoboxPerson.getBirth_year()+" "
-        					+infoboxPerson.getBirth_place()+" "
-        					+infoboxPerson.getDeath_day()+" "
-        					+infoboxPerson.getDeath_month()+" "
-        					+infoboxPerson.getDeath_year()+" "
-        					+infoboxPerson.getDeath_place()
-    	        			);*/
-        			
+        			//ak obsahuje tak ho pridam do listu
         			infoboxPersonList.add(infoboxPerson);    			
         		}
         		System.out.println(counter);
@@ -295,12 +280,9 @@ public class HandlerPerson  extends DefaultHandler {
         }
     }
  
-    /* (non-Javadoc)
-     * @see org.xml.sax.helpers.DefaultHandler#characters(char[], int, int)
-     */
-    @Override
     public void characters(char ch[], int start, int length) throws SAXException {
-         if (sb!=null && bTitle) {
+    	// spracovavanie vstupu
+    	if (sb!=null && bTitle) {
              for (int i=start; i<start+length; i++) {
             	 sb.append(ch[i]);
              }

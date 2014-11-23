@@ -3,11 +3,11 @@
 <suite name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="Tests.NewTest">
+      <class name="Unit_tests.Test_parsing_infoboxes_from_input_to_objects">
         <methods>
-          <include name="TestParsovaniaCountry"/>
+          <include name="TestParsovaniaSettlement"/>
         </methods>
-      </class> <!-- Tests.NewTest -->
+      </class> <!-- Unit_tests.Test_parsing_infoboxes_from_input_to_objects -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

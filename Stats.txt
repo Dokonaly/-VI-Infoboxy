@@ -51,6 +51,6 @@ Percento nevyparsovanych area_land_km2: 88.05876024780206
 Percento nevyparsovanych populacii: 3.279296657639945
 Percento nevyparsovanych population_density: 79.72697258597026
 Percento nevyparsovanych timezone: 80.29825277293467
-Percento nevyparsovanych website: 27.951923433616503
+Percento nevyparsovanych website: 96.85053974848834
 Percento nevyparsovanych postal_code: 94.12397521979449
 ********************************************************************

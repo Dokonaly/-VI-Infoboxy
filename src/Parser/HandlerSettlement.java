@@ -10,15 +10,14 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-/**
- * @author Dokonaly
- *
- */
 public class HandlerSettlement  extends DefaultHandler {
 	
+	//zoznam najdenych infoboxov typu settlement
 	private List<Infobox_settlement> infobox_settlementList = null;
+	//aktualne spracovavany infobox
 	private Infobox_settlement infobox_settlement = null;
 	private StringBuffer sb;
+	//pocitadlo
 	int counter = 0;
 	
 	public List<Infobox_settlement> getInfoboxList() {
@@ -27,10 +26,7 @@ public class HandlerSettlement  extends DefaultHandler {
 
 	boolean bTitle = false;
 	Help pomoc = new Help();
-    /* (non-Javadoc)
-     * @see org.xml.sax.helpers.DefaultHandler#startElement(java.lang.String, java.lang.String, java.lang.String, org.xml.sax.Attributes)
-     */
-    @Override
+ 
     public void startElement(String uri, String localName, String qName, Attributes attributes)
             throws SAXException {
  
@@ -47,15 +43,11 @@ public class HandlerSettlement  extends DefaultHandler {
         } 
     }
 
-    //metoda na oparsovanie infoboxu
-    /**
-     * @param flag
-     * @param vysledok
-     * @return
-     */
+    //metoda na oparsovanie infoboxu, v atribute vysledok je ulozeny text na spracovanie
     public boolean oparsujSettlement(boolean flag, String vysledok){
     	flag = false;
     	
+    	//postupne vyberanie jednotlivych atributov z textu
     	String vystup = pomoc.PouziRegex("\\| ?official_name ?= [^|]+", vysledok);  	
     	if (vystup != null){
     		vystup = pomoc.ocisti_retazec(vystup, "official_name");
@@ -188,7 +180,7 @@ public class HandlerSettlement  extends DefaultHandler {
     	    flag = true;
     	}
     	
-    	vystup = pomoc.PouziRegex("\\| ?website ?= [^|]+", vysledok);  	
+    	vystup = pomoc.PouziRegex("\\| ?website ?= [^|}{]+", vysledok);  	
     	if (vystup != null){
     		vystup = pomoc.ocisti_retazec(vystup, "website");
     		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-|]","");
@@ -211,24 +203,21 @@ public class HandlerSettlement  extends DefaultHandler {
     			infobox_settlement.setPostal_code(pole);
     		}
     		}
-    	    
+      
     	    flag = true;
     	}
-    	
     	
     	counter++;
     	return flag;
     }
     
-    /* (non-Javadoc)
-     * @see org.xml.sax.helpers.DefaultHandler#endElement(java.lang.String, java.lang.String, java.lang.String)
-     */
-    @Override
     public void endElement(String uri, String localName, String qName) throws SAXException {
     	boolean flag_settlement = false;
     	
+    	///ak najdem koniec
         if (bTitle) {
-          
+        	
+        	//do premennej vysledok si ulozim vyparsovany infobox
         	String vysledok = sb.toString();
         	 //zarovnanie do jedneho riadku
         	vysledok = vysledok.replaceAll("(\r\n|\n)", " ");
@@ -237,46 +226,27 @@ public class HandlerSettlement  extends DefaultHandler {
         	//vybratie samotneho infoboxu
         	String text = pomoc.PouziRegex("\\{\\{Infobox settlement \\s*(.*)", vysledok);
         	
+        	//spustim vyparsovanie jednotlivych atributov z infoboxu
         	if (text !=null){
         		flag_settlement  = oparsujSettlement(flag_settlement, text);
         	}
+        	//ak som nieco vyparsoval...
         	if (flag_settlement == true){
+        		//infobox settlement musi obsahovat official name alebo population total....
         		if ( infobox_settlement.getOfficial_name()!= null ||  infobox_settlement.getPopulation_total() != null){
         			String psc = Arrays.toString(infobox_settlement.getPostal_code());
-        			/*System.out.println(infobox_settlement.getOfficial_name()+" "
-        					+infobox_settlement.getNickname() +" "
-        					+infobox_settlement.getMap_caption()+" "
-        					+infobox_settlement.getCoordinates_region()+" "
-        					+infobox_settlement.getLeader_title()+" "
-        					+infobox_settlement.getLeader_title()+" "
-        					+infobox_settlement.getUnit_pref()+" "
-        					+infobox_settlement.getArea_total_km2()+" "
-        					+infobox_settlement.getArea_land_km2()+" "
-        					+infobox_settlement.getPopulation_total()+" "
-        					+infobox_settlement.getPopulation_density_km2()+" "
-        					+infobox_settlement.getTimezone()+" "
-        					+infobox_settlement.getWebsite()+" "
-        					+psc
-        					);*/
+        			//ak obsahuje tak ho pridam do listu
         			infobox_settlementList.add(infobox_settlement);
-            	      
-        			
-        		}
+            	  }
         		System.out.println(counter);
         	}	
             bTitle = false;
             flag_settlement = false;
-           
         }
     }
- 
-    /* (non-Javadoc)
-     * @see org.xml.sax.helpers.DefaultHandler#characters(char[], int, int)
-     */
-    @Override
+
     public void characters(char ch[], int start, int length) throws SAXException {
-    
-    	 
+    	// spracovavanie vstupu
          if (sb!=null && bTitle) {
              for (int i=start; i<start+length; i++) {
             	 sb.append(ch[i]);
@@ -285,7 +255,4 @@ public class HandlerSettlement  extends DefaultHandler {
          }
          
     }
-    
-
-
 }

@@ -2,28 +2,28 @@
 <testng-results skipped="0" failed="0" total="4" passed="4">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="429" started-at="2014-11-09T10:31:29Z" finished-at="2014-11-09T10:31:30Z">
+  <suite name="Default suite" duration-ms="359" started-at="2014-11-23T10:44:11Z" finished-at="2014-11-23T10:44:12Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="429" started-at="2014-11-09T10:31:29Z" finished-at="2014-11-09T10:31:30Z">
-      <class name="Unit_tests.Test_input_output">
-        <test-method status="PASS" signature="TestParsovaniaBook()[pri:0, instance:Unit_tests.Test_input_output@5d52a1b7]" name="TestParsovaniaBook" duration-ms="349" started-at="2014-11-09T11:31:29Z" finished-at="2014-11-09T11:31:30Z">
+    <test name="Default test" duration-ms="359" started-at="2014-11-23T10:44:11Z" finished-at="2014-11-23T10:44:12Z">
+      <class name="Unit_tests.Test_parsing_infoboxes_from_input_to_objects">
+        <test-method status="PASS" signature="TestParsovaniaBook()[pri:0, instance:Unit_tests.Test_parsing_infoboxes_from_input_to_objects@306a4bda]" name="TestParsovaniaBook" duration-ms="172" started-at="2014-11-23T11:44:11Z" finished-at="2014-11-23T11:44:11Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- TestParsovaniaBook -->
-        <test-method status="PASS" signature="TestParsovaniaCountry()[pri:0, instance:Unit_tests.Test_input_output@5d52a1b7]" name="TestParsovaniaCountry" duration-ms="15" started-at="2014-11-09T11:31:30Z" finished-at="2014-11-09T11:31:30Z">
+        <test-method status="PASS" signature="TestParsovaniaCountry()[pri:0, instance:Unit_tests.Test_parsing_infoboxes_from_input_to_objects@306a4bda]" name="TestParsovaniaCountry" duration-ms="94" started-at="2014-11-23T11:44:11Z" finished-at="2014-11-23T11:44:11Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- TestParsovaniaCountry -->
-        <test-method status="PASS" signature="TestParsovaniaSettlement()[pri:0, instance:Unit_tests.Test_input_output@5d52a1b7]" name="TestParsovaniaSettlement" duration-ms="0" started-at="2014-11-09T11:31:30Z" finished-at="2014-11-09T11:31:30Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TestParsovaniaSettlement -->
-        <test-method status="PASS" signature="TestParsovaniaPerson()[pri:0, instance:Unit_tests.Test_input_output@5d52a1b7]" name="TestParsovaniaPerson" duration-ms="0" started-at="2014-11-09T11:31:30Z" finished-at="2014-11-09T11:31:30Z">
+        <test-method status="PASS" signature="TestParsovaniaPerson()[pri:0, instance:Unit_tests.Test_parsing_infoboxes_from_input_to_objects@306a4bda]" name="TestParsovaniaPerson" duration-ms="31" started-at="2014-11-23T11:44:11Z" finished-at="2014-11-23T11:44:11Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- TestParsovaniaPerson -->
-      </class> <!-- Unit_tests.Test_input_output -->
+        <test-method status="PASS" signature="TestParsovaniaSettlement()[pri:0, instance:Unit_tests.Test_parsing_infoboxes_from_input_to_objects@306a4bda]" name="TestParsovaniaSettlement" duration-ms="47" started-at="2014-11-23T11:44:11Z" finished-at="2014-11-23T11:44:12Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TestParsovaniaSettlement -->
+      </class> <!-- Unit_tests.Test_parsing_infoboxes_from_input_to_objects -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
