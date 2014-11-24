@@ -48,79 +48,77 @@ public class HandlerSettlement  extends DefaultHandler {
     	flag = false;
     	
     	//postupne vyberanie jednotlivych atributov z textu
-    	String vystup = pomoc.PouziRegex("\\| ?official_name ?= [^|]+", vysledok);  	
-    	if (vystup != null){
-    		vystup = pomoc.ocisti_retazec(vystup, "official_name");
-    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
-    		vystup = pomoc.posledna_medzera(vystup);
-    	    infobox_settlement.setOfficial_name(vystup);
-    	    flag = true;
-    	}
+    	String vystup;
+    	List<String> list_regexov = new ArrayList<String>();
+    	List<String> list_atributov = new ArrayList<String>();
     	
-    	vystup = pomoc.PouziRegex("\\| ?nickname ?= [^|]+", vysledok);  	
-    	if (vystup != null){
-    		vystup = pomoc.ocisti_retazec(vystup, "nickname");
-    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
-    		vystup = pomoc.posledna_medzera(vystup);
-    	    infobox_settlement.setNickname(vystup);
-    	    flag = true;
-    	}
+    	list_regexov.add("\\| ?official_name ?= [^|]+");
+    	list_regexov.add("\\| ?nickname ?= [^|]+");
+    	list_regexov.add("\\| ?map_caption ?= [^|]+");
+    	list_regexov.add("\\| ?coordinates_region ?= [^|]+");
+    	list_regexov.add("\\| ?leader_title ?= [^|]+");
+    	list_regexov.add("\\| ?unit_pref ?= [^|]+");
+    	list_regexov.add("\\| ?area_total_km2 ?= [^|]+");
+    	list_regexov.add("\\| ?area_land_km2 ?= [^|]+");
+    	list_regexov.add("\\| ?population_density_km2 ?= [^|]+");
+    	list_regexov.add("\\| ?website ?= [^|}{]+");
     	
-    	vystup = pomoc.PouziRegex("\\| ?map_caption ?= [^|]+", vysledok);  	
-    	if (vystup != null){
-    		vystup = pomoc.ocisti_retazec(vystup, "map_caption");
-    		
-    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
-    		vystup = pomoc.posledna_medzera(vystup);
-    	    infobox_settlement.setMap_caption(vystup);
-    	    flag = true;
-    	}
+    	list_atributov.add("official_name");
+    	list_atributov.add("nickname");
+    	list_atributov.add("map_caption");
+    	list_atributov.add("coordinates_region");
+    	list_atributov.add("leader_title");
+    	list_atributov.add("unit_pref");
+    	list_atributov.add("area_total_km2");
+    	list_atributov.add("area_land_km2");
+    	list_atributov.add("population_density_km2");
+    	list_atributov.add("website");
     	
-    	vystup = pomoc.PouziRegex("\\| ?coordinates_region ?= [^|]+", vysledok);  	
-    	if (vystup != null){
-    		vystup = pomoc.ocisti_retazec(vystup, "coordinates_region");
-    		vystup = vystup.replaceAll("[^0-9a-zA-Z:.,?! +-]","");
-    		vystup = pomoc.posledna_medzera(vystup);
-    	    infobox_settlement.setCoordinates_region(vystup);
-    	    flag = true;
+    	for(int i=0;i<list_regexov.size();i++){
+    		vystup = pomoc.PouziRegex(list_regexov.get(i), vysledok);  	
+        	if (vystup != null){
+        		vystup = pomoc.ocisti_retazec(vystup, list_atributov.get(i));
+        		if (list_atributov.get(i).contains("website")){
+        			vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-/]","");
+        		}
+        		else {
+        			vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
+        		}
+        		vystup = pomoc.posledna_medzera(vystup);
+        		if (list_atributov.get(i).contains("official_name")){
+        			infobox_settlement.setOfficial_name(vystup);
+        		}
+        		else if (list_atributov.get(i).contains("nickname")){
+        			infobox_settlement.setNickname(vystup);
+        		}
+        		else if (list_atributov.get(i).contains("map_caption")){
+        			infobox_settlement.setMap_caption(vystup);
+        		}
+        		else if (list_atributov.get(i).contains("coordinates_region")){
+        			infobox_settlement.setCoordinates_region(vystup);
+        		}
+        		else if (list_atributov.get(i).contains("leader_title")){
+        			infobox_settlement.setLeader_title(vystup);
+        		}
+        		else if (list_atributov.get(i).contains("unit_pref")){
+        			infobox_settlement.setUnit_pref(vystup);
+        		}
+        		else if (list_atributov.get(i).contains("area_total_km2")){
+        			infobox_settlement.setArea_total_km2(vystup);
+        		}
+        		else if (list_atributov.get(i).contains("area_land_km2")){
+        			infobox_settlement.setArea_land_km2(vystup);
+        		}
+        		else if (list_atributov.get(i).contains("population_density_km2")){
+        			infobox_settlement.setPopulation_density_km2(vystup);
+        		}
+        		else if (list_atributov.get(i).contains("website")){
+        			infobox_settlement.setWebsite(vystup);
+        		}
+        	    flag = true;
+        	}
     	}
-    	
-    	vystup = pomoc.PouziRegex("\\| ?leader_title ?= [^|]+", vysledok);  	
-    	if (vystup != null){
-    		vystup = pomoc.ocisti_retazec(vystup, "leader_title");
-    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
-    		vystup = pomoc.posledna_medzera(vystup);
-    	    infobox_settlement.setLeader_title(vystup);
-    	    flag = true;
-    	}
-    	
-    	vystup = pomoc.PouziRegex("\\| ?unit_pref ?= [^|]+", vysledok);  	
-    	if (vystup != null){
-    		vystup = pomoc.ocisti_retazec(vystup, "unit_pref");
-    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
-    		vystup = pomoc.posledna_medzera(vystup);
-    	    infobox_settlement.setUnit_pref(vystup);
-    	    flag = true;
-    	}
-    	
-    	vystup = pomoc.PouziRegex("\\| ?area_total_km2 ?= [^|]+", vysledok);  	
-    	if (vystup != null){
-    		vystup = pomoc.ocisti_retazec(vystup, "area_total_km2");
-    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
-    		vystup = pomoc.posledna_medzera(vystup);
-    	    infobox_settlement.setArea_total_km2(vystup);
-    	    flag = true;
-    	}
-    	
-    	vystup = pomoc.PouziRegex("\\| ?area_land_km2 ?= [^|]+", vysledok);  	
-    	if (vystup != null){
-    		vystup = pomoc.ocisti_retazec(vystup, "area_land_km2");
-    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
-    		vystup = pomoc.posledna_medzera(vystup);
-    	    infobox_settlement.setArea_land_km2(vystup);
-    	    flag = true;
-    	}
-    	
+ 
     	vystup = pomoc.PouziRegex("\\| ?population_total ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{|'`$%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
     		
@@ -140,16 +138,7 @@ public class HandlerSettlement  extends DefaultHandler {
     	    infobox_settlement.setPopulation_total(vystup);
     	    flag = true;
     	}
-    	
-    	vystup = pomoc.PouziRegex("\\| ?population_density_km2 ?= [^|]+", vysledok);  	
-    	if (vystup != null){
-    		vystup = pomoc.ocisti_retazec(vystup, "population_density_km2");
-    		vystup = vystup.replaceAll("[^0-9a-zA-Z.,:?! +-]","");
-    		vystup = pomoc.posledna_medzera(vystup);
-    	    infobox_settlement.setPopulation_density_km2(vystup);
-    	    flag = true;
-    	}
-    	
+
     	vystup = pomoc.PouziRegex("\\| ?timezone ?= [A-Za-z0-9 _ =*.:?!()+-<>\\[#@\\{}|'` $%^&;<>,ֹציז]+", vysledok);  	
     	if (vystup != null){
     		if(vystup.contains("utc_offset") ){
@@ -177,15 +166,6 @@ public class HandlerSettlement  extends DefaultHandler {
     		}
     			
     	    infobox_settlement.setTimezone(vystup);
-    	    flag = true;
-    	}
-    	
-    	vystup = pomoc.PouziRegex("\\| ?website ?= [^|}{]+", vysledok);  	
-    	if (vystup != null){
-    		vystup = pomoc.ocisti_retazec(vystup, "website");
-    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-|]","");
-    		vystup = pomoc.posledna_medzera(vystup);
-    	    infobox_settlement.setWebsite(vystup);
     	    flag = true;
     	}
     	

@@ -42,48 +42,68 @@ public class HandlerCountry  extends DefaultHandler {
     
     //metoda na oparsovanie infoboxu, v atribute vysledok je ulozeny text na spracovanie
     public boolean oparsujCountry(boolean flag, String vysledok){
+    	String vystup;
+    	List<String> list_regexov = new ArrayList<String>();
+    	List<String> list_atributov = new ArrayList<String>();
     	
+    	list_regexov.add("\\| ?conventional_long_name ?= [^|]+");
+    	list_regexov.add("\\| ?common_name ?= [^|]+");
+    	list_regexov.add("\\| ?image_flag ?= [^|]+");
+    	list_regexov.add("\\| ?image_coat ?= [^|]+");
+    	list_regexov.add("\\| ?area_km2 ?= [^|]+");
+    	list_regexov.add("\\| ?area_sq_mi ?= [^|]+");
+    	list_regexov.add("\\| ?population_estimate ?= [^|]+");
+    	list_regexov.add("\\| ?population_estimate_rank ?= [^|]+");
+    	list_regexov.add("\\| ?currency_code ?= [^|]+");
+    	
+    	list_atributov.add("conventional_long_name");
+    	list_atributov.add("common_name");
+    	list_atributov.add("image_flag");
+    	list_atributov.add("image_coat");
+    	list_atributov.add("area_km2");
+    	list_atributov.add("area_sq_mi");
+    	list_atributov.add("population_estimate");
+    	list_atributov.add("population_estimate_rank");
+    	list_atributov.add("currency_code");
+    	
+    	for(int i=0;i<list_regexov.size();i++){
+    		vystup = pomoc.PouziRegex(list_regexov.get(i), vysledok);  	
+        	if (vystup != null){
+        		vystup = pomoc.ocisti_retazec(vystup, list_atributov.get(i));
+        		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
+        		vystup = vystup.replaceAll("  "," ");
+        		vystup = pomoc.posledna_medzera(vystup);
+        		if(list_atributov.get(i).contains("conventional_long_name")){
+        			infobox.setTitle(vystup);
+        		}
+        		else if (list_atributov.get(i).contains("common_name")){
+        			infobox.setCommon_name(vystup);
+        		}
+        		else if (list_atributov.get(i).contains("image_flag")){
+        			infobox.setImage_flag(vystup);
+        		}
+        		else if (list_atributov.get(i).contains("image_coat")){
+        			infobox.setImage_coat(vystup);
+        		}
+        		else if (list_atributov.get(i).contains("area_km2")){
+        			infobox.setArea_km2(vystup);
+        		}
+        		else if (list_atributov.get(i).contains("area_sq_mi")){
+        			infobox.setArea_sq_mi(vystup);
+        		}
+        		else if (list_atributov.get(i).contains("population_estimate")){
+        			infobox.setPopulation_estimate(vystup);
+        		}
+        		else if (list_atributov.get(i).contains("population_estimate_rank")){
+        			infobox.setPopulation_estimate_rank(vystup);
+        		}
+        		else if (list_atributov.get(i).contains("currency_code")){
+        			infobox.setCurrency_code(vystup);
+        		}
+        		flag = true;
+        	}
+    	}
     	//postupne vyberanie jednotlivych atributov z textu
-    	String vystup = pomoc.PouziRegex("\\| ?conventional_long_name ?= [^|]+", vysledok);  	
-    	if (vystup != null){
-    		vystup = pomoc.ocisti_retazec(vystup, "conventional_long_name");
-    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
-    		vystup = vystup.replaceAll("  "," ");
-    		vystup = pomoc.posledna_medzera(vystup);
-    		infobox.setTitle(vystup);
-     	    flag = true;
-    	}
-    
-    	vystup = pomoc.PouziRegex("\\| ?common_name ?= [^|]+", vysledok);  	
-    	if (vystup != null){
-    		vystup = pomoc.ocisti_retazec(vystup, "common_name");
-    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
-    		vystup = vystup.replaceAll("  "," ");
-    		vystup = pomoc.posledna_medzera(vystup);
-    	    infobox.setCommon_name(vystup);
-     	    flag = true;
-    	}
-    	
-    	vystup = pomoc.PouziRegex("\\| ?image_flag ?= [^|]+", vysledok);  	
-    	if (vystup != null){
-    		vystup =pomoc.ocisti_retazec(vystup, "image_flag");
-    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
-    		vystup = vystup.replaceAll("  "," ");
-    		vystup = pomoc.posledna_medzera(vystup);
-    	    infobox.setImage_flag(vystup);
-     	    flag = true;
-    	}
-    	
-    	vystup = pomoc.PouziRegex("\\| ?image_coat ?= [^|]+", vysledok);  	
-    	if (vystup != null){
-    		vystup =pomoc.ocisti_retazec(vystup, "image_coat");
-    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
-    		vystup = vystup.replaceAll("  "," ");
-    		vystup = pomoc.posledna_medzera(vystup);
-    	    infobox.setImage_coat(vystup);
-     	    flag = true;
-    	}
-    	
     	vystup = pomoc.PouziRegex("\\| ?capital ?= [^|]+", vysledok);  	
     	if (vystup != null){
     		if(vystup.contains("latd") ){
@@ -155,57 +175,7 @@ public class HandlerCountry  extends DefaultHandler {
     		
      	    flag = true;
     	}
-    	
-    	vystup = pomoc.PouziRegex("\\| ?area_km2 ?= [^|]+", vysledok);  	
-    	if (vystup != null){
-    		vystup =pomoc.ocisti_retazec(vystup, "area_km2");
-    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
-    		vystup = vystup.replaceAll("  "," ");
-    		vystup = pomoc.posledna_medzera(vystup);
-    	    infobox.setArea_km2(vystup);
-     	    flag = true;
-    	}
-    	
-    	vystup = pomoc.PouziRegex("\\| ?area_sq_mi ?= [^|]+", vysledok);  	
-    	if (vystup != null){
-    		vystup =pomoc.ocisti_retazec(vystup, "area_sq_mi");
-    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
-    		vystup = vystup.replaceAll("  "," ");
-    		vystup = pomoc.posledna_medzera(vystup);
-    	    infobox.setArea_sq_mi(vystup);
-     	    flag = true;
-    	}
-    	
-    	vystup = pomoc.PouziRegex("\\| ?population_estimate ?= [^|]+", vysledok);  	
-    	if (vystup != null){
-    		vystup =pomoc.ocisti_retazec(vystup, "population_estimate");
-    		vystup = vystup.replaceAll("  "," ");
-    		vystup = pomoc.posledna_medzera(vystup);
-    	    infobox.setPopulation_estimate(vystup);
-     	    flag = true;
-    	}
-    	
-    	vystup = pomoc.PouziRegex("\\| ?population_estimate_rank ?= [^|]+", vysledok);  	
-    	if (vystup != null){
-    		vystup =pomoc.ocisti_retazec(vystup, "population_estimate_rank");
-    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
-    		vystup = vystup.replaceAll("  "," ");
-    		vystup = pomoc.posledna_medzera(vystup);
-    	    infobox.setPopulation_estimate_rank(vystup);
-     	    flag = true;
-    	}
-    	
-    	vystup = pomoc.PouziRegex("\\| ?currency_code ?= [^|]+", vysledok);  	
-    	if (vystup != null){
-    		
-    		vystup =pomoc.ocisti_retazec(vystup, "currency_code");
-    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
-    		vystup = vystup.replaceAll("  "," ");
-    		vystup = pomoc.posledna_medzera(vystup);
-    	    infobox.setCurrency_code(vystup);
-     	    flag = true;
-    	}
-    	
+
     	vystup = pomoc.PouziRegex("\\| ?currency ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז|]+", vysledok);  	
     	if (vystup != null){
     		if(vystup.contains("currency_code") ){

@@ -456,8 +456,7 @@ public class index {
 			        		"*:	" +Person_enum.death_day+"\n" +
 			        		"*:	" +Person_enum.death_month+"\n" +
 			        		"*:	" +Person_enum.death_year+"\n" +
-			        		"*:	" +Person_enum.death_place+"\n" +
-			        		"*:	" +Person_enum.occupation+"\n"
+			        		"*:	" +Person_enum.death_place+"\n"
 			        		);
 			        String atribut = keyboard.next();
 		        	
@@ -473,7 +472,7 @@ public class index {
 			          int docId = hitsP[i].doc;
 			          Document d = searcherP.doc(docId);
 			          System.out.println((i + 1) + ". " + d.get("name") + "\t" + d.get("image") + "\t" + d.get("image_size") + "\t" + d.get("birth_date") + "\t" + d.get("birth_day") + "\t" + d.get("birth_month") + "\t" + d.get("birth_year")
-			        		  + "\t" + d.get("birth_place")  + "\t" + d.get("death_date") + "\t" + d.get("death_day") + "\t" + d.get("death_month") + "\t" + d.get("death_year")  + "\t" + d.get("death_place")  + "\t" + d.get("occupation")
+			        		  + "\t" + d.get("birth_place")  + "\t" + d.get("death_date") + "\t" + d.get("death_day") + "\t" + d.get("death_month") + "\t" + d.get("death_year")  + "\t" + d.get("death_place")  + "\t"
 			        		  );
 			        }
 			        readerP.close();

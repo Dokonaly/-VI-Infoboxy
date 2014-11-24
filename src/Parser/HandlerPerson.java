@@ -44,39 +44,51 @@ public class HandlerPerson  extends DefaultHandler {
     //metoda na oparsovanie infoboxu, v atribute vysledok je ulozeny text na spracovanie
     public boolean oparsujPerson(String vysledok){
     	boolean flag = false;
-    	
-    	String vystup = pomoc.PouziRegex("\\| ?name ?= [^|]+", vysledok);  
-    	
     	//postupne vyberanie jednotlivych atributov z textu
-    	if (vystup != null){
-    		vystup =pomoc.ocisti_retazec(vystup, "name");
-    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
-    		vystup = vystup.replaceAll("  "," ");
-    		vystup = pomoc.posledna_medzera(vystup);
-    		infoboxPerson.setName(vystup);
-    	    flag = true;
-    	}
+    	String vystup;
+    	List<String> list_regexov = new ArrayList<String>();
+    	List<String> list_atributov = new ArrayList<String>();
     	
-    	vystup = pomoc.PouziRegex("\\| ?image_size ?= [^|]+", vysledok);  	
-    	if (vystup != null){
-    		vystup =pomoc.ocisti_retazec(vystup, "image_size");
-    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
-    		vystup = vystup.replaceAll("  "," ");
-    		vystup = pomoc.posledna_medzera(vystup);
-    		infoboxPerson.setImage_size(vystup);
-    	    flag = true;
-    	}
+    	list_regexov.add("\\| ?name ?= [^|]+");
+    	list_regexov.add("\\| ?image_size ?= [^|]+");
+    	list_regexov.add("\\| ?image ?= [^|]+");
+    	list_regexov.add("\\| ?birth_place ?= [^|]+");
+    	list_regexov.add("\\| ?death_place ?= [^|]+");
     	
-    	vystup = pomoc.PouziRegex("\\| ?image ?= [^|]+", vysledok);  	
-    	if (vystup != null){
-    		vystup = pomoc.ocisti_retazec(vystup, "image");
-    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
-    		vystup = vystup.replaceAll("  "," ");
-    		vystup = pomoc.posledna_medzera(vystup);
-    		infoboxPerson.setImage(vystup);
-    	    flag = true;
+    	list_atributov.add("name");
+    	list_atributov.add("image_size");
+    	list_atributov.add("image");
+    	list_atributov.add("birth_place");
+    	list_atributov.add("death_place");
+
+    	for(int i=0;i<list_regexov.size();i++){
+    		vystup = pomoc.PouziRegex(list_regexov.get(i), vysledok);  
+        	if (vystup != null){
+        		vystup =pomoc.ocisti_retazec(vystup, list_atributov.get(i));
+        		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
+        		vystup = vystup.replaceAll("  "," ");
+        		vystup = pomoc.posledna_medzera(vystup);
+        		
+        		if (list_atributov.get(i).contains("name")){
+        			infoboxPerson.setName(vystup);
+        		}
+        		else if(list_atributov.get(i).contains("image_size")){
+        			infoboxPerson.setImage_size(vystup);
+        		}
+        		else if(list_atributov.get(i).contains("image")){
+        			infoboxPerson.setImage(vystup);
+        		}
+        		else if(list_atributov.get(i).contains("birth_place")){
+        			infoboxPerson.setBirth_place(vystup);
+        		}
+        		else if(list_atributov.get(i).contains("death_place")){
+        			infoboxPerson.setDeath_place(vystup);
+        		}
+        		
+        	    flag = true;
+        	}
     	}
-    	
+   
     	vystup = pomoc.PouziRegex("\\| ?birth_date ?= [^}]+", vysledok);  	
     	if (vystup != null){
     		
@@ -149,16 +161,7 @@ public class HandlerPerson  extends DefaultHandler {
     	    flag = true;
     	}
     	
-    	vystup = pomoc.PouziRegex("\\| ?birth_place ?= [^|]+", vysledok);  	
-    	if (vystup != null){
-    		vystup = pomoc.ocisti_retazec(vystup, "birth_place");
-    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
-    		vystup = vystup.replaceAll("  "," ");
-    		vystup = pomoc.posledna_medzera(vystup);
-    		infoboxPerson.setBirth_place(vystup);
-    	    flag = true;
-    	}
-    	
+    
     	vystup = pomoc.PouziRegex("\\| ?death_date ?= [^}]+", vysledok);  	
     	    	
     	if (vystup != null){
@@ -232,16 +235,6 @@ public class HandlerPerson  extends DefaultHandler {
     	    flag = true;
     	}
 
-    	vystup = pomoc.PouziRegex("\\| ?death_place ?= [^|]+", vysledok);  	
-    	if (vystup != null){
-    		vystup =pomoc.ocisti_retazec(vystup, "death_place");
-    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
-    		vystup = vystup.replaceAll("  "," ");
-    		vystup = pomoc.posledna_medzera(vystup);
-    		infoboxPerson.setDeath_place(vystup);
-    	    flag = true;
-    	}
-    	
     	counter++;
       	return flag;
     }

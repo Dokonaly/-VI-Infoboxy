@@ -46,62 +46,84 @@ public class HandlerBook  extends DefaultHandler {
     //metoda na oparsovanie infoboxu, v atribute vysledok je ulozeny text na spracovanie
     public boolean oparsujBook(String vysledok){
     	boolean flag = false;
-    
     	//postupne vyberanie jednotlivych atributov z textu
-    	String vystup = pomoc.PouziRegex("\\| ?name ?= [^|]+", vysledok);  	
-    	if (vystup != null){
-    		vystup = pomoc.ocisti_retazec(vystup, "name");
-    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
-    		vystup = pomoc.posledna_medzera(vystup);
-    		infoboxBook.setName(vystup);
-    	    flag = true;
+    	List<String> list_regexov = new ArrayList<String>();
+    	list_regexov.add("\\| ?name ?= [^|]+");
+    	list_regexov.add("\\| ?translator ?= [^|]+");
+    	list_regexov.add("\\| ?image ?= [^|]+");
+    	list_regexov.add("\\| ?caption ?= [^|]+");
+    	list_regexov.add("\\| ?author ?= [^|]+");
+    	list_regexov.add("\\| ?country ?= [^|]+");
+    	list_regexov.add("\\| ?subject ?= [^|]+");
+    	list_regexov.add("\\| ?genre ?= [^|]+");
+    	list_regexov.add("\\| ?published ?= [^|]+");
+    	list_regexov.add("\\| ?isbn ?= [^|]+");
+    	list_regexov.add("\\| ?preceded_by ?= [^|]+");
+    	list_regexov.add("\\| ?followed_by ?= [^|]+");
+    	
+    	List<String> list_atributov = new ArrayList<String>();
+    	list_atributov.add("name");
+    	list_atributov.add("translator");
+    	list_atributov.add("image");
+    	list_atributov.add("caption");
+    	list_atributov.add("author");
+    	list_atributov.add("country");
+    	list_atributov.add("subject");
+    	list_atributov.add("genre");
+    	list_atributov.add("published");
+    	list_atributov.add("isbn");
+    	list_atributov.add("preceded_by");
+    	list_atributov.add("followed_by");
+    	
+    	String vystup;
+    	for(int i=0;i<list_regexov.size();i++){
+    	    vystup = pomoc.PouziRegex(list_regexov.get(i), vysledok);  	
+        	if (vystup != null){
+        		vystup = pomoc.ocisti_retazec(vystup, list_atributov.get(i));
+        		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
+        		vystup = pomoc.posledna_medzera(vystup);
+        		
+        			if(list_atributov.get(i).contains("name")){
+        				infoboxBook.setName(vystup);
+        			}
+        			else if(list_atributov.get(i).contains("translator")){
+        				infoboxBook.setTranslator(vystup);
+        			}
+        			else if(list_atributov.get(i).contains("image")){
+        				infoboxBook.setImage(vystup);
+        			}
+        			else if(list_atributov.get(i).contains("captation")){
+        				infoboxBook.setCaption(vystup);
+        			}
+        			else if(list_atributov.get(i).contains("author")){
+        				infoboxBook.setAuthor(vystup);
+        			}
+        			else if(list_atributov.get(i).contains("country")){
+        				infoboxBook.setCountry(vystup);
+        			}
+        			else if(list_atributov.get(i).contains("subject")){
+        				infoboxBook.setSubject(vystup);
+        			}
+        			else if(list_atributov.get(i).contains("published")){
+        				infoboxBook.setPublished(vystup);
+        			}
+        			else if(list_atributov.get(i).contains("pages")){
+        				infoboxBook.setPages(vystup);
+        			}
+        			else if(list_atributov.get(i).contains("isbn")){
+        				infoboxBook.setIsbn(vystup);
+        			}
+        			else if(list_atributov.get(i).contains("preceded_by")){
+        				infoboxBook.setPreceded_by(vystup);
+        			}
+        			else if(list_atributov.get(i).contains("followed_by")){
+        				infoboxBook.setFollowed_by(vystup);
+        			}
+        	    flag = true;
+        	}
     	}
     	
-    	vystup = pomoc.PouziRegex("\\| ?translator ?= [^|]+", vysledok);  	
-    	if (vystup != null){
-    		vystup = pomoc.ocisti_retazec(vystup, "translator");
-    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
-    		vystup = pomoc.posledna_medzera(vystup);
-    		infoboxBook.setTranslator(vystup);
-    	    flag = true;
-    	}
-    	
-    	vystup = pomoc.PouziRegex("\\| ?image ?= [^|]+", vysledok);  	
-    	if (vystup != null){
-    		vystup = pomoc.ocisti_retazec(vystup, "image");
-    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
-    		vystup = pomoc.posledna_medzera(vystup);
-    		infoboxBook.setImage(vystup);
-    	    flag = true;
-    	}
-    	
-    	vystup = pomoc.PouziRegex("\\| ?caption ?= [^|]+", vysledok);  	
-    	if (vystup != null){
-    		vystup = pomoc.ocisti_retazec(vystup, "caption");
-    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
-    		vystup = pomoc.posledna_medzera(vystup);
-    		infoboxBook.setCaption(vystup);
-    	    flag = true;
-    	}
-    	
-    	vystup = pomoc.PouziRegex("\\| ?author ?= [^|]+", vysledok);  	
-    	if (vystup != null){
-    		vystup = pomoc.ocisti_retazec(vystup, "author");
-    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
-    		vystup = pomoc.posledna_medzera(vystup);
-    		infoboxBook.setAuthor(vystup);
-    		
-    	    flag = true;
-    	}
-    	
-    	vystup = pomoc.PouziRegex("\\| ?country ?= [^|]+", vysledok);  	
-    	if (vystup != null){
-    		vystup = pomoc.ocisti_retazec(vystup, "country");
-    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
-    		vystup = pomoc.posledna_medzera(vystup);
-    		infoboxBook.setCountry(vystup);
-    	    flag = true;
-    	}
+    	//postupne vyberanie jednotlivych atributov z textu
     	
     	vystup = pomoc.PouziRegex("\\| ?language ?= [A-Za-z0-9 _ =*.:?!()+-<>\\]\\[#@\\{}'`$%^&;<>,ֹציז|]+", vysledok);  	
     	if (vystup != null){
@@ -129,15 +151,6 @@ public class HandlerBook  extends DefaultHandler {
     	    flag = true;
     	}
     	
-    	vystup = pomoc.PouziRegex("\\| ?subject ?= [^|]+", vysledok);  	
-    	if (vystup != null){
-    		vystup = pomoc.ocisti_retazec(vystup, "subject");
-    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
-    		vystup = pomoc.posledna_medzera(vystup);
-    		infoboxBook.setSubject(vystup);
-    	    flag = true;
-    	}
-    	
     	vystup = pomoc.PouziRegex("\\| ?genre ?= [^|]+", vysledok);  	
     	if (vystup != null){
     		vystup = pomoc.ocisti_retazec(vystup, "genre");
@@ -153,52 +166,7 @@ public class HandlerBook  extends DefaultHandler {
     		}
     	    flag = true;
     	}
-    	
-    	vystup = pomoc.PouziRegex("\\| ?published ?= [^|]+", vysledok);  	
-    	if (vystup != null){
-    		vystup = pomoc.ocisti_retazec(vystup, "published");
-    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
-    		vystup = pomoc.posledna_medzera(vystup);
-    		infoboxBook.setPublished(vystup);
-    	    flag = true;
-    	}
-    	
-    
-    	vystup = pomoc.PouziRegex("\\| ?pages ?= [^|]+", vysledok);  	
-    	if (vystup != null){
-    		vystup = pomoc.ocisti_retazec(vystup, "pages");
-    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
-    		vystup = pomoc.posledna_medzera(vystup);
-    		infoboxBook.setPages(vystup);
-    	    flag = true;
-    	}
-    	
-    	vystup = pomoc.PouziRegex("\\| ?isbn ?= [^|]+", vysledok);  	
-    	if (vystup != null){
-    		vystup = pomoc.ocisti_retazec(vystup, "isbn");
-    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
-    		vystup = pomoc.posledna_medzera(vystup);
-    		infoboxBook.setIsbn(vystup);
-    	    flag = true;
-    	}
-    	
-    	vystup = pomoc.PouziRegex("\\| ?preceded_by ?= [^|]+", vysledok);  	
-    	if (vystup != null){
-    		vystup = pomoc.ocisti_retazec(vystup, "preceded_by");
-    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
-    		vystup = pomoc.posledna_medzera(vystup);
-    		infoboxBook.setPreceded_by(vystup);
-    	    flag = true;
-    	}
-    	
-    	vystup = pomoc.PouziRegex("\\| ?followed_by ?= [^|]+", vysledok);  	
-    	if (vystup != null){
-    		vystup =pomoc.ocisti_retazec(vystup, "followed_by");
-    		vystup = vystup.replaceAll("[^0-9a-zA-Z.:,?! +-]","");
-    		vystup = pomoc.posledna_medzera(vystup);
-    		infoboxBook.setFollowed_by(vystup);
-    	    flag = true;
-    	}
+    	  
     	counter++;
     	return flag;
     }

@@ -56,7 +56,7 @@ public class Parser {
 	        HandlerPerson handler_person = new HandlerPerson();
 	        
 	        //oparsovanie pomocou kniznice SAX
-	        String cesta = "data/ukazka-velka.xml";
+	        String cesta = "data/ukazka.xml";
 	        saxParser.parse(new File(cesta), handler_settlement);
 	        saxParser.parse(new File(cesta), handler_country);
 	        saxParser.parse(new File(cesta), handler_book);

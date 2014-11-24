@@ -1,56 +1,56 @@
 Statistiky book: 
 Percento nevyparsovanych mien knih: 0.0
-Percento nevyparsovanych translatorov: 96.22844827586206
-Percento nevyparsovanych image: 23.275862068965516
-Percento nevyparsovanych captation: 55.2801724137931
+Percento nevyparsovanych translatorov: 96.15384615384616
+Percento nevyparsovanych image: 7.6923076923076925
+Percento nevyparsovanych captation: 100.0
 Percento nevyparsovanych autorov: 0.0
-Percento nevyparsovanych country: 13.900862068965516
-Percento nevyparsovanych languages: 3.232758620689655
-Percento nevyparsovanych subject: 79.3103448275862
-Percento nevyparsovanych genre: 22.73706896551724
-Percento nevyparsovanych published: 93.53448275862068
-Percento nevyparsovanych pages: 20.689655172413794
-Percento nevyparsovanych isbn: 16.70258620689655
-Percento nevyparsovanych followed_by: 25.323275862068964
-Percento nevyparsovanych precessed_by: 68.9655172413793
+Percento nevyparsovanych country: 11.538461538461538
+Percento nevyparsovanych languages: 0.0
+Percento nevyparsovanych subject: 84.61538461538461
+Percento nevyparsovanych genre: 7.6923076923076925
+Percento nevyparsovanych published: 69.23076923076923
+Percento nevyparsovanych pages: 100.0
+Percento nevyparsovanych isbn: 38.46153846153846
+Percento nevyparsovanych followed_by: 50.0
+Percento nevyparsovanych precessed_by: 73.07692307692308
 ********************************************************************
 Statistiky country: 
-Percento nevyparsovanych mien: 0.0
-Percento nevyparsovanych common_name: 12.5
-Percento nevyparsovanych image_flag: 37.5
-Percento nevyparsovanych image_coat: 37.5
-Percento nevyparsovanych capital: 37.5
-Percento nevyparsovanych official_religion: 100.0
-Percento nevyparsovanych official_languages: 12.5
-Percento nevyparsovanych goverment_type: 12.5
-Percento nevyparsovanych area_km2: 50.0
-Percento nevyparsovanych area_sq_mi: 75.0
-Percento nevyparsovanych currency: 0.0
-Percento nevyparsovanych currency_code: 62.5
-Percento nevyparsovanych population_estimate: 50.0
-Percento nevyparsovanych population_estimate_rank: 62.5
+Percento nevyparsovanych mien: 4.25531914893617
+Percento nevyparsovanych common_name: 4.25531914893617
+Percento nevyparsovanych image_flag: 0.0
+Percento nevyparsovanych image_coat: 10.638297872340425
+Percento nevyparsovanych capital: 6.382978723404255
+Percento nevyparsovanych official_religion: 91.48936170212765
+Percento nevyparsovanych official_languages: 17.02127659574468
+Percento nevyparsovanych goverment_type: 6.382978723404255
+Percento nevyparsovanych area_km2: 4.25531914893617
+Percento nevyparsovanych area_sq_mi: 6.382978723404255
+Percento nevyparsovanych currency: 4.25531914893617
+Percento nevyparsovanych currency_code: 8.51063829787234
+Percento nevyparsovanych population_estimate: 21.27659574468085
+Percento nevyparsovanych population_estimate_rank: 100.0
 ********************************************************************
 Statistiky person: 
 Percento nevyparsovanych mien: 0.0
-Percento nevyparsovanych obrazkov: 61.254815630159605
-Percento nevyparsovanych velkosti obrazkov: 91.0842047330765
-Percento nevyparsovanych dni narodeni: 4.531278664465236
-Percento nevyparsovanych miest narodeni: 18.07007888460833
-Percento nevyparsovanych datumov umrti: 30.086222711429095
-Percento nevyparsovanych miest umrti: 68.66629976151165
+Percento nevyparsovanych obrazkov: 9.90990990990991
+Percento nevyparsovanych velkosti obrazkov: 81.08108108108108
+Percento nevyparsovanych dni narodeni: 0.9009009009009009
+Percento nevyparsovanych miest narodeni: 4.504504504504505
+Percento nevyparsovanych datumov umrti: 24.324324324324326
+Percento nevyparsovanych miest umrti: 38.73873873873874
 ********************************************************************
 Statistiky settlement: 
-Percento nevyparsovanych mien: 85.97395852654228
-Percento nevyparsovanych nickname: 99.69581184849947
-Percento nevyparsovanych captation: 95.7710427718218
-Percento nevyparsovanych coordinates_region: 25.080684052379716
-Percento nevyparsovanych leader titulov: 95.69314092814483
-Percento nevyparsovanych unit_pref: 89.03067848796232
-Percento nevyparsovanych area_total_km2: 82.33853915495048
-Percento nevyparsovanych area_land_km2: 88.05876024780206
-Percento nevyparsovanych populacii: 3.279296657639945
-Percento nevyparsovanych population_density: 79.72697258597026
-Percento nevyparsovanych timezone: 80.29825277293467
-Percento nevyparsovanych website: 96.85053974848834
-Percento nevyparsovanych postal_code: 94.12397521979449
+Percento nevyparsovanych mien: 31.764705882352942
+Percento nevyparsovanych nickname: 60.0
+Percento nevyparsovanych captation: 34.11764705882353
+Percento nevyparsovanych coordinates_region: 18.823529411764707
+Percento nevyparsovanych leader titulov: 22.35294117647059
+Percento nevyparsovanych unit_pref: 45.88235294117647
+Percento nevyparsovanych area_total_km2: 17.647058823529413
+Percento nevyparsovanych area_land_km2: 54.11764705882353
+Percento nevyparsovanych populacii: 2.3529411764705883
+Percento nevyparsovanych population_density: 18.823529411764707
+Percento nevyparsovanych timezone: 23.529411764705884
+Percento nevyparsovanych website: 42.35294117647059
+Percento nevyparsovanych postal_code: 21.176470588235293
 ********************************************************************
