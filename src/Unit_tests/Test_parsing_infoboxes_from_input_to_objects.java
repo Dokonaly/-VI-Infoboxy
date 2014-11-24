@@ -35,6 +35,17 @@ import org.testng.annotations.Test;
 import org.xml.sax.SAXException;
 import java.util.Scanner;
 
+/*
+ * Pre opatovne spustenie testu je potrebne vytvorit nove xml
+ * nakopirovat do neho 4 stranky zo suboru: enwiki-latest-pages-articles1.xml-p000000010p000010000.bz2
+ * kazda zo 4 stranok obsahuje iny druh infoboxu. konkretne ide o :
+ * Stranka : title = Allan Dwan -> na vyhladanie pouzit "{{Infobox person | name = Allan Dwan"
+ * Stranka : title = The Cider House Rules -> na vyhladanie pouzit "| name          = The Cider House Rules" 
+ * Stranka : title = Bishkek -> na vyhladanie pouzit "|official_name    = Bishkek"
+ * Stranka : title = Cook Islands -> na vyhladanie pouzit "|conventional_long_name = Cook Islands"
+ * Nasledne len test spustit... overime ci sa nezmenil format dat !
+ */
+
 public class Test_parsing_infoboxes_from_input_to_objects  {
 	  
 	  @Test

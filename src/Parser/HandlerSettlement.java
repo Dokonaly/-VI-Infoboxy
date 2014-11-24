@@ -49,6 +49,7 @@ public class HandlerSettlement  extends DefaultHandler {
     	
     	//postupne vyberanie jednotlivych atributov z textu
     	String vystup;
+    	//zoznam regexov ktory sa pouzije na ziskanie vacsiny atributov
     	List<String> list_regexov = new ArrayList<String>();
     	List<String> list_atributov = new ArrayList<String>();
     	

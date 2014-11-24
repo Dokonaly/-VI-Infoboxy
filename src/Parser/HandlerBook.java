@@ -46,7 +46,7 @@ public class HandlerBook  extends DefaultHandler {
     //metoda na oparsovanie infoboxu, v atribute vysledok je ulozeny text na spracovanie
     public boolean oparsujBook(String vysledok){
     	boolean flag = false;
-    	//postupne vyberanie jednotlivych atributov z textu
+    	//zoznam regexov ktory sa pouzije na ziskanie vacsiny atributov
     	List<String> list_regexov = new ArrayList<String>();
     	list_regexov.add("\\| ?name ?= [^|]+");
     	list_regexov.add("\\| ?translator ?= [^|]+");

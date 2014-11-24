@@ -40,9 +40,10 @@ public class HandlerCountry  extends DefaultHandler {
         } 
     }
     
-    //metoda na oparsovanie infoboxu, v atribute vysledok je ulozeny text na spracovanie
+  //metoda na oparsovanie infoboxu, v atribute vysledok je ulozeny text na spracovanie
     public boolean oparsujCountry(boolean flag, String vysledok){
     	String vystup;
+    	//zoznam regexov ktory sa pouzije na ziskanie vacsiny atributov
     	List<String> list_regexov = new ArrayList<String>();
     	List<String> list_atributov = new ArrayList<String>();
     	
